@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Your QSOs on a Globe</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="./assets/adi2kml.js"></script>
+    <script type="text/javascript" src="./assets/filehelper.js"></script>
+    <div id="adi2kml_container">
+      <label for="file-input">
+        Choose an ADI file to convert to KML --&gt;
+        <input type="file" id="file-input" />
+      </label>
+      <div id="message"></div>
+    </div>
+    <script>
+      setupFileHelper();
+    </script>
+  </body>
+</html>

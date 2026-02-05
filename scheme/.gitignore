@@ -1,0 +1,13 @@
+*.ss~
+*.ss#*
+.#*.ss
+
+*.scm~
+*.scm#*
+.#*.scm
+
+*.html
+*.adi
+
+adi2kml
+*.link
