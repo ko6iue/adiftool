@@ -34,4 +34,4 @@ pretty-js: filehelper.js index.html
 
 
 clean:
-	rm adi2kml *.c~ *.h~ adi2kml.js *.wasm || /usr/bin/env true
+	rm adi2kml *.c~ *.h~ adi2kml.js *.wasm 2>/dev/null || /usr/bin/env true
