@@ -24,8 +24,14 @@ deploy: adi2kml.js
 test: test-maidenhead
 	./test-maidenhead
 
-pretty:
-	indent -orig adi2kml.c adif.c adif.h maidenhead.c maidenhead.h test-maidenhead.c enscripten.c
+pretty: pretty-c pretty-js
+
+pretty-c: adi2kml.c adif.c adif.h enscripten.c maidenhead.c maidenhead.h test-maidenhead.c
+	indent -orig $^
+
+pretty-js: filehelper.js index.html
+	prettier --write $^
+
 
 clean:
 	rm adi2kml *.c~ *.h~ adi2kml.js *.wasm || /usr/bin/env true
