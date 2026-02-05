@@ -120,6 +120,7 @@ write_kml(FILE *fp, struct adi_qso *qsos)
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
 	    "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
+    fprintf(fp, "<name>KO6IUE ADIF to KML converter</name>\n");
     walk_qsos(qsos, &print_kml_record, fp);
     fprintf(fp, "</Document>\n</kml>\n");
 }
