@@ -14,7 +14,7 @@ test-maidenhead: test-maidenhead.c maidenhead.c
 	gcc -Wall -O3 -I . -o $@ $^ -lm
 
 deploy: adi2kml.js
-	rm -rf site/*
+	rm -rf site/* 2>/dev/null || /usr/bin/env true
 	mkdir -p site/assets 2>/dev/null || /usr/bin/env true
 	cp index.html site
 	cp filehelper.js site/assets
