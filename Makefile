@@ -26,8 +26,9 @@ test: test-maidenhead
 
 pretty: pretty-c pretty-js
 
+# Berkeley style, spaces not tabs
 pretty-c: adi2kml.c adif.c adif.h enscripten.c maidenhead.c maidenhead.h test-maidenhead.c
-	indent -orig $^
+	indent -orig -nut $^
 
 pretty-js: filehelper.js index.html
 	prettier --write $^

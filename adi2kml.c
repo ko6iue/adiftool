@@ -42,7 +42,7 @@ write_description(struct adi_qso *qso, FILE *fp)
     fprintf(fp, "%s", cdata_open);
     fprintf(fp, "<h1>%s</h1>\n", qso->name);
     fprintf(fp, "<b><a href=\"https://www.qrz.com/db/%s\">"
-	    "QRZ Page</a></b><br/>\n", qso->their_call);
+            "QRZ Page</a></b><br/>\n", qso->their_call);
     fprintf(fp, "<b>QTH</b>: %s<br/>\n", qso->qth);
     fprintf(fp, "<b>Number of QSOs</b>: %d<br/>\n", qso->num_qsos);
     fprintf(fp, "<b>Grid</b>: %s<br/>\n", qso->their_grid.mh);
@@ -61,7 +61,7 @@ print_kml_point(struct adi_qso *qso, FILE *fp)
     write_description(qso, fp);
     fprintf(fp, "<Point><coordinates>");
     fprintf(fp, "%.6f,%.6f,0",
-	    qso->their_grid.lon_center, qso->their_grid.lat_center);
+            qso->their_grid.lon_center, qso->their_grid.lat_center);
     fprintf(fp, "</coordinates></Point>\n");
     fprintf(fp, "</Placemark>\n");
 }
@@ -71,7 +71,7 @@ print_kml_box(struct adi_qso *qso, FILE *fp)
 {
     struct maidenhead *mh = NULL;
     if (!qso || !fp) {
-	return;
+        return;
     }
     mh = &qso->their_grid;
     fprintf(fp, "<Placemark>\n");
@@ -79,18 +79,18 @@ print_kml_box(struct adi_qso *qso, FILE *fp)
     fprintf(fp, "<LineString><tessellate>1</tessellate>\n");
     fprintf(fp, "<coordinates>");
     fprintf(fp, "%.6f,%.6f,0\n%.6f,%.6f,0\n%.6f,%.6f,0\n",
-	    // sw corner
-	    mh->lon_sw_corner, mh->lat_sw_corner,
-	    // nw corner
-	    mh->lon_sw_corner, mh->lat_sw_corner + mh->lat_res_degrees,
-	    // ne corner
-	    mh->lon_sw_corner + mh->lon_res_degrees,
-	    mh->lat_sw_corner + mh->lat_res_degrees);
+            // sw corner
+            mh->lon_sw_corner, mh->lat_sw_corner,
+            // nw corner
+            mh->lon_sw_corner, mh->lat_sw_corner + mh->lat_res_degrees,
+            // ne corner
+            mh->lon_sw_corner + mh->lon_res_degrees,
+            mh->lat_sw_corner + mh->lat_res_degrees);
     fprintf(fp, "%.6f,%.6f,0\n%.6f,%.6f,0",
-	    // se corner
-	    mh->lon_sw_corner + mh->lon_res_degrees, mh->lat_sw_corner,
-	    // sw corner
-	    mh->lon_sw_corner, mh->lat_sw_corner);
+            // se corner
+            mh->lon_sw_corner + mh->lon_res_degrees, mh->lat_sw_corner,
+            // sw corner
+            mh->lon_sw_corner, mh->lat_sw_corner);
     fprintf(fp, "</coordinates>\n");
     fprintf(fp, "</LineString>\n");
     fprintf(fp, "</Placemark>\n");
@@ -109,7 +109,7 @@ print_kml_record(struct adi_qso *qso, void *arg)
 int
 count_qsos(struct adi_qso *qso, void *arg)
 {
-    (void) (qso); // unused
+    (void) (qso);               // unused
     int            *i = (int *) arg;
     (*i) += 1;
     return 0;
@@ -120,7 +120,7 @@ write_kml(FILE *fp, struct adi_qso *qsos)
 {
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
-	    "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
+            "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
     fprintf(fp, "<name>KO6IUE ADIF to KML converter</name>\n");
     walk_qsos(qsos, &print_kml_record, fp);
     fprintf(fp, "</Document>\n</kml>\n");
@@ -135,25 +135,25 @@ main(int argc, char *argv[])
     int             num_qsos = 0;
 
     if (argc != 3) {
-	fprintf(stderr, "Usage: %s [adi file] [kml file]\n", argv[0]);
-	fprintf(stderr, "Example: %s my.adi my.kml\n", argv[0]);
-	exit(EXIT_FAILURE);
+        fprintf(stderr, "Usage: %s [adi file] [kml file]\n", argv[0]);
+        fprintf(stderr, "Example: %s my.adi my.kml\n", argv[0]);
+        exit(EXIT_FAILURE);
     }
 
     fp = fopen(argv[1], "r");
     if (fp == NULL) {
-	fprintf(stderr, "File error: %s\n", argv[1]);
-	exit(EXIT_FAILURE);
+        fprintf(stderr, "File error: %s\n", argv[1]);
+        exit(EXIT_FAILURE);
     }
 
     qsos = load_qsos_fp(fp);
     if (qsos == NULL)
-	exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);
 
     kmlfp = fopen(argv[2], "w");
     if (!kmlfp) {
-	fprintf(stderr, "Error writing to %s\n", argv[2]);
-	exit(EXIT_FAILURE);
+        fprintf(stderr, "Error writing to %s\n", argv[2]);
+        exit(EXIT_FAILURE);
     }
 
     write_kml(kmlfp, qsos);

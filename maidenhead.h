@@ -47,10 +47,10 @@ struct maidenhead {
 void            maidenhead_print(FILE * fp, struct maidenhead *mh);
 // rval -1 on bad arguments, 0 OK, positive is offset of invalid character
 int             populate_maidenhead(struct maidenhead *mh,
-				    const char *grid, const int len);
+                                    const char *grid, const int len);
 float           maidenhead_distance_km(struct maidenhead *from,
-				       struct maidenhead *to);
+                                       struct maidenhead *to);
 float           maidenhead_bearing_degrees(struct maidenhead *from,
-					   struct maidenhead *to);
+                                           struct maidenhead *to);
 
 #endif

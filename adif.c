@@ -69,7 +69,7 @@ my_strcpy(char *dest, int dstlen, char *src, int srclen)
 {
     int             safe_len = srclen;
     if (srclen > (dstlen - 1)) {
-	safe_len = dstlen - 1;
+        safe_len = dstlen - 1;
     }
     memcpy(dest, src, safe_len);
     dest[safe_len] = '\0';
@@ -81,16 +81,16 @@ int
 valid_qso(struct adi_qso *qso)
 {
     if (!qso) {
-	return 0;
+        return 0;
     }
     if (strlen(qso->their_call) <= 0) {
-	return 0;
+        return 0;
     }
     if (strlen(qso->their_grid.mh) <= 0) {
-	return 0;
+        return 0;
     }
     if (strlen(qso->my_grid.mh) <= 0) {
-	return 0;
+        return 0;
     }
     return 1;
 }
@@ -101,103 +101,103 @@ load_qsos_fp(FILE *fp)
     regex_t         regex;
     int             rval;
     struct adi_qso *qsos = NULL,
-	*qso,
-	*query;
-    size_t          nmatch = 3,	// all, key, value
-	key_len,
-	val_len,
-	line_len = 0;
+        *qso,
+        *query;
+    size_t          nmatch = 3, // all, key, value
+        key_len,
+        val_len,
+        line_len = 0;
     regmatch_t      pmatch[nmatch];
     char           *line = NULL,
-	key[KEY_LEN],
-	val[KEY_LEN];
+        key[KEY_LEN],
+        val[KEY_LEN];
 
     if (!fp) {
-	return NULL;
+        return NULL;
     }
 
     rval =
-	regcomp(&regex, "^<([^:0-9]+){1,1}[:0-9]*>(.*)$",
-		REG_EXTENDED | REG_NEWLINE);
+        regcomp(&regex, "^<([^:0-9]+){1,1}[:0-9]*>(.*)$",
+                REG_EXTENDED | REG_NEWLINE);
     if (rval) {
-	return NULL;
+        return NULL;
     }
 
     qso = (struct adi_qso *) malloc(sizeof *qso);
     if (qso == NULL) {
-	return NULL;
+        return NULL;
     }
     memset(qso, 0, sizeof(*qso));
 
     while (getline(&line, &line_len, fp) != -1) {
-	rval = regexec(&regex, line, nmatch, pmatch, 0);
-	if (!rval) {
-	    // We silently ignore keys longer than KEY_LEN
-	    // since we don't process them anyway
-	    key_len = PMATCH_LEN(&pmatch[1]);
-	    val_len = PMATCH_LEN(&pmatch[2]);
-	    if (key_len < KEY_LEN) {
-		my_strcpy(key, sizeof(key), line + pmatch[1].rm_so,
-			  key_len);
-		my_strcpy(val, sizeof(val), line + pmatch[2].rm_so,
-			  val_len);
+        rval = regexec(&regex, line, nmatch, pmatch, 0);
+        if (!rval) {
+            // We silently ignore keys longer than KEY_LEN
+            // since we don't process them anyway
+            key_len = PMATCH_LEN(&pmatch[1]);
+            val_len = PMATCH_LEN(&pmatch[2]);
+            if (key_len < KEY_LEN) {
+                my_strcpy(key, sizeof(key), line + pmatch[1].rm_so,
+                          key_len);
+                my_strcpy(val, sizeof(val), line + pmatch[2].rm_so,
+                          val_len);
 
-		if (!strcmp(key, "call")) {
-		    my_strcpy(qso->their_call, sizeof(qso->their_call),
-			      val, val_len);
-		} else if (!strcmp(key, "name")) {
-		    my_strcpy(qso->name, sizeof(qso->name), val, val_len);
-		} else if (!strcmp(key, "country")) {
-		    my_strcpy(qso->country, sizeof(qso->country),
-			      val, val_len);
-		} else if (!strcmp(key, "qth")) {
-		    my_strcpy(qso->qth, sizeof(qso->qth), val, val_len);
-		} else if (!strcmp(key, "gridsquare")) {
-		    populate_maidenhead(&qso->their_grid, val, val_len);
-		} else if (!strcmp(key, "my_gridsquare")) {
-		    populate_maidenhead(&qso->my_grid, val, val_len);
-		} else if (!strcmp(key, "eor")) {
-		    // Process record
-		    if (valid_qso(qso)) {
-			HASH_FIND_STR(qsos, qso->their_call, query);
-			if (query == NULL) {
-			    // Add new person
-			    qso->distance_km =
-				maidenhead_distance_km(&qso->my_grid,
-						       &qso->their_grid);
-			    qso->bearing_degrees =
-				maidenhead_bearing_degrees(&qso->my_grid,
-							   &qso->
-							   their_grid);
-			    qso->num_qsos = 1;
-			    HASH_ADD_STR(qsos, their_call, qso);
-			    qso = (struct adi_qso *) malloc(sizeof(*qso));
-			    if (qso == NULL) {
-				return NULL;
-			    }
-			} else {
-			    // Station we already know about: process
-			    // summary info.
-			    query->num_qsos += 1;
-			    // TODO: see if we have better maidenhead info
-			    // Check if they moved etc, summarize band
-			    // info
-			}
-		    }
-		    memset(qso, 0, sizeof(*qso));
-		} else {
-		    // printf("Ignoring key=%s\n", key);
-		}
+                if (!strcmp(key, "call")) {
+                    my_strcpy(qso->their_call, sizeof(qso->their_call),
+                              val, val_len);
+                } else if (!strcmp(key, "name")) {
+                    my_strcpy(qso->name, sizeof(qso->name), val, val_len);
+                } else if (!strcmp(key, "country")) {
+                    my_strcpy(qso->country, sizeof(qso->country),
+                              val, val_len);
+                } else if (!strcmp(key, "qth")) {
+                    my_strcpy(qso->qth, sizeof(qso->qth), val, val_len);
+                } else if (!strcmp(key, "gridsquare")) {
+                    populate_maidenhead(&qso->their_grid, val, val_len);
+                } else if (!strcmp(key, "my_gridsquare")) {
+                    populate_maidenhead(&qso->my_grid, val, val_len);
+                } else if (!strcmp(key, "eor")) {
+                    // Process record
+                    if (valid_qso(qso)) {
+                        HASH_FIND_STR(qsos, qso->their_call, query);
+                        if (query == NULL) {
+                            // Add new person
+                            qso->distance_km =
+                                maidenhead_distance_km(&qso->my_grid,
+                                                       &qso->their_grid);
+                            qso->bearing_degrees =
+                                maidenhead_bearing_degrees(&qso->my_grid,
+                                                           &qso->
+                                                           their_grid);
+                            qso->num_qsos = 1;
+                            HASH_ADD_STR(qsos, their_call, qso);
+                            qso = (struct adi_qso *) malloc(sizeof(*qso));
+                            if (qso == NULL) {
+                                return NULL;
+                            }
+                        } else {
+                            // Station we already know about: process
+                            // summary info.
+                            query->num_qsos += 1;
+                            // TODO: see if we have better maidenhead info
+                            // Check if they moved etc, summarize band
+                            // info
+                        }
+                    }
+                    memset(qso, 0, sizeof(*qso));
+                } else {
+                    // printf("Ignoring key=%s\n", key);
+                }
 
-		/*
-		 * printf("%d (%d,%d) %s=%s %s", rval, pmatch[2].rm_so,
-		 * pmatch[2].rm_eo, key, val, line); 
-		 */
-	    }
-	}
+                /*
+                 * printf("%d (%d,%d) %s=%s %s", rval, pmatch[2].rm_so,
+                 * pmatch[2].rm_eo, key, val, line); 
+                 */
+            }
+        }
     }
 
-    free(qso);			// free last qso we created and didn't
+    free(qso);                  // free last qso we created and didn't
     // populate
     regfree(&regex);
     free(line);
@@ -216,19 +216,19 @@ load_qsos_mem(char *buf, size_t len)
 
 int
 walk_qsos(struct adi_qso *qsos, int (*cb)(struct adi_qso *, void *arg),
-	  void *arg)
+          void *arg)
 {
     int             rval;
     struct adi_qso *qso,
                    *tmp;
     if (qsos && cb) {
-	HASH_ITER(hh, qsos, qso, tmp) {
-	    rval = (*cb) (qso, arg);
-	    if (rval) {
-		// premature stop
-		return rval;
-	    }
-	}
+        HASH_ITER(hh, qsos, qso, tmp) {
+            rval = (*cb) (qso, arg);
+            if (rval) {
+                // premature stop
+                return rval;
+            }
+        }
     }
     return 0;
 }
@@ -245,9 +245,9 @@ free_qsos(struct adi_qso *qsos)
     struct adi_qso *qso,
                    *tmp;
     if (qsos) {
-	HASH_ITER(hh, qsos, qso, tmp) {
-	    HASH_DEL(qsos, qso);
-	    free(qso);
-	}
+        HASH_ITER(hh, qsos, qso, tmp) {
+            HASH_DEL(qsos, qso);
+            free(qso);
+        }
     }
 }

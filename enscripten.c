@@ -50,7 +50,7 @@ adi2kml(char *adi)
     free(adi);
     write_kml(fp, qsos);
 
-    fclose(fp);			// flush to buf
+    fclose(fp);                 // flush to buf
 
     return buf;
 }

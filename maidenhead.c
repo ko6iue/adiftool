@@ -41,54 +41,54 @@ maidenhead_print(FILE *fp, struct maidenhead *mh)
 {
     fprintf(fp, "       grid: %s\n", mh->mh);
     fprintf(fp, "  sw corner: (%f, %f)\n",
-	    mh->lat_sw_corner, mh->lon_sw_corner);
+            mh->lat_sw_corner, mh->lon_sw_corner);
     fprintf(fp, "res degrees: (%f, %f)\n",
-	    mh->lat_res_degrees, mh->lon_res_degrees);
+            mh->lat_res_degrees, mh->lon_res_degrees);
     fprintf(fp, "     center: (%f, %f)\n", mh->lat_center, mh->lon_center);
 }
 
 // rval: number of valid characters
 int
 calc_offsets(int *offsets, int offsetlen, const char *grid,
-	     const int gridlen)
+             const int gridlen)
 {
     int             i;
     if (gridlen > offsetlen) {
-	return -1;
+        return -1;
     }
     memset(offsets, 0, offsetlen);
 
     for (i = 0; i < 2 && i < gridlen; i++) {
-	if (grid[i] >= 'a' && grid[i] <= 'r') {
-	    offsets[i] = grid[i] - 'a';
-	} else if (grid[i] >= 'A' && grid[i] <= 'R') {
-	    offsets[i] = grid[i] - 'A';
-	} else {
-	    return i;
-	}
+        if (grid[i] >= 'a' && grid[i] <= 'r') {
+            offsets[i] = grid[i] - 'a';
+        } else if (grid[i] >= 'A' && grid[i] <= 'R') {
+            offsets[i] = grid[i] - 'A';
+        } else {
+            return i;
+        }
     }
     for (i = 2; i < 4 && i < gridlen; i++) {
-	if (grid[i] >= '0' && grid[i] <= '9') {
-	    offsets[i] = grid[i] - '0';
-	} else {
-	    return i;
-	}
+        if (grid[i] >= '0' && grid[i] <= '9') {
+            offsets[i] = grid[i] - '0';
+        } else {
+            return i;
+        }
     }
     for (i = 4; i < 6 && i < gridlen; i++) {
-	if (grid[i] >= 'a' && grid[i] <= 'x') {
-	    offsets[i] = grid[i] - 'a';
-	} else if (grid[i] >= 'A' && grid[i] <= 'X') {
-	    offsets[i] = grid[i] - 'A';
-	} else {
-	    return i;
-	}
+        if (grid[i] >= 'a' && grid[i] <= 'x') {
+            offsets[i] = grid[i] - 'a';
+        } else if (grid[i] >= 'A' && grid[i] <= 'X') {
+            offsets[i] = grid[i] - 'A';
+        } else {
+            return i;
+        }
     }
     for (i = 6; i < 8 && i < gridlen; i++) {
-	if (grid[i] >= '0' && grid[i] <= '9') {
-	    offsets[i] = grid[i] - '0';
-	} else {
-	    return i;
-	}
+        if (grid[i] >= '0' && grid[i] <= '9') {
+            offsets[i] = grid[i] - '0';
+        } else {
+            return i;
+        }
     }
     // All characters were valid
     return gridlen;
@@ -104,26 +104,26 @@ populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
     int             i;
     int             offsets[GRID_MAXLEN];
     float           res[GRID_MAXLEN / 2][2] =
-	{ {10, 20}, {1, 2}, {(2.5 / 60), (5.0 / 60)}, {(2.5 / 600),
-						       (5.0 / 600)}
+        { {10, 20}, {1, 2}, {(2.5 / 60), (5.0 / 60)}, {(2.5 / 600),
+                                                       (5.0 / 600)}
     };
 
     if (len == 0 || len % 2 || len > GRID_MAXLEN || mh == NULL)
-	return -1;
+        return -1;
 
     rval = calc_offsets(offsets, GRID_MAXLEN, grid, len);
     if (rval != len) {
-	// return offset of invalid character
-	return rval;
+        // return offset of invalid character
+        return rval;
     }
     memcpy(mh->mh, grid, len);
     mh->lat_sw_corner = -90;
     mh->lon_sw_corner = -180;
     for (i = 0; i < len; i += 2) {
-	mh->lon_sw_corner += (offsets[i] * res[(i / 2)][1]);
+        mh->lon_sw_corner += (offsets[i] * res[(i / 2)][1]);
     }
     for (i = 1; i < len; i += 2) {
-	mh->lat_sw_corner += (offsets[i] * res[(i / 2)][0]);
+        mh->lat_sw_corner += (offsets[i] * res[(i / 2)][0]);
     }
     mh->lat_res_degrees = res[(len / 2) - 1][0];
     mh->lon_res_degrees = res[(len / 2) - 1][1];
@@ -160,9 +160,9 @@ maidenhead_distance_km(struct maidenhead *from, struct maidenhead *to)
     float           lat2 = degrees_to_rads(to->lat_center);
     float           lon2 = degrees_to_rads(to->lon_center);
     float           square_half_cord = haversine(lat2 - lat1) +
-	cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
+        cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
     float           angular_distance =
-	2 * atan2(sqrt(square_half_cord), sqrt(1 - square_half_cord));
+        2 * atan2(sqrt(square_half_cord), sqrt(1 - square_half_cord));
     return angular_distance * volumetric_mean_radius_earth_km;
 }
 
@@ -175,12 +175,12 @@ maidenhead_bearing_degrees(struct maidenhead *from, struct maidenhead *to)
     float           lon2 = degrees_to_rads(to->lon_center);
     float           delta_lon = lon2 - lon1;
     float           tmp = rads_to_degrees(atan2(sin(delta_lon) * cos(lat2),
-						(cos(lat1) * sin(lat2)) -
-						(sin(lat1) * cos(lat2) *
-						 cos(delta_lon))));
+                                                (cos(lat1) * sin(lat2)) -
+                                                (sin(lat1) * cos(lat2) *
+                                                 cos(delta_lon))));
     if (tmp < 0) {
-	return 360 + tmp;
+        return 360 + tmp;
     } else {
-	return tmp;
+        return tmp;
     }
 }
