@@ -145,8 +145,8 @@ main(int argc, char *argv[])
         fprintf(stderr, "File error: %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-
     qsos = load_qsos_fp(fp);
+    fclose(fp);
     if (qsos == NULL)
         exit(EXIT_FAILURE);
 
