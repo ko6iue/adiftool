@@ -1,7 +1,10 @@
 # adi2kml Scheme code
 
-**This code is being shared here for the schemers. It has since been
-ported to C in order to use WASM.**
+**This directory is not part of the main build. It is being
+shared for any schemers who want to see the original Scheme
+code. This project has been rewritten in C in order to
+use WASM.  I tried to use Guile Hoot for WASM but ran into
+too many limitations/bugs.**
 
 Scheme scripts for reading an Amateur Data Interchange Format (ADIF) file
 and writing the data into Keyhole Markup Language (KML) format.
