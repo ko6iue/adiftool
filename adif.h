@@ -61,7 +61,7 @@ struct adi_qso *load_qsos_fp(FILE * fp);
 int             walk_qsos(struct adi_qso *qsos,
 			  int (*cb)(struct adi_qso *, void *arg),
 			  void *arg);
-int             print_qsos(struct adi_qso *qsos);
+int             print_qsos(FILE *, struct adi_qso *qsos);
 void            free_qsos(struct adi_qso *qsos);
 
 #endif

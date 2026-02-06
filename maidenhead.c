@@ -37,19 +37,19 @@
 #include "maidenhead.h"
 
 void
-maidenhead_print(struct maidenhead *mh)
+maidenhead_print(FILE *fp, struct maidenhead *mh)
 {
-    printf("       grid: %s\n", mh->mh);
-    printf("  sw corner: (%f, %f)\n",
-	   mh->lat_sw_corner, mh->lon_sw_corner);
-    printf("res degrees: (%f, %f)\n",
-	   mh->lat_res_degrees, mh->lon_res_degrees);
-    printf("     center: (%f, %f)\n", mh->lat_center, mh->lon_center);
+    fprintf(fp, "       grid: %s\n", mh->mh);
+    fprintf(fp, "  sw corner: (%f, %f)\n",
+	    mh->lat_sw_corner, mh->lon_sw_corner);
+    fprintf(fp, "res degrees: (%f, %f)\n",
+	    mh->lat_res_degrees, mh->lon_res_degrees);
+    fprintf(fp, "     center: (%f, %f)\n", mh->lat_center, mh->lon_center);
 }
 
 // rval: number of valid characters
 int
-calc_offsets(int *offsets, size_t offsetlen, const char *grid,
+calc_offsets(int *offsets, int offsetlen, const char *grid,
 	     const int gridlen)
 {
     int             i;

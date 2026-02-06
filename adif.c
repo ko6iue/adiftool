@@ -47,19 +47,20 @@
 int
 print_qso(struct adi_qso *qso, void *arg)
 {
-    printf("**********\n");
-    printf("       call: %s\n", qso->their_call);
-    printf("     # QSOs: %d\n", qso->num_qsos);
-    printf("       name: %s\n", qso->name);
-    printf("    country: %s\n", qso->country);
-    printf("        qth: %s\n", qso->qth);
-    printf("    my grid\n");
-    maidenhead_print(&qso->my_grid);
-    printf(" their grid\n");
-    maidenhead_print(&qso->their_grid);
-    printf("distance km: %f\n", qso->distance_km);
-    printf("bearing deg: %f\n", qso->bearing_degrees);
-    printf("**********\n");
+    FILE           *fp = (FILE *) arg;
+    fprintf(fp, "**********\n");
+    fprintf(fp, "       call: %s\n", qso->their_call);
+    fprintf(fp, "     # QSOs: %d\n", qso->num_qsos);
+    fprintf(fp, "       name: %s\n", qso->name);
+    fprintf(fp, "    country: %s\n", qso->country);
+    fprintf(fp, "        qth: %s\n", qso->qth);
+    fprintf(fp, "    my grid\n");
+    maidenhead_print(fp, &qso->my_grid);
+    fprintf(fp, " their grid\n");
+    maidenhead_print(fp, &qso->their_grid);
+    fprintf(fp, "distance km: %f\n", qso->distance_km);
+    fprintf(fp, "bearing deg: %f\n", qso->bearing_degrees);
+    fprintf(fp, "**********\n");
     return 0;
 }
 
@@ -233,9 +234,9 @@ walk_qsos(struct adi_qso *qsos, int (*cb)(struct adi_qso *, void *arg),
 }
 
 int
-print_qsos(struct adi_qso *qsos)
+print_qsos(FILE *fp, struct adi_qso *qsos)
 {
-    return walk_qsos(qsos, &print_qso, NULL);
+    return walk_qsos(qsos, &print_qso, (void *) fp);
 }
 
 void

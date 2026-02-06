@@ -109,6 +109,7 @@ print_kml_record(struct adi_qso *qso, void *arg)
 int
 count_qsos(struct adi_qso *qso, void *arg)
 {
+    (void) (qso); // unused
     int            *i = (int *) arg;
     (*i) += 1;
     return 0;
@@ -161,7 +162,7 @@ main(int argc, char *argv[])
     walk_qsos(qsos, &count_qsos, &num_qsos);
     printf("Processed %d QSOs\n", num_qsos);
 
-    // print_qsos(qsos);
+    // print_qsos(stdout, qsos);
 
     free_qsos(qsos);
     return 0;
