@@ -42,19 +42,30 @@ write_description(struct adi_qso *qso, FILE *fp)
     fprintf(fp, "%s", cdata_open);
     if (qso->name) {
         fprintf(fp, "<h1>%s</h1>\n", qso->name);
-    } else {
-        fprintf(fp, "<h1>unknown</h1>\n");
     }
-    fprintf(fp, "<b><a href=\"https://www.qrz.com/db/%s\">"
-            "QRZ Page</a></b><br/>\n", qso->their_call);
+    if (qso->their_call) {
+        fprintf(fp, "<b><a href=\"https://www.qrz.com/db/%s\">"
+                "QRZ Page</a></b><br/>\n", qso->their_call);
+    }
     if (qso->qth) {
         fprintf(fp, "<b>QTH</b>: %s<br/>\n", qso->qth);
     }
     fprintf(fp, "<b>Number of QSOs</b>: %d<br/>\n", qso->num_qsos);
-    fprintf(fp, "<b>Grid</b>: %s<br/>\n", qso->their_grid.mh);
-    fprintf(fp, "<b>Country</b>: %s<br/>\n", qso->country);
-    fprintf(fp, "<b>Distance</b>: %.1f km<br/>\n", qso->distance_km);
-    fprintf(fp, "<b>Bearing</b>: %.1f&deg;</br>\n", qso->bearing_degrees);
+
+    if (qso->country) {
+        fprintf(fp, "<b>Country</b>: %s<br/>\n", qso->country);
+    }
+
+    if (!maidenhead_is_null(&qso->their_grid)) {
+        fprintf(fp, "<b>Grid</b>: %s<br/>\n", qso->their_grid.mh);
+    }
+
+    if (!maidenhead_is_null(&qso->my_grid)) {
+        fprintf(fp, "<b>Distance</b>: %.1f km<br/>\n", qso->distance_km);
+        fprintf(fp, "<b>Bearing</b>: %.1f&deg;</br>\n",
+                qso->bearing_degrees);
+    }
+
     fprintf(fp, "%s", cdata_close);
     fprintf(fp, "</description>\n");
 }

@@ -44,6 +44,8 @@ struct maidenhead {
     float           lon_center;
 };
 
+int             maidenhead_is_null(struct maidenhead *mh);
+
 void            maidenhead_print(FILE * fp, struct maidenhead *mh);
 // rval -1 on bad arguments, 0 OK, positive is offset of invalid character
 int             populate_maidenhead(struct maidenhead *mh,

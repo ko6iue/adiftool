@@ -47,6 +47,12 @@ maidenhead_print(FILE *fp, struct maidenhead *mh)
     fprintf(fp, "     center: (%f, %f)\n", mh->lat_center, mh->lon_center);
 }
 
+int
+maidenhead_is_null(struct maidenhead *mh)
+{
+    return (!mh || strlen(mh->mh) == 0);
+}
+
 // rval: number of valid characters
 int
 calc_offsets(int *offsets, int offsetlen, const char *grid,

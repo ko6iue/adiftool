@@ -31,12 +31,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <regex.h>
+#include <strings.h>
+#include <ctype.h>
+#include <assert.h>
 
 #include "adif.h"
-
-#define PMATCH_LEN(P) ((P)->rm_eo - (P)->rm_so)
 
 int
 print_qso(struct adi_qso *qso, void *arg)
@@ -65,13 +66,10 @@ valid_qso(struct adi_qso *qso)
     if (!qso) {
         return 0;
     }
-    if (strlen(qso->their_call) <= 0) {
+    if (!qso->their_call || strlen(qso->their_call) <= 0) {
         return 0;
     }
-    if (strlen(qso->their_grid.mh) <= 0) {
-        return 0;
-    }
-    if (strlen(qso->my_grid.mh) <= 0) {
+    if (maidenhead_is_null(&qso->their_grid)) {
         return 0;
     }
     return 1;
@@ -80,30 +78,58 @@ valid_qso(struct adi_qso *qso)
 struct adi_qso *
 load_qsos_fp(FILE *fp)
 {
-    regex_t         regex;
-    int             rval;
-    struct adi_qso *qsos = NULL,
-        *qso,
-        *query;
-    size_t          nmatch = 3, // all, key, value
-        val_len,
-        line_len = 0;
-    regmatch_t      pmatch[nmatch];
-    char           *line = NULL,
-        *key,
-        *val;
+    long            fsize;
+    char           *data;
+    struct adi_qso *rval;
 
     if (!fp) {
         return NULL;
     }
+    fseek(fp, 0, SEEK_END);
+    fsize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
 
-    rval =
-        regcomp(&regex,
-                "^<(call|name|country|qth|gridsquare|my_gridsquare|eor)[^>]*>(.*)$",
-                REG_EXTENDED | REG_NEWLINE | REG_ICASE);
-    if (rval) {
+    data = malloc(fsize + 1);
+    if (data == NULL) {
         return NULL;
     }
+    fread(data, fsize, 1, fp);
+    data[fsize] = '\0';
+
+    rval = load_qsos_mem(data, fsize);
+    free(data);
+    return rval;
+}
+
+void
+trim_end_space(char *p)
+{
+    char           *q;
+    if (p) {
+        for (q = p + strlen(p) - 1; q >= p; q--) {
+            if (!isspace(*q)) {
+                break;
+            }
+        }
+        *(q + 1) = '\0';
+    }
+}
+
+struct adi_qso *
+load_qsos_mem(char *buf, size_t buf_len)
+{
+    (void) buf_len;
+    struct adi_qso *qsos = NULL,
+        *qso,
+        *query;
+    int             i;
+    char           *p;
+    const char     *delim = "<>\t\n\r";
+    const int       num_fields = 7;
+    const char     *fields[] =
+        { "eor", "call", "name", "country", "qth", "gridsquare",
+        "my_gridsquare"
+    };
 
     qso = (struct adi_qso *) malloc(sizeof *qso);
     if (qso == NULL) {
@@ -111,95 +137,77 @@ load_qsos_fp(FILE *fp)
     }
     memset(qso, 0, sizeof(*qso));
 
-    while (getline(&line, &line_len, fp) != -1) {
-        rval = regexec(&regex, line, nmatch, pmatch, 0);
-        if (!rval) {
-            val_len = PMATCH_LEN(&pmatch[2]);
-            key = line + pmatch[1].rm_so;
-            val = line + pmatch[2].rm_so;
-            switch (key[0]) {
-            case 'c':
-            case 'C':
-                if (key[1] == 'a' || key[1] == 'A') {
-                    qso->their_call = strndup(val, val_len);
-                } else {
-                    qso->country = strndup(val, val_len);
-                }
-                break;
-            case 'n':
-            case 'N':
-                qso->name = strndup(val, val_len);
-                break;
-            case 'q':
-            case 'Q':
-                qso->qth = strndup(val, val_len);
-                break;
-            case 'g':
-            case 'G':
-                populate_maidenhead(&qso->their_grid, val, val_len);
-                break;
-            case 'm':
-            case 'M':
-                populate_maidenhead(&qso->my_grid, val, val_len);
-                break;
-            case 'e':
-            case 'E':{
-                    // Process record
-                    if (valid_qso(qso)) {
-                        HASH_FIND_STR(qsos, qso->their_call, query);
-                        if (query == NULL) {
-                            // Add new person
-                            qso->distance_km =
-                                maidenhead_distance_km(&qso->my_grid,
-                                                       &qso->their_grid);
-                            qso->bearing_degrees =
-                                maidenhead_bearing_degrees(&qso->my_grid,
-                                                           &qso->
-                                                           their_grid);
-                            qso->num_qsos = 1;
-                            HASH_ADD_STR(qsos, their_call, qso);
-                            qso = (struct adi_qso *)
-                                malloc(sizeof(*qso));
-                            if (qso == NULL) {
-                                return NULL;
-                            }
-                        } else {
-                            // Station we already know about: process
-                            // summary info.
-                            query->num_qsos += 1;
-                            // TODO: see if we have better maidenhead
-                            // info
-                            // Check if they moved etc, summarize band
-                            // info
-                        }
-                    }
-                    memset(qso, 0, sizeof(*qso));
-                }
+    p = strtok(buf, delim);
+    while (p != NULL) {
+        for (i = 0; i < num_fields; i++) {
+            if (strncasecmp(p, fields[i], strlen(fields[i])) == 0) {
                 break;
             }
         }
+        if (i > 0 && i < num_fields) {
+            // note: i=0 is EOR which has no data
+            // also, ignore fields we don't care about
+            p = strtok(0, delim);
+            assert(p);
+        }
+        // Remove any space off the end
+        trim_end_space(p);
+        switch (i) {
+        case 0:                // EOR
+            // Process record
+            if (valid_qso(qso)) {
+                HASH_FIND_STR(qsos, qso->their_call, query);
+                if (query == NULL) {
+                    // Add new person
+                    qso->distance_km =
+                        maidenhead_distance_km(&qso->my_grid,
+                                               &qso->their_grid);
+                    qso->bearing_degrees =
+                        maidenhead_bearing_degrees(&qso->my_grid,
+                                                   &qso->their_grid);
+                    qso->num_qsos = 1;
+                    HASH_ADD_STR(qsos, their_call, qso);
+                    qso = (struct adi_qso *)
+                        malloc(sizeof(*qso));
+                    if (qso == NULL) {
+                        return NULL;
+                    }
+                } else {
+                    // Process existing record
+                    query->num_qsos += 1;
+                }
+            }
+            memset(qso, 0, sizeof(*qso));
+            break;
+        case 1:                // call
+            qso->their_call = strdup(p);
+            break;
+        case 2:                // name
+            qso->name = strdup(p);
+            break;
+        case 3:                // country
+            qso->country = strdup(p);
+            break;
+        case 4:                // qth
+            qso->qth = strdup(p);
+            break;
+        case 5:                // gridsquare
+            populate_maidenhead(&qso->their_grid, p, strlen(p));
+            break;
+        case 6:                // my_gridsquare
+            populate_maidenhead(&qso->my_grid, p, strlen(p));
+            break;
+        }
+
+        p = strtok(0, delim);
     }
-
-    free(qso);                  // free last qso we created and didn't
-    // populate
-    regfree(&regex);
-    free(line);
-    return qsos;
-}
-
-struct adi_qso *
-load_qsos_mem(char *buf, size_t len)
-{
-    FILE           *fp = fmemopen(buf, len, "r");
-    struct adi_qso *qsos = load_qsos_fp(fp);
-    fclose(fp);
     return qsos;
 }
 
 
 int
-walk_qsos(struct adi_qso *qsos, int (*cb)(struct adi_qso *, void *arg),
-          void *arg)
+walk_qsos(struct adi_qso *qsos,
+          int (*cb)(struct adi_qso *, void *arg), void *arg)
 {
     int             rval;
     struct adi_qso *qso,
