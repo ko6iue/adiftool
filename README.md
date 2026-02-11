@@ -12,12 +12,12 @@ If you tried to use the [online app](https://ko6iue.org/adi2kml) and it failed f
 
 ## Performance
 
-This software can convert about 10,000 QSOs a second
+This software can convert about 30,000 QSOs a second
 
 ```
 $ time ./adi2kml sample.adi sample.kml
 Processed 1281 QSOs
-./adi2kml sample.adi sample.kml  0.12s user 0.00s system 99% cpu 0.126 total
+./adi2kml sample.adi sample.kml  0.04s user 0.00s system 97% cpu 0.040 total
 ```
 
 Uses around 50 MB of heap per thousand QSOs and is valgrind clean.
