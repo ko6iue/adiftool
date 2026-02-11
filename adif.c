@@ -146,20 +146,18 @@ load_qsos_fp(FILE *fp)
                 case 'c':
                 case 'C':
                     if (key[1] == 'a' || key[1] == 'A') {
-                        my_strcpy(qso->their_call, sizeof(qso->their_call),
-                                  val, val_len);
+                        qso->their_call = strndup(val, val_len);
                     } else {
-                        my_strcpy(qso->country, sizeof(qso->country), val,
-                                  val_len);
+                        qso->country = strndup(val, val_len);
                     }
                     break;
                 case 'n':
                 case 'N':
-                    my_strcpy(qso->name, sizeof(qso->name), val, val_len);
+                    qso->name = strndup(val, val_len);
                     break;
                 case 'q':
                 case 'Q':
-                    my_strcpy(qso->qth, sizeof(qso->qth), val, val_len);
+                    qso->qth = strndup(val, val_len);
                     break;
                 case 'g':
                 case 'G':
@@ -178,10 +176,13 @@ load_qsos_fp(FILE *fp)
                                 // Add new person
                                 qso->distance_km =
                                     maidenhead_distance_km(&qso->my_grid,
-                                                           &qso->their_grid);
+                                                           &qso->
+                                                           their_grid);
                                 qso->bearing_degrees =
-                                    maidenhead_bearing_degrees
-                                    (&qso->my_grid, &qso->their_grid);
+                                    maidenhead_bearing_degrees(&qso->
+                                                               my_grid,
+                                                               &qso->
+                                                               their_grid);
                                 qso->num_qsos = 1;
                                 HASH_ADD_STR(qsos, their_call, qso);
                                 qso = (struct adi_qso *)
@@ -258,6 +259,10 @@ free_qsos(struct adi_qso *qsos)
     if (qsos) {
         HASH_ITER(hh, qsos, qso, tmp) {
             HASH_DEL(qsos, qso);
+            free(qso->name);
+            free(qso->qth);
+            free(qso->their_call);
+            free(qso->country);
             free(qso);
         }
     }

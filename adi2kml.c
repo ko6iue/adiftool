@@ -40,10 +40,16 @@ write_description(struct adi_qso *qso, FILE *fp)
     char           *cdata_close = "]]>";
     fprintf(fp, "<description>\n");
     fprintf(fp, "%s", cdata_open);
-    fprintf(fp, "<h1>%s</h1>\n", qso->name);
+    if (qso->name) {
+        fprintf(fp, "<h1>%s</h1>\n", qso->name);
+    } else {
+        fprintf(fp, "<h1>unknown</h1>\n");
+    }
     fprintf(fp, "<b><a href=\"https://www.qrz.com/db/%s\">"
             "QRZ Page</a></b><br/>\n", qso->their_call);
-    fprintf(fp, "<b>QTH</b>: %s<br/>\n", qso->qth);
+    if (qso->qth) {
+        fprintf(fp, "<b>QTH</b>: %s<br/>\n", qso->qth);
+    }
     fprintf(fp, "<b>Number of QSOs</b>: %d<br/>\n", qso->num_qsos);
     fprintf(fp, "<b>Grid</b>: %s<br/>\n", qso->their_grid.mh);
     fprintf(fp, "<b>Country</b>: %s<br/>\n", qso->country);

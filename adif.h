@@ -36,17 +36,13 @@
 #include "maidenhead.h"
 #include "uthash.h"
 
-#define CALL_LEN 16
-#define NAME_LEN 64
-#define COUNTRY_LEN 64
 #define GRID_LEN 16
-#define QTH_LEN 64
 
 struct adi_qso {
-    char            their_call[CALL_LEN];
-    char            name[NAME_LEN];
-    char            country[COUNTRY_LEN];
-    char            qth[QTH_LEN];
+    char           *their_call;
+    char           *name;
+    char           *country;
+    char           *qth;
     struct maidenhead my_grid;
     struct maidenhead their_grid;
     float           distance_km;
