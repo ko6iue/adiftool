@@ -117,8 +117,9 @@ load_qsos_fp(FILE *fp)
     }
 
     rval =
-        regcomp(&regex, "^<([^:0-9]+){1,1}[:0-9]*>(.*)$",
-                REG_EXTENDED | REG_NEWLINE);
+        regcomp(&regex,
+                "^<(call|name|country|qth|gridsquare|my_gridsquare|eor)[^>]*>(.*)$",
+                REG_EXTENDED | REG_NEWLINE | REG_ICASE);
     if (rval) {
         return NULL;
     }
@@ -141,58 +142,68 @@ load_qsos_fp(FILE *fp)
                           key_len);
                 my_strcpy(val, sizeof(val), line + pmatch[2].rm_so,
                           val_len);
-
-                if (!strcmp(key, "call")) {
-                    my_strcpy(qso->their_call, sizeof(qso->their_call),
-                              val, val_len);
-                } else if (!strcmp(key, "name")) {
-                    my_strcpy(qso->name, sizeof(qso->name), val, val_len);
-                } else if (!strcmp(key, "country")) {
-                    my_strcpy(qso->country, sizeof(qso->country),
-                              val, val_len);
-                } else if (!strcmp(key, "qth")) {
-                    my_strcpy(qso->qth, sizeof(qso->qth), val, val_len);
-                } else if (!strcmp(key, "gridsquare")) {
-                    populate_maidenhead(&qso->their_grid, val, val_len);
-                } else if (!strcmp(key, "my_gridsquare")) {
-                    populate_maidenhead(&qso->my_grid, val, val_len);
-                } else if (!strcmp(key, "eor")) {
-                    // Process record
-                    if (valid_qso(qso)) {
-                        HASH_FIND_STR(qsos, qso->their_call, query);
-                        if (query == NULL) {
-                            // Add new person
-                            qso->distance_km =
-                                maidenhead_distance_km(&qso->my_grid,
-                                                       &qso->their_grid);
-                            qso->bearing_degrees =
-                                maidenhead_bearing_degrees(&qso->my_grid,
-                                                           &qso->
-                                                           their_grid);
-                            qso->num_qsos = 1;
-                            HASH_ADD_STR(qsos, their_call, qso);
-                            qso = (struct adi_qso *) malloc(sizeof(*qso));
-                            if (qso == NULL) {
-                                return NULL;
-                            }
-                        } else {
-                            // Station we already know about: process
-                            // summary info.
-                            query->num_qsos += 1;
-                            // TODO: see if we have better maidenhead info
-                            // Check if they moved etc, summarize band
-                            // info
-                        }
+                switch (key[0]) {
+                case 'c':
+                case 'C':
+                    if (key[1] == 'a' || key[1] == 'A') {
+                        my_strcpy(qso->their_call, sizeof(qso->their_call),
+                                  val, val_len);
+                    } else {
+                        my_strcpy(qso->country, sizeof(qso->country), val,
+                                  val_len);
                     }
-                    memset(qso, 0, sizeof(*qso));
-                } else {
-                    // printf("Ignoring key=%s\n", key);
+                    break;
+                case 'n':
+                case 'N':
+                    my_strcpy(qso->name, sizeof(qso->name), val, val_len);
+                    break;
+                case 'q':
+                case 'Q':
+                    my_strcpy(qso->qth, sizeof(qso->qth), val, val_len);
+                    break;
+                case 'g':
+                case 'G':
+                    populate_maidenhead(&qso->their_grid, val, val_len);
+                    break;
+                case 'm':
+                case 'M':
+                    populate_maidenhead(&qso->my_grid, val, val_len);
+                    break;
+                case 'e':
+                case 'E':{
+                        // Process record
+                        if (valid_qso(qso)) {
+                            HASH_FIND_STR(qsos, qso->their_call, query);
+                            if (query == NULL) {
+                                // Add new person
+                                qso->distance_km =
+                                    maidenhead_distance_km(&qso->my_grid,
+                                                           &qso->their_grid);
+                                qso->bearing_degrees =
+                                    maidenhead_bearing_degrees
+                                    (&qso->my_grid, &qso->their_grid);
+                                qso->num_qsos = 1;
+                                HASH_ADD_STR(qsos, their_call, qso);
+                                qso = (struct adi_qso *)
+                                    malloc(sizeof(*qso));
+                                if (qso == NULL) {
+                                    return NULL;
+                                }
+                            } else {
+                                // Station we already know about: process
+                                // summary info.
+                                query->num_qsos += 1;
+                                // TODO: see if we have better maidenhead
+                                // info
+                                // Check if they moved etc, summarize band
+                                // info
+                            }
+                        }
+                        memset(qso, 0, sizeof(*qso));
+                    }
+                    break;
                 }
 
-                /*
-                 * printf("%d (%d,%d) %s=%s %s", rval, pmatch[2].rm_so,
-                 * pmatch[2].rm_eo, key, val, line); 
-                 */
             }
         }
     }
