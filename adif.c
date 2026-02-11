@@ -58,18 +58,6 @@ print_qso(struct adi_qso *qso, void *arg)
     return 0;
 }
 
-char           *
-my_strcpy(char *dest, int dstlen, char *src, int srclen)
-{
-    int             safe_len = srclen;
-    if (srclen > (dstlen - 1)) {
-        safe_len = dstlen - 1;
-    }
-    memcpy(dest, src, safe_len);
-    dest[safe_len] = '\0';
-    return dest;
-}
-
 // Minimum useful 
 int
 valid_qso(struct adi_qso *qso)
@@ -166,7 +154,8 @@ load_qsos_fp(FILE *fp)
                                                        &qso->their_grid);
                             qso->bearing_degrees =
                                 maidenhead_bearing_degrees(&qso->my_grid,
-                                                           &qso->their_grid);
+                                                           &qso->
+                                                           their_grid);
                             qso->num_qsos = 1;
                             HASH_ADD_STR(qsos, their_call, qso);
                             qso = (struct adi_qso *)
