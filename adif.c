@@ -36,12 +36,6 @@
 
 #include "adif.h"
 
-// See adi_qso for keys we care about
-// KEY_LEN is large enough to hold them
-// We ignore all others
-#define KEY_LEN 32
-#define VAL_LEN 128
-
 #define PMATCH_LEN(P) ((P)->rm_eo - (P)->rm_so)
 
 int
@@ -104,13 +98,12 @@ load_qsos_fp(FILE *fp)
         *qso,
         *query;
     size_t          nmatch = 3, // all, key, value
-        key_len,
         val_len,
         line_len = 0;
     regmatch_t      pmatch[nmatch];
     char           *line = NULL,
-        key[KEY_LEN],
-        val[KEY_LEN];
+        *key,
+        *val;
 
     if (!fp) {
         return NULL;
@@ -133,78 +126,67 @@ load_qsos_fp(FILE *fp)
     while (getline(&line, &line_len, fp) != -1) {
         rval = regexec(&regex, line, nmatch, pmatch, 0);
         if (!rval) {
-            // We silently ignore keys longer than KEY_LEN
-            // since we don't process them anyway
-            key_len = PMATCH_LEN(&pmatch[1]);
             val_len = PMATCH_LEN(&pmatch[2]);
-            if (key_len < KEY_LEN) {
-                my_strcpy(key, sizeof(key), line + pmatch[1].rm_so,
-                          key_len);
-                my_strcpy(val, sizeof(val), line + pmatch[2].rm_so,
-                          val_len);
-                switch (key[0]) {
-                case 'c':
-                case 'C':
-                    if (key[1] == 'a' || key[1] == 'A') {
-                        qso->their_call = strndup(val, val_len);
-                    } else {
-                        qso->country = strndup(val, val_len);
-                    }
-                    break;
-                case 'n':
-                case 'N':
-                    qso->name = strndup(val, val_len);
-                    break;
-                case 'q':
-                case 'Q':
-                    qso->qth = strndup(val, val_len);
-                    break;
-                case 'g':
-                case 'G':
-                    populate_maidenhead(&qso->their_grid, val, val_len);
-                    break;
-                case 'm':
-                case 'M':
-                    populate_maidenhead(&qso->my_grid, val, val_len);
-                    break;
-                case 'e':
-                case 'E':{
-                        // Process record
-                        if (valid_qso(qso)) {
-                            HASH_FIND_STR(qsos, qso->their_call, query);
-                            if (query == NULL) {
-                                // Add new person
-                                qso->distance_km =
-                                    maidenhead_distance_km(&qso->my_grid,
-                                                           &qso->
-                                                           their_grid);
-                                qso->bearing_degrees =
-                                    maidenhead_bearing_degrees(&qso->
-                                                               my_grid,
-                                                               &qso->
-                                                               their_grid);
-                                qso->num_qsos = 1;
-                                HASH_ADD_STR(qsos, their_call, qso);
-                                qso = (struct adi_qso *)
-                                    malloc(sizeof(*qso));
-                                if (qso == NULL) {
-                                    return NULL;
-                                }
-                            } else {
-                                // Station we already know about: process
-                                // summary info.
-                                query->num_qsos += 1;
-                                // TODO: see if we have better maidenhead
-                                // info
-                                // Check if they moved etc, summarize band
-                                // info
-                            }
-                        }
-                        memset(qso, 0, sizeof(*qso));
-                    }
-                    break;
+            key = line + pmatch[1].rm_so;
+            val = line + pmatch[2].rm_so;
+            switch (key[0]) {
+            case 'c':
+            case 'C':
+                if (key[1] == 'a' || key[1] == 'A') {
+                    qso->their_call = strndup(val, val_len);
+                } else {
+                    qso->country = strndup(val, val_len);
                 }
-
+                break;
+            case 'n':
+            case 'N':
+                qso->name = strndup(val, val_len);
+                break;
+            case 'q':
+            case 'Q':
+                qso->qth = strndup(val, val_len);
+                break;
+            case 'g':
+            case 'G':
+                populate_maidenhead(&qso->their_grid, val, val_len);
+                break;
+            case 'm':
+            case 'M':
+                populate_maidenhead(&qso->my_grid, val, val_len);
+                break;
+            case 'e':
+            case 'E':{
+                    // Process record
+                    if (valid_qso(qso)) {
+                        HASH_FIND_STR(qsos, qso->their_call, query);
+                        if (query == NULL) {
+                            // Add new person
+                            qso->distance_km =
+                                maidenhead_distance_km(&qso->my_grid,
+                                                       &qso->their_grid);
+                            qso->bearing_degrees =
+                                maidenhead_bearing_degrees(&qso->my_grid,
+                                                           &qso->their_grid);
+                            qso->num_qsos = 1;
+                            HASH_ADD_STR(qsos, their_call, qso);
+                            qso = (struct adi_qso *)
+                                malloc(sizeof(*qso));
+                            if (qso == NULL) {
+                                return NULL;
+                            }
+                        } else {
+                            // Station we already know about: process
+                            // summary info.
+                            query->num_qsos += 1;
+                            // TODO: see if we have better maidenhead
+                            // info
+                            // Check if they moved etc, summarize band
+                            // info
+                        }
+                    }
+                    memset(qso, 0, sizeof(*qso));
+                }
+                break;
             }
         }
     }
