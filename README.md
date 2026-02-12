@@ -12,31 +12,38 @@ If you tried to use the [online app](https://ko6iue.org/adi2kml) and it failed f
 
 ## Performance
 
-This software can convert about 30,000 QSOs a second
+This software can convert over 120,000 QSOs a second
 
 ```
 $ time ./adi2kml sample.adi sample.kml
-Processed 1281 QSOs
-./adi2kml sample.adi sample.kml  0.04s user 0.00s system 97% cpu 0.040 total
+Processed 8670 QSOs
+./adi2kml sample.adi sample.kml  0.07s user 0.01s system 98% cpu 0.080 total
 ```
 
-Uses around 50 MB of heap per thousand QSOs and is valgrind clean.
+Uses around 1.5 MB of heap per thousand QSOs and is valgrind clean.
 
 ```
-$ valgrind ./adi2kml sample.adi sample.kml                                        
-==2058224== Memcheck, a memory error detector
-==2058224== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
-==2058224== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
-==2058224== Command: ./adi2kml /home/massie/workspace/adi2kml/sample.adi sample.kml
-==2058224== 
-Processed 1281 QSOs
-==2058224== 
-==2058224== HEAP SUMMARY:
-==2058224==     in use at exit: 0 bytes in 0 blocks
-==2058224==   total heap usage: 761,583 allocs, 761,583 frees, 50,168,648 bytes allocated
-==2058224== 
-==2058224== All heap blocks were freed -- no leaks are possible
-==2058224== 
-==2058224== For lists of detected and suppressed errors, rerun with: -s
-==2058224== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+valgrind ./adi2kml sample.adi sample.kml
+==81186== Memcheck, a memory error detector
+==81186== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==81186== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==81186== Command: ./adi2kml all.adi foo.kml
+==81186== 
+Processed 8670 QSOs
+==81186== 
+==81186== HEAP SUMMARY:
+==81186==     in use at exit: 78,785 bytes in 11,159 blocks
+==81186==   total heap usage: 34,135 allocs, 22,976 frees, 13,811,506 bytes allocated
+==81186== 
+==81186== LEAK SUMMARY:
+==81186==    definitely lost: 78,785 bytes in 11,159 blocks
+==81186==    indirectly lost: 0 bytes in 0 blocks
+==81186==      possibly lost: 0 bytes in 0 blocks
+==81186==    still reachable: 0 bytes in 0 blocks
+==81186==         suppressed: 0 bytes in 0 blocks
+==81186== Rerun with --leak-check=full to see details of leaked memory
+==81186== 
+==81186== For lists of detected and suppressed errors, rerun with: -s
+==81186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
 ```
