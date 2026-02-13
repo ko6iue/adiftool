@@ -32,6 +32,7 @@
  */
 #include "adif.h"
 #include <stdio.h>
+#include <time.h>
 
 void
 write_description(struct adi_qso *qso, FILE *fp)
@@ -88,6 +89,12 @@ print_kml_point_style(FILE *fp)
     }
 }
 
+double
+random_value_in_range(float min, float max)
+{
+    return min + rand() / (double) RAND_MAX *(max - min);
+}
+
 void
 print_kml_point(struct adi_qso *qso, FILE *fp)
 {
@@ -101,7 +108,12 @@ print_kml_point(struct adi_qso *qso, FILE *fp)
     fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
     fprintf(fp, "%.6f,%.6f,0",
-            qso->their_grid.lon_center, qso->their_grid.lat_center);
+            random_value_in_range(qso->their_grid.lon_sw_corner,
+                                  qso->their_grid.lon_sw_corner +
+                                  qso->their_grid.lon_res_degrees),
+            random_value_in_range(qso->their_grid.lat_sw_corner,
+                                  qso->their_grid.lat_sw_corner +
+                                  qso->their_grid.lat_res_degrees));
     fprintf(fp, "</coordinates></Point>\n");
     fprintf(fp, "</Placemark>\n");
 }
@@ -174,6 +186,8 @@ main(int argc, char *argv[])
     struct adi_qso *qsos = NULL;
     FILE           *kmlfp;
     int             num_qsos = 0;
+
+    srand(time(NULL));
 
     if (argc != 3) {
         fprintf(stderr, "Usage: %s [adi file] [kml file]\n", argv[0]);
