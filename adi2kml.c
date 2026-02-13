@@ -71,11 +71,34 @@ write_description(struct adi_qso *qso, FILE *fp)
 }
 
 void
+print_kml_point_style(FILE *fp)
+{
+    int             i;
+    char           *base_href =
+        "http://maps.google.com/mapfiles/kml/paddle/%d.png";
+
+    for (i = 1; i <= 10; i++) {
+        fprintf(fp, "<Style id=\"pointStyle%02d\">\n", i);
+        fprintf(fp, "<IconStyle><Icon>\n");
+        fprintf(fp, "<href>\n");
+        fprintf(fp, base_href, i);
+        fprintf(fp, "</href>\n");
+        fprintf(fp, "</Icon></IconStyle>\n");
+        fprintf(fp, "</Style>\n");
+    }
+}
+
+void
 print_kml_point(struct adi_qso *qso, FILE *fp)
 {
+    int             icon_num = qso->num_qsos;
+    if (icon_num > 10) {
+        icon_num = 10;
+    }
     fprintf(fp, "<Placemark>\n");
     fprintf(fp, "<name>%s</name>\n", qso->their_call);
     write_description(qso, fp);
+    fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
     fprintf(fp, "%.6f,%.6f,0",
             qso->their_grid.lon_center, qso->their_grid.lat_center);
@@ -139,6 +162,7 @@ write_kml(FILE *fp, struct adi_qso *qsos)
     fprintf(fp,
             "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
     fprintf(fp, "<name>KO6IUE ADIF to KML converter</name>\n");
+    print_kml_point_style(fp);
     walk_qsos(qsos, &print_kml_record, fp);
     fprintf(fp, "</Document>\n</kml>\n");
 }
