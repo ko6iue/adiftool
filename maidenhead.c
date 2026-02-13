@@ -136,7 +136,6 @@ populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
     mh->lat_center = mh->lat_sw_corner + mh->lat_res_degrees / 2;
     mh->lon_center = mh->lon_sw_corner + mh->lon_res_degrees / 2;
     return len;
-
 }
 
 float
