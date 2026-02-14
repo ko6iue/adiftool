@@ -81,7 +81,7 @@ print_kml_point_style(FILE *fp)
     for (i = 1; i <= 10; i++) {
         fprintf(fp, "<Style id=\"pointStyle%02d\">\n", i);
         fprintf(fp, "<IconStyle><Icon>\n");
-        fprintf(fp, "<href>\n");
+        fprintf(fp, "<href>");
         fprintf(fp, base_href, i);
         fprintf(fp, "</href>\n");
         fprintf(fp, "</Icon></IconStyle>\n");
