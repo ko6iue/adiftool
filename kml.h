@@ -32,8 +32,10 @@
  */
 #ifndef KML_H
 #define KML_H
+
+#include <stdio.h>
 #include "./adif.h"
 
 void write_kml(FILE *fp, struct adi_qso *qsos);
 
-#endif
+#endif    // KML_H

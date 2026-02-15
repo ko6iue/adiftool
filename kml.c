@@ -32,7 +32,7 @@
  */
 #include <stdio.h>
 #include <time.h>
-#include "./adif.h"
+#include "./kml.h"
 
 unsigned int    kml_seed;           // for rand_r
 
