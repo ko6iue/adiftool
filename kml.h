@@ -30,29 +30,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef MAIDENHEAD_H
-#define MAIDENHEAD_H
+#ifndef KML_H
+#define KML_H
+#include "./adif.h"
 
-#define MAIDENHEAD_MAXLEN 16
-struct maidenhead {
-    char            mh[MAIDENHEAD_MAXLEN];
-    float           lat_sw_corner;
-    float           lon_sw_corner;
-    float           lat_res_degrees;
-    float           lon_res_degrees;
-    float           lat_center;
-    float           lon_center;
-};
-
-int             maidenhead_is_null(struct maidenhead *mh);
-
-void            maidenhead_print(FILE * fp, struct maidenhead *mh);
-// rval -1 on bad arguments, 0 OK, positive is offset of invalid character
-int             populate_maidenhead(struct maidenhead *mh,
-                                    const char *grid, const int len);
-float           maidenhead_distance_km(struct maidenhead *from,
-                                       struct maidenhead *to);
-float           maidenhead_bearing_degrees(struct maidenhead *from,
-                                           struct maidenhead *to);
+void write_kml(FILE *fp, struct adi_qso *qsos);
 
 #endif

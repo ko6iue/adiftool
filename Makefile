@@ -2,12 +2,12 @@ all: adi2kml.js adi2kml test-maidenhead
 
 # INVOKE_RUN=0 causes emscripten to not run main when starting
 # All enscripten methods are in enscripten.c
-adi2kml.js: adi2kml.c maidenhead.c adif.c enscripten.c
+adi2kml.js: adi2kml.c maidenhead.c adif.c enscripten.c kml.c
 	emcc -Wall $^ -o $@ -sEXPORTED_RUNTIME_METHODS=[ccall,HEAPU8] \
 		-sEXPORTED_FUNCTIONS=[_main,_malloc,_free] -sALLOW_MEMORY_GROWTH=1 \
 		-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE='$$stringToNewUTF8' -lm -s INVOKE_RUN=0
 
-adi2kml: adi2kml.c maidenhead.c adif.c
+adi2kml: adi2kml.c maidenhead.c adif.c kml.c
 	gcc -Wall -W -O3 -o $@ $^ -lm
 
 test-maidenhead: test-maidenhead.c maidenhead.c
