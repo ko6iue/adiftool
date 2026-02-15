@@ -120,7 +120,8 @@ load_qsos_mem(char *buf, size_t buf_len)
         *qso,
         *query;
     int             i;
-    char           *p;
+    char           *token,
+                   *saveptr;
     const char     *delim = "<>\t\n\r";
     const int       num_fields = 7;
     const char     *fields[] =
@@ -134,21 +135,21 @@ load_qsos_mem(char *buf, size_t buf_len)
     }
     memset(qso, 0, sizeof(*qso));
 
-    p = strtok(buf, delim);
-    while (p != NULL) {
+    for (token = strtok_r(buf, delim, &saveptr);
+         token != NULL; token = strtok_r(NULL, delim, &saveptr)) {
         for (i = 0; i < num_fields; i++) {
-            if (strncasecmp(p, fields[i], strlen(fields[i])) == 0) {
+            if (strncasecmp(token, fields[i], strlen(fields[i])) == 0) {
                 break;
             }
         }
         if (i > 0 && i < num_fields) {
             // note: i=0 is EOR which has no data
             // also, ignore fields we don't care about
-            p = strtok(0, delim);
-            assert(p);
+            token = strtok_r(NULL, delim, &saveptr);
+            assert(token);
         }
         // Remove any space off the end
-        trim_end_space(p);
+        trim_end_space(token);
         switch (i) {
         case 0:                // EOR
             // Process record
@@ -177,26 +178,24 @@ load_qsos_mem(char *buf, size_t buf_len)
             memset(qso, 0, sizeof(*qso));
             break;
         case 1:                // call
-            qso->their_call = strdup(p);
+            qso->their_call = strdup(token);
             break;
         case 2:                // name
-            qso->name = strdup(p);
+            qso->name = strdup(token);
             break;
         case 3:                // country
-            qso->country = strdup(p);
+            qso->country = strdup(token);
             break;
         case 4:                // qth
-            qso->qth = strdup(p);
+            qso->qth = strdup(token);
             break;
         case 5:                // gridsquare
-            populate_maidenhead(&qso->their_grid, p, strlen(p));
+            populate_maidenhead(&qso->their_grid, token, strlen(token));
             break;
         case 6:                // my_gridsquare
-            populate_maidenhead(&qso->my_grid, p, strlen(p));
+            populate_maidenhead(&qso->my_grid, token, strlen(token));
             break;
         }
-
-        p = strtok(0, delim);
     }
     return qsos;
 }
