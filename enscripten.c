@@ -33,7 +33,6 @@
 #include "adif.h"
 #include <stdio.h>
 #include <emscripten.h>
-#include <emscripten/console.h>
 
 // TODO: move kml stuff into separate file
 void            write_kml(FILE * fp, struct adi_qso *qsos);
