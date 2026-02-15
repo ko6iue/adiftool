@@ -36,6 +36,7 @@
 
 #include "./adif.h"
 
+
 int
 print_qso(struct adi_qso *qso, void *arg)
 {
@@ -101,6 +102,9 @@ load_qsos_fp(FILE *fp)
 void
 trim_end_space(char *p)
 {
+    if (!p) {
+        return;
+    }
     char           *q;
     if (p) {
         for (q = p + strlen(p) - 1; q >= p; q--) {
@@ -112,6 +116,87 @@ trim_end_space(char *p)
     }
 }
 
+struct adif_field {
+    char           *name;
+    char           *value;
+    char           *type;
+    int             value_len;
+};
+
+void
+print_adif_field(FILE *fp, struct adif_field *field)
+{
+    if (!field) {
+        return;
+    }
+    fprintf(fp, "***\n");
+    fprintf(fp, "     name: %s\n", field->name);
+    fprintf(fp, "     type: %s\n", field->type);
+    fprintf(fp, "  val_len: %d\n", field->value_len);
+    fprintf(fp, "      val: %s\n", field->value);
+}
+
+struct adif_tokenizer {
+    char           *buf;
+    size_t          buf_len;
+    char           *recordptr;
+    char           *pairptr;
+    char           *attrptr;
+    struct adif_field field;
+};
+
+void
+adif_tokenizer_init(struct adif_tokenizer *tk, char *buf, size_t buflen)
+{
+    assert(tk);
+    assert(buf);
+    assert(buflen > 0);
+    tk->buf = buf;
+    tk->buf_len = buflen;
+    tk->recordptr = NULL;
+    tk->pairptr = NULL;
+    tk->attrptr = NULL;
+}
+
+// Return null if end of data
+struct adif_field *
+next_field(struct adif_tokenizer *tk)
+{
+    const char     *record_delim = "<";
+    const char     *pair_delim = ">\t\n\r";
+    const char     *field_delim = ":";
+    struct adif_field *field;
+    char           *record = NULL;
+    char           *fieldattrs = NULL;
+    char           *value_len = NULL;
+    assert(tk);
+    field = &tk->field;
+    if (!tk->recordptr) {
+        record = strtok_r(tk->buf, record_delim, &tk->recordptr);
+    } else {
+        record = strtok_r(NULL, record_delim, &tk->recordptr);
+    }
+    if (record == NULL) {
+        return NULL;
+    }
+    // Split the field w/attrs and value
+    fieldattrs = strtok_r(record, pair_delim, &tk->pairptr);
+    assert(fieldattrs);
+    field->value = strtok_r(NULL, pair_delim, &tk->pairptr);
+    trim_end_space(field->value);
+
+    // Extract field attributes
+    field->name = strtok_r(fieldattrs, field_delim, &tk->attrptr);
+    value_len = strtok_r(NULL, field_delim, &tk->attrptr);
+    if (value_len) {
+        field->value_len = atoi(value_len);
+    } else {
+        field->value_len = -1;
+    }
+    field->type = strtok_r(NULL, field_delim, &tk->attrptr);
+    return field;
+}
+
 struct adi_qso *
 load_qsos_mem(char *buf, size_t buf_len)
 {
@@ -119,10 +204,9 @@ load_qsos_mem(char *buf, size_t buf_len)
     struct adi_qso *qsos = NULL,
         *qso,
         *query;
+    struct adif_tokenizer tk;
+    struct adif_field *field;
     int             i;
-    char           *token,
-                   *saveptr;
-    const char     *delim = "<>\t\n\r";
     const int       num_fields = 7;
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
@@ -130,26 +214,17 @@ load_qsos_mem(char *buf, size_t buf_len)
     };
 
     qso = (struct adi_qso *) malloc(sizeof *qso);
-    if (qso == NULL) {
-        return NULL;
-    }
+    assert(qso);
     memset(qso, 0, sizeof(*qso));
 
-    for (token = strtok_r(buf, delim, &saveptr);
-         token != NULL; token = strtok_r(NULL, delim, &saveptr)) {
+    adif_tokenizer_init(&tk, buf, buf_len);
+
+    while ((field = next_field(&tk)) != NULL) {
         for (i = 0; i < num_fields; i++) {
-            if (strncasecmp(token, fields[i], strlen(fields[i])) == 0) {
+            if (strcasecmp(field->name, fields[i]) == 0) {
                 break;
             }
         }
-        if (i > 0 && i < num_fields) {
-            // note: i=0 is EOR which has no data
-            // also, ignore fields we don't care about
-            token = strtok_r(NULL, delim, &saveptr);
-            assert(token);
-        }
-        // Remove any space off the end
-        trim_end_space(token);
         switch (i) {
         case 0:                // EOR
             // Process record
@@ -167,9 +242,7 @@ load_qsos_mem(char *buf, size_t buf_len)
                     HASH_ADD_STR(qsos, their_call, qso);
                     qso = (struct adi_qso *)
                         malloc(sizeof(*qso));
-                    if (qso == NULL) {
-                        return NULL;
-                    }
+                    assert(qso);
                 } else {
                     // Process existing record
                     query->num_qsos += 1;
@@ -178,22 +251,24 @@ load_qsos_mem(char *buf, size_t buf_len)
             memset(qso, 0, sizeof(*qso));
             break;
         case 1:                // call
-            qso->their_call = strdup(token);
+            qso->their_call = strdup(field->value);
             break;
         case 2:                // name
-            qso->name = strdup(token);
+            qso->name = strdup(field->value);
             break;
         case 3:                // country
-            qso->country = strdup(token);
+            qso->country = strdup(field->value);
             break;
         case 4:                // qth
-            qso->qth = strdup(token);
+            qso->qth = strdup(field->value);
             break;
         case 5:                // gridsquare
-            populate_maidenhead(&qso->their_grid, token, strlen(token));
+            populate_maidenhead(&qso->their_grid, field->value,
+                                strlen(field->value));
             break;
         case 6:                // my_gridsquare
-            populate_maidenhead(&qso->my_grid, token, strlen(token));
+            populate_maidenhead(&qso->my_grid, field->value,
+                                strlen(field->value));
             break;
         }
     }
