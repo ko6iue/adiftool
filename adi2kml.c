@@ -30,9 +30,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "adif.h"
 #include <stdio.h>
 #include <time.h>
+#include "./adif.h"
+
+unsigned int    seed;           // for rand_r
 
 void
 write_description(struct adi_qso *qso, FILE *fp)
@@ -92,7 +94,7 @@ print_kml_point_style(FILE *fp)
 double
 random_value_in_range(float min, float max)
 {
-    return min + rand() / (double) RAND_MAX *(max - min);
+    return min + rand_r(&seed) / (double) RAND_MAX *(max - min);
 }
 
 void
@@ -187,7 +189,7 @@ main(int argc, char *argv[])
     FILE           *kmlfp;
     int             num_qsos = 0;
 
-    srand(time(NULL));
+    seed = time(NULL);
 
     if (argc != 3) {
         fprintf(stderr, "Usage: %s [adi file] [kml file]\n", argv[0]);

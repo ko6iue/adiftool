@@ -34,7 +34,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "maidenhead.h"
+#include "./maidenhead.h"
 
 void
 maidenhead_print(FILE *fp, struct maidenhead *mh)

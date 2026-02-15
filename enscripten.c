@@ -30,9 +30,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "adif.h"
 #include <stdio.h>
 #include <emscripten.h>
+#include "./adif.h"
 
 // TODO: move kml stuff into separate file
 void            write_kml(FILE * fp, struct adi_qso *qsos);

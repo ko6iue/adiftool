@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "maidenhead.h"
+#include "./maidenhead.h"
 
 int
 main(void)

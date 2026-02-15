@@ -34,7 +34,7 @@
 #include <ctype.h>
 #include <assert.h>
 
-#include "adif.h"
+#include "./adif.h"
 
 int
 print_qso(struct adi_qso *qso, void *arg)
@@ -75,7 +75,7 @@ valid_qso(struct adi_qso *qso)
 struct adi_qso *
 load_qsos_fp(FILE *fp)
 {
-    long            fsize;
+    size_t          fsize;
     char           *data;
     struct adi_qso *rval;
 
@@ -90,7 +90,7 @@ load_qsos_fp(FILE *fp)
     if (data == NULL) {
         return NULL;
     }
-    fread(data, fsize, 1, fp);
+    assert(fread(data, fsize, 1, fp) == 1);
     data[fsize] = '\0';
 
     rval = load_qsos_mem(data, fsize);

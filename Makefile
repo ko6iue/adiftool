@@ -8,10 +8,10 @@ adi2kml.js: adi2kml.c maidenhead.c adif.c enscripten.c
 		-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE='$$stringToNewUTF8' -lm -s INVOKE_RUN=0
 
 adi2kml: adi2kml.c maidenhead.c adif.c
-	gcc -Wall -W -O3 -I . -o $@ $^ -lm
+	gcc -Wall -W -O3 -o $@ $^ -lm
 
 test-maidenhead: test-maidenhead.c maidenhead.c
-	gcc -Wall -W -O3 -I . -o $@ $^ -lm
+	gcc -Wall -W -O3 -o $@ $^ -lm
 
 deploy: adi2kml.js
 	rm -rf site/* 2>/dev/null || /usr/bin/env true
