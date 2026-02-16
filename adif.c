@@ -174,7 +174,7 @@ load_qsos_mem(char *buf, size_t buf_len)
                     HASH_ADD_STR(qsos, their_call, qso);
                     qso = (struct adi_qso *)
                         malloc(sizeof(*qso));
-		    assert(qso);
+                    assert(qso);
                 } else {
                     // Process existing record
                     query->num_qsos += 1;
