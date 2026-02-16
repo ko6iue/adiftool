@@ -112,6 +112,10 @@ trim_end_space(char *p)
     }
 }
 
+#define FIELD_LIMITER "<"
+#define PAIR_DELIMITER ">"
+#define ATTR_DELIMITER ":"
+
 struct adi_qso *
 load_qsos_mem(char *buf, size_t buf_len)
 {
@@ -120,9 +124,13 @@ load_qsos_mem(char *buf, size_t buf_len)
         *qso,
         *query;
     int             i;
-    char           *token,
-                   *saveptr;
-    const char     *delim = "<>\t\n\r";
+    char           *field,
+                   *fieldattrs,
+                   *name,
+                   *value;
+    char           *fieldptr = NULL,
+        *attrptr = NULL,
+        *pairptr = NULL;
     const int       num_fields = 7;
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
@@ -130,26 +138,25 @@ load_qsos_mem(char *buf, size_t buf_len)
     };
 
     qso = (struct adi_qso *) malloc(sizeof *qso);
-    if (qso == NULL) {
-        return NULL;
-    }
+    assert(qso);
     memset(qso, 0, sizeof(*qso));
 
-    for (token = strtok_r(buf, delim, &saveptr);
-         token != NULL; token = strtok_r(NULL, delim, &saveptr)) {
+    for (field = strtok_r(buf, FIELD_LIMITER, &fieldptr);
+         field != NULL; field = strtok_r(NULL, FIELD_LIMITER, &fieldptr)) {
+
+        fieldattrs = strtok_r(field, PAIR_DELIMITER, &pairptr);
+        assert(fieldattrs);
+        value = strtok_r(NULL, PAIR_DELIMITER, &pairptr);
+        name = strtok_r(fieldattrs, ATTR_DELIMITER, &attrptr);
+        assert(name);
+
         for (i = 0; i < num_fields; i++) {
-            if (strncasecmp(token, fields[i], strlen(fields[i])) == 0) {
+            if (strcasecmp(name, fields[i]) == 0) {
                 break;
             }
         }
-        if (i > 0 && i < num_fields) {
-            // note: i=0 is EOR which has no data
-            // also, ignore fields we don't care about
-            token = strtok_r(NULL, delim, &saveptr);
-            assert(token);
-        }
-        // Remove any space off the end
-        trim_end_space(token);
+        trim_end_space(value);
+
         switch (i) {
         case 0:                // EOR
             // Process record
@@ -167,9 +174,7 @@ load_qsos_mem(char *buf, size_t buf_len)
                     HASH_ADD_STR(qsos, their_call, qso);
                     qso = (struct adi_qso *)
                         malloc(sizeof(*qso));
-                    if (qso == NULL) {
-                        return NULL;
-                    }
+		    assert(qso);
                 } else {
                     // Process existing record
                     query->num_qsos += 1;
@@ -178,22 +183,22 @@ load_qsos_mem(char *buf, size_t buf_len)
             memset(qso, 0, sizeof(*qso));
             break;
         case 1:                // call
-            qso->their_call = strdup(token);
+            qso->their_call = strdup(value);
             break;
         case 2:                // name
-            qso->name = strdup(token);
+            qso->name = strdup(value);
             break;
         case 3:                // country
-            qso->country = strdup(token);
+            qso->country = strdup(value);
             break;
         case 4:                // qth
-            qso->qth = strdup(token);
+            qso->qth = strdup(value);
             break;
         case 5:                // gridsquare
-            populate_maidenhead(&qso->their_grid, token, strlen(token));
+            populate_maidenhead(&qso->their_grid, value, strlen(value));
             break;
         case 6:                // my_gridsquare
-            populate_maidenhead(&qso->my_grid, token, strlen(token));
+            populate_maidenhead(&qso->my_grid, value, strlen(value));
             break;
         }
     }
