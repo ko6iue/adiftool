@@ -32,10 +32,7 @@
  */
 #include <stdio.h>
 #include <emscripten.h>
-#include "./adif.h"
-
-// TODO: move kml stuff into separate file
-void            write_kml(FILE * fp, struct adi_qso *qsos);
+#include "./kml.h"
 
 // Up to the caller to free the memory
 EMSCRIPTEN_KEEPALIVE char *
