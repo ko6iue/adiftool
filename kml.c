@@ -31,10 +31,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
-#include <time.h>
 #include "./kml.h"
-
-unsigned int    kml_seed;           // for rand_r
 
 void
 write_description(struct adi_qso *qso, FILE *fp)
@@ -91,16 +88,12 @@ print_kml_point_style(FILE *fp)
     }
 }
 
-double
-random_value_in_range(float min, float max)
-{
-    return min + rand_r(&kml_seed) / (double) RAND_MAX *(max - min);
-}
-
 void
 print_kml_point(struct adi_qso *qso, FILE *fp)
 {
     int             icon_num = qso->num_qsos;
+    struct maidenhead *mh;
+    latlon_t        ll;
     if (icon_num > 10) {
         icon_num = 10;
     }
@@ -109,13 +102,9 @@ print_kml_point(struct adi_qso *qso, FILE *fp)
     write_description(qso, fp);
     fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
-    fprintf(fp, "%.6f,%.6f,0",
-            random_value_in_range(qso->their_grid.lon_sw_corner,
-                                  qso->their_grid.lon_sw_corner +
-                                  qso->their_grid.lon_res_degrees),
-            random_value_in_range(qso->their_grid.lat_sw_corner,
-                                  qso->their_grid.lat_sw_corner +
-                                  qso->their_grid.lat_res_degrees));
+    mh = &qso->their_grid;
+    mh->random_location(mh, &ll);
+    fprintf(fp, "%.6f,%.6f,0", ll.lon, ll.lat);
     fprintf(fp, "</coordinates></Point>\n");
     fprintf(fp, "</Placemark>\n");
 }
@@ -124,6 +113,7 @@ void
 print_kml_box(struct adi_qso *qso, FILE *fp)
 {
     struct maidenhead *mh = NULL;
+    const char     *fmt = "%.6f,%.6f,0\n";
     if (!qso || !fp) {
         return;
     }
@@ -132,28 +122,20 @@ print_kml_box(struct adi_qso *qso, FILE *fp)
     fprintf(fp, "<name>%s grid</name>\n", qso->their_call);
     fprintf(fp, "<LineString><tessellate>1</tessellate>\n");
     fprintf(fp, "<coordinates>");
-    fprintf(fp, "%.6f,%.6f,0\n%.6f,%.6f,0\n%.6f,%.6f,0\n",
-            // sw corner
-            mh->lon_sw_corner, mh->lat_sw_corner,
-            // nw corner
-            mh->lon_sw_corner, mh->lat_sw_corner + mh->lat_res_degrees,
-            // ne corner
-            mh->lon_sw_corner + mh->lon_res_degrees,
-            mh->lat_sw_corner + mh->lat_res_degrees);
-    fprintf(fp, "%.6f,%.6f,0\n%.6f,%.6f,0",
-            // se corner
-            mh->lon_sw_corner + mh->lon_res_degrees, mh->lat_sw_corner,
-            // sw corner
-            mh->lon_sw_corner, mh->lat_sw_corner);
+    fprintf(fp, fmt, mh->sw_corner.lon, mh->sw_corner.lat);
+    fprintf(fp, fmt, mh->nw_corner.lon, mh->nw_corner.lat);
+    fprintf(fp, fmt, mh->ne_corner.lon, mh->ne_corner.lat);
+    fprintf(fp, fmt, mh->se_corner.lon, mh->se_corner.lat);
+    fprintf(fp, fmt, mh->sw_corner.lon, mh->sw_corner.lat);
     fprintf(fp, "</coordinates>\n");
     fprintf(fp, "</LineString>\n");
     fprintf(fp, "</Placemark>\n");
 }
 
-
 int
-print_kml_record(struct adi_qso *qso, void *arg)
+print_kml_record(struct adi_qso *qso, void *arg, int last_item)
 {
+    (void) last_item;
     FILE           *fp = (FILE *) arg;
     print_kml_point(qso, fp);
     print_kml_box(qso, fp);
@@ -163,7 +145,6 @@ print_kml_record(struct adi_qso *qso, void *arg)
 void
 write_kml(FILE *fp, struct adi_qso *qsos)
 {
-    kml_seed = time(NULL);
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
             "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");

@@ -33,15 +33,23 @@
 #ifndef MAIDENHEAD_H
 #define MAIDENHEAD_H
 
+typedef struct latlon {
+    float           lat;
+    float           lon;
+} latlon_t;
+
 #define MAIDENHEAD_MAXLEN 16
 struct maidenhead {
     char            mh[MAIDENHEAD_MAXLEN];
-    float           lat_sw_corner;
-    float           lon_sw_corner;
-    float           lat_res_degrees;
-    float           lon_res_degrees;
-    float           lat_center;
-    float           lon_center;
+    latlon_t        res_degrees;
+    latlon_t        center;
+    latlon_t        sw_corner;
+    latlon_t        nw_corner;
+    latlon_t        se_corner;
+    latlon_t        ne_corner;
+    // Return a random location into a grid
+    int             (*random_location)(struct maidenhead * mh,
+                                       latlon_t * ll);
 };
 
 int             maidenhead_is_null(struct maidenhead *mh);

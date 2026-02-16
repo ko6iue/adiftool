@@ -32,6 +32,8 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include <math.h>
 
 #include "./maidenhead.h"
@@ -39,12 +41,20 @@
 void
 maidenhead_print(FILE *fp, struct maidenhead *mh)
 {
-    fprintf(fp, "       grid: %s\n", mh->mh);
-    fprintf(fp, "  sw corner: (%f, %f)\n",
-            mh->lat_sw_corner, mh->lon_sw_corner);
-    fprintf(fp, "res degrees: (%f, %f)\n",
-            mh->lat_res_degrees, mh->lon_res_degrees);
-    fprintf(fp, "     center: (%f, %f)\n", mh->lat_center, mh->lon_center);
+    if (!fp) {
+        return;
+    }
+    if (maidenhead_is_null(mh)) {
+        fprintf(fp, "NULL maidenhead\n");
+    } else {
+        fprintf(fp, "       grid: %s\n", mh->mh);
+        fprintf(fp, "  sw corner: (%f, %f)\n",
+                mh->sw_corner.lat, mh->sw_corner.lon);
+        fprintf(fp, "res degrees: (%f, %f)\n",
+                mh->res_degrees.lat, mh->res_degrees.lon);
+        fprintf(fp, "     center: (%f, %f)\n", mh->center.lat,
+                mh->center.lon);
+    }
 }
 
 int
@@ -100,6 +110,32 @@ calc_offsets(int *offsets, int offsetlen, const char *grid,
     return gridlen;
 }
 
+// Use a fixed seed so that output is identical
+// for a given input. Random but predictable.
+unsigned int    rand_seed = 0xDEADBEEF;
+
+double
+random_value_in_range(float min, float max)
+{
+    return min + rand_r(&rand_seed) / (double) RAND_MAX *(max - min);
+}
+
+int
+internal_mh_random_location(struct maidenhead *mh, latlon_t *ll)
+{
+    if (maidenhead_is_null(mh) || !ll) {
+        return -1;
+    }
+    ll->lon = random_value_in_range(mh->sw_corner.lon,
+                                    mh->sw_corner.lon +
+                                    mh->res_degrees.lon);
+    ll->lat = random_value_in_range(mh->sw_corner.lat,
+                                    mh->sw_corner.lat +
+                                    mh->res_degrees.lat);
+    return 0;
+}
+
+
 #define GRID_MAXLEN 8
 // rval -1 on bad arguments
 // returns 
@@ -123,18 +159,30 @@ populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
         return rval;
     }
     memcpy(mh->mh, grid, len);
-    mh->lat_sw_corner = -90;
-    mh->lon_sw_corner = -180;
+    mh->sw_corner.lat = -90.0;
+    mh->sw_corner.lon = -180.0;
     for (i = 0; i < len; i += 2) {
-        mh->lon_sw_corner += (offsets[i] * res[(i / 2)][1]);
+        mh->sw_corner.lon += (offsets[i] * res[(i / 2)][1]);
     }
     for (i = 1; i < len; i += 2) {
-        mh->lat_sw_corner += (offsets[i] * res[(i / 2)][0]);
+        mh->sw_corner.lat += (offsets[i] * res[(i / 2)][0]);
     }
-    mh->lat_res_degrees = res[(len / 2) - 1][0];
-    mh->lon_res_degrees = res[(len / 2) - 1][1];
-    mh->lat_center = mh->lat_sw_corner + mh->lat_res_degrees / 2;
-    mh->lon_center = mh->lon_sw_corner + mh->lon_res_degrees / 2;
+    mh->res_degrees.lat = res[(len / 2) - 1][0];
+    mh->res_degrees.lon = res[(len / 2) - 1][1];
+    // Center
+    mh->center.lat = mh->sw_corner.lat + mh->res_degrees.lat / 2;
+    mh->center.lon = mh->sw_corner.lon + mh->res_degrees.lon / 2;
+    // NW corner
+    mh->nw_corner.lat = mh->sw_corner.lat + mh->res_degrees.lat;
+    mh->nw_corner.lon = mh->sw_corner.lon;
+    // NE corner
+    mh->ne_corner.lat = mh->sw_corner.lat + mh->res_degrees.lat;
+    mh->ne_corner.lon = mh->sw_corner.lon + mh->res_degrees.lon;
+    // SE corner
+    mh->se_corner.lat = mh->sw_corner.lat;
+    mh->se_corner.lon = mh->sw_corner.lon + mh->res_degrees.lon;
+
+    mh->random_location = internal_mh_random_location;
     return len;
 }
 
@@ -160,10 +208,10 @@ float
 maidenhead_distance_km(struct maidenhead *from, struct maidenhead *to)
 {
     float           volumetric_mean_radius_earth_km = 6371.0;
-    float           lat1 = degrees_to_rads(from->lat_center);
-    float           lon1 = degrees_to_rads(from->lon_center);
-    float           lat2 = degrees_to_rads(to->lat_center);
-    float           lon2 = degrees_to_rads(to->lon_center);
+    float           lat1 = degrees_to_rads(from->center.lat);
+    float           lon1 = degrees_to_rads(from->center.lon);
+    float           lat2 = degrees_to_rads(to->center.lat);
+    float           lon2 = degrees_to_rads(to->center.lon);
     float           square_half_cord = haversine(lat2 - lat1) +
         cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
     float           angular_distance =
@@ -174,10 +222,10 @@ maidenhead_distance_km(struct maidenhead *from, struct maidenhead *to)
 float
 maidenhead_bearing_degrees(struct maidenhead *from, struct maidenhead *to)
 {
-    float           lat1 = degrees_to_rads(from->lat_center);
-    float           lon1 = degrees_to_rads(from->lon_center);
-    float           lat2 = degrees_to_rads(to->lat_center);
-    float           lon2 = degrees_to_rads(to->lon_center);
+    float           lat1 = degrees_to_rads(from->center.lat);
+    float           lon1 = degrees_to_rads(from->center.lon);
+    float           lat2 = degrees_to_rads(to->center.lat);
+    float           lon2 = degrees_to_rads(to->center.lon);
     float           delta_lon = lon2 - lon1;
     float           tmp = rads_to_degrees(atan2(sin(delta_lon) * cos(lat2),
                                                 (cos(lat1) * sin(lat2)) -

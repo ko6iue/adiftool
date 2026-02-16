@@ -37,8 +37,9 @@
 #include "./adif.h"
 
 int
-print_qso(struct adi_qso *qso, void *arg)
+print_qso(struct adi_qso *qso, void *arg, int last_item)
 {
+    (void) last_item;
     FILE           *fp = (FILE *) arg;
     fprintf(fp, "**********\n");
     fprintf(fp, "       call: %s\n", qso->their_call);
@@ -56,7 +57,7 @@ print_qso(struct adi_qso *qso, void *arg)
     return 0;
 }
 
-// Minimum useful 
+// Minimum usable QSO
 int
 valid_qso(struct adi_qso *qso)
 {
@@ -99,6 +100,31 @@ load_qsos_fp(FILE *fp)
 }
 
 void
+free_qso_strdups(struct adi_qso *qso)
+{
+    if (qso) {
+        free(qso->name);
+        free(qso->qth);
+        free(qso->their_call);
+        free(qso->country);
+    }
+}
+
+void
+free_qsos(struct adi_qso *qsos)
+{
+    struct adi_qso *qso,
+                   *tmp;
+    if (qsos) {
+        HASH_ITER(hh, qsos, qso, tmp) {
+            HASH_DEL(qsos, qso);
+            free_qso_strdups(qso);
+            free(qso);
+        }
+    }
+}
+
+void
 trim_end_space(char *p)
 {
     char           *q;
@@ -122,19 +148,19 @@ load_qsos_mem(char *buf, size_t buf_len)
     (void) buf_len;
     struct adi_qso *qsos = NULL,
         *qso,
-        *query;
+        *tmp;
     int             i;
-    char           *field,
+    char
+                   *field,
                    *fieldattrs,
                    *name,
                    *value;
     char           *fieldptr = NULL,
         *attrptr = NULL,
         *pairptr = NULL;
-    const int       num_fields = 7;
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
-        "my_gridsquare"
+        "my_gridsquare", NULL
     };
 
     qso = (struct adi_qso *) malloc(sizeof *qso);
@@ -149,8 +175,10 @@ load_qsos_mem(char *buf, size_t buf_len)
         value = strtok_r(NULL, PAIR_DELIMITER, &pairptr);
         name = strtok_r(fieldattrs, ATTR_DELIMITER, &attrptr);
         assert(name);
+        // TODO: consider processing field value len and type
+        // Not necessary for now (if ever).
 
-        for (i = 0; i < num_fields; i++) {
+        for (i = 0; fields[i]; ++i) {
             if (strcasecmp(name, fields[i]) == 0) {
                 break;
             }
@@ -159,11 +187,11 @@ load_qsos_mem(char *buf, size_t buf_len)
 
         switch (i) {
         case 0:                // EOR
-            // Process record
             if (valid_qso(qso)) {
-                HASH_FIND_STR(qsos, qso->their_call, query);
-                if (query == NULL) {
-                    // Add new person
+                // process this useable QSO record
+                HASH_FIND_STR(qsos, qso->their_call, tmp);
+                if (tmp == NULL) {
+                    // Add QSO from a new station
                     qso->distance_km =
                         maidenhead_distance_km(&qso->my_grid,
                                                &qso->their_grid);
@@ -171,15 +199,19 @@ load_qsos_mem(char *buf, size_t buf_len)
                         maidenhead_bearing_degrees(&qso->my_grid,
                                                    &qso->their_grid);
                     qso->num_qsos = 1;
-                    HASH_ADD_STR(qsos, their_call, qso);
-                    qso = (struct adi_qso *)
-                        malloc(sizeof(*qso));
-                    assert(qso);
+                    tmp = (struct adi_qso *) malloc(sizeof(*tmp));
+                    memcpy(tmp, qso, sizeof(*qso));
+                    // Add a copy of this new valid QSO
+                    HASH_ADD_STR(qsos, their_call, tmp);
+                    // Set our working QSO to zero
+                    memset(qso, 0, sizeof(*qso));
                 } else {
-                    // Process existing record
-                    query->num_qsos += 1;
+                    // Process QSO from existing station
+                    tmp->num_qsos += 1;
                 }
             }
+            // Reset working QSO and start again
+            free_qso_strdups(qso);
             memset(qso, 0, sizeof(*qso));
             break;
         case 1:                // call
@@ -202,20 +234,27 @@ load_qsos_mem(char *buf, size_t buf_len)
             break;
         }
     }
+
+    // Free our working QSO
+    free_qso_strdups(qso);
+    free(qso);
     return qsos;
 }
 
 
 int
 walk_qsos(struct adi_qso *qsos,
-          int (*cb)(struct adi_qso *, void *arg), void *arg)
+          int (*cb)(struct adi_qso *, void *arg, int is_last), void *arg)
 {
-    int             rval;
+    int             rval,
+                    nitems;
     struct adi_qso *qso,
                    *tmp;
     if (qsos && cb) {
+        nitems = HASH_COUNT(qsos);
         HASH_ITER(hh, qsos, qso, tmp) {
-            rval = (*cb) (qso, arg);
+            nitems--;
+            rval = (*cb) (qso, arg, nitems == 0);
             if (rval) {
                 // premature stop
                 return rval;
@@ -229,21 +268,4 @@ int
 print_qsos(FILE *fp, struct adi_qso *qsos)
 {
     return walk_qsos(qsos, &print_qso, (void *) fp);
-}
-
-void
-free_qsos(struct adi_qso *qsos)
-{
-    struct adi_qso *qso,
-                   *tmp;
-    if (qsos) {
-        HASH_ITER(hh, qsos, qso, tmp) {
-            HASH_DEL(qsos, qso);
-            free(qso->name);
-            free(qso->qth);
-            free(qso->their_call);
-            free(qso->country);
-            free(qso);
-        }
-    }
 }

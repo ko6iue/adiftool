@@ -51,12 +51,12 @@ struct adi_qso {
     UT_hash_handle  hh;
 };
 
-int             print_qso(struct adi_qso *qso, void *arg);
+int             print_qso(struct adi_qso *qso, void *arg, int last_item);
 struct adi_qso *load_qsos_mem(char *buf, size_t len);
 struct adi_qso *load_qsos_fp(FILE * fp);
 int             walk_qsos(struct adi_qso *qsos,
-                          int (*cb)(struct adi_qso *, void *arg),
-                          void *arg);
+                          int (*cb)(struct adi_qso *, void *arg,
+                                    int last_item), void *arg);
 int             print_qsos(FILE *, struct adi_qso *qsos);
 void            free_qsos(struct adi_qso *qsos);
 

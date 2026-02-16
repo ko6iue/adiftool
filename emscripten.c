@@ -33,20 +33,30 @@
 #include <stdio.h>
 #include <emscripten.h>
 #include "./kml.h"
+#include "./geojson.h"
 
 // Up to the caller to free the memory
-EMSCRIPTEN_KEEPALIVE char *
-adi2kml(char *adi)
+char           *
+adi2callback(char *adi, void (*callback)(FILE *fp, struct adi_qso *qsos))
 {
     char           *buf = NULL;
     size_t          len = 0;
     FILE           *fp = open_memstream(&buf, &len);
     struct adi_qso *qsos = load_qsos_mem(adi, strlen(adi));
-
     free(adi);
-    write_kml(fp, qsos);
-
+    callback(fp, qsos);
     fclose(fp);                 // flush to buf
-
     return buf;
+}
+
+EMSCRIPTEN_KEEPALIVE char *
+adi2kml(char *adi)
+{
+    return adi2callback(adi, write_kml);
+}
+
+EMSCRIPTEN_KEEPALIVE char *
+adi2geojson(char *adi)
+{
+    return adi2callback(adi, write_geojson);
 }

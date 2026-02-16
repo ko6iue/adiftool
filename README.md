@@ -15,7 +15,7 @@ If you tried to use the [online app](https://ko6iue.org/adi2kml) and it failed f
 This software can convert over 120,000 QSOs a second
 
 ```
-$ time ./adi2kml sample.adi sample.kml
+$ time ./adi2kml -i sample.adi -o sample.kml
 Processed 8670 QSOs
 ./adi2kml sample.adi sample.kml  0.07s user 0.01s system 98% cpu 0.080 total
 ```

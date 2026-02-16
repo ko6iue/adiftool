@@ -30,67 +30,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef GEOJSON_H
+#define GEOJSON_H
+
 #include <stdio.h>
 #include "./adif.h"
-#include "./kml.h"
-#include "./geojson.h"
-#include "./cmdline.h"
 
-int
-runit(struct gengetopt_args_info *args_info)
-{
-    FILE           *infp = stdin;
-    struct adi_qso *qsos = NULL;
-    FILE           *outfp = stdout;
+void write_geojson(FILE *fp, struct adi_qso *qsos);
 
-    if (strcmp(args_info->input_arg, "-")) {
-        infp = fopen(args_info->input_arg, "r");
-    }
-    if (infp == NULL) {
-        fprintf(stderr, "fopen input file error: %s\n",
-                args_info->input_arg);
-        return EXIT_FAILURE;
-    }
-    qsos = load_qsos_fp(infp);
-    fclose(infp);
-
-    if (qsos == NULL) {
-        return EXIT_FAILURE;
-    }
-
-    if (strcmp(args_info->output_arg, "-")) {
-        outfp = fopen(args_info->output_arg, "w");
-    }
-    if (!outfp) {
-        fprintf(stderr, "fopen output file error: %s\n",
-                args_info->output_arg);
-        return EXIT_FAILURE;
-    }
-
-    if (args_info->geojson_flag) {
-        write_geojson(outfp, qsos);
-    } else {
-        write_kml(outfp, qsos);
-    }
-    fclose(outfp);
-
-    printf("Processed %d QSOs\n", HASH_COUNT(qsos));
-
-    // print_qsos(stdout, qsos);
-
-    free_qsos(qsos);
-    return EXIT_SUCCESS;
-}
-
-int
-main(int argc, char *argv[])
-{
-    int             rval;
-    struct gengetopt_args_info args_info;
-    if (cmdline_parser(argc, argv, &args_info) != 0) {
-        exit(EXIT_FAILURE);
-    }
-    rval = runit(&args_info);
-    cmdline_parser_free(&args_info);
-    return rval;
-}
+#endif    
