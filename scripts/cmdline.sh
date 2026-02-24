@@ -1,9 +1,9 @@
 #!/usr/bin/env -S gengetopt --input
 # See http://www.gnu.org/software/gengetopt/gengetopt.html for details
 
-package "adi2kml"
+package "adiftool"
 version "0.1"
-purpose "Commandline tool for converting ADIF to various other format"
+purpose "Commandline tool for converting ADIF to various other GIS formats"
 
 option "input" i "ADIF file to use as input." string yes 
 option "output" o "File to write output to." string yes

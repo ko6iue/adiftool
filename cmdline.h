@@ -21,12 +21,12 @@ extern "C" {
 
 #ifndef CMDLINE_PARSER_PACKAGE
 /** @brief the program name (used for printing errors) */
-#define CMDLINE_PARSER_PACKAGE "adi2kml"
+#define CMDLINE_PARSER_PACKAGE "adiftool"
 #endif
 
 #ifndef CMDLINE_PARSER_PACKAGE_NAME
 /** @brief the complete program name (used for help and version) */
-#define CMDLINE_PARSER_PACKAGE_NAME "adi2kml"
+#define CMDLINE_PARSER_PACKAGE_NAME "adiftool"
 #endif
 
 #ifndef CMDLINE_PARSER_VERSION
