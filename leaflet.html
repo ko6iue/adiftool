@@ -69,9 +69,9 @@
     <script>
       var stations; // populated by L.geojson later...
       var grids; // populated by L.geojson later...
+      var max_grid_qsos; // populated by geojsonLoad()
 
       const map = L.map("map", { worldCopyJump: true }).setView([11, 11], 2);
-      //map.setMaxBounds(map.getBounds());
 
       const tiles = L.tileLayer(
         "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -83,214 +83,216 @@
         },
       ).addTo(map);
 
+      function getGridColor(feature) {
+        // Using the log function given the distribution skew
+        grid_qsos = feature.properties.num_qsos;
+        grid_log = Math.log(grid_qsos);
+        return grid_log > max_grid_qsos * 0.8
+          ? "#54278f"
+          : grid_log > max_grid_qsos * 0.6
+            ? "#756bb1"
+            : grid_log > max_grid_qsos * 0.4
+              ? "#9e9ac8"
+              : grid_log > max_grid_qsos * 0.2
+                ? "#cbc9e2"
+                : "#f2f0f7";
+      }
+
+      var info = L.control();
+
+      info.onAdd = function (map) {
+        this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
+        this.updateStation();
+        this.updateGrid();
+        return this._div;
+      };
+
+      var defaultMessage =
+        "Hover over a station or grid for information.<br/>" +
+        "Click on a station to launch its QRZ page.<br/>" +
+        "Click on a grid to zoom to it.<br/>";
+
+      function infoMessage(body) {
+        return (
+          '<b><i><a href="https://ko6iue.org/">KO6IUE</a> Grid Viewer</i></b><br/><br/>' +
+          body
+        );
+      }
+
+      // method that we will use to update the control based on feature properties passed
+      info.updateStation = function (props) {
+        if (!props) {
+          this._div.innerHTML = infoMessage(defaultMessage);
+        } else {
+          s = "<h4>Station " + props.call + "</h4><br/>";
+          if (props.name) {
+            s += "<b>Name:</b> " + props.name + "<br/>";
+          }
+          if (props.grid) {
+            s += "<b>Grid:</b> " + props.grid + "<br/>";
+          }
+          if (props.lat) {
+            s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
+          }
+          if (props.lon) {
+            s += "<b>Longitude:</b> " + props.lon + "&deg;<br/>";
+          }
+          if (props.distance) {
+            s += "<b>Distance:</b> " + props.distance + " km<br/>";
+          }
+          if (props.bearing) {
+            s += "<b>Bearing:</b> " + props.bearing + "&deg;<br/>";
+          }
+          if (props.QTH) {
+            s += "<b>QTH:</b> " + props.QTH + "<br/>";
+          }
+          if (props.QSOs) {
+            s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
+          }
+          if (props.country) {
+            s += "<b>Country:</b> " + props.country + "<br/>";
+          }
+          this._div.innerHTML = infoMessage(s);
+        }
+      };
+
+      info.updateGrid = function (props) {
+        if (!props) {
+          this._div.innerHTML = infoMessage(defaultMessage);
+        } else {
+          s = "<h4>Grid " + props.name + "</h4>";
+          if (props.num_stations) {
+            s += "<b>Num Stations:</b> " + props.num_stations + "<br/>";
+          }
+          if (props.num_qsos) {
+            s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
+          }
+          if (props.lat_range) {
+            s +=
+              "<b>Latitude:</b> " +
+              props.lat_range[0] +
+              " to " +
+              props.lat_range[1] +
+              "&deg;<br/>";
+          }
+          if (props.lon_range) {
+            s +=
+              "<b>Longitude:</b> " +
+              props.lon_range[0] +
+              " to " +
+              props.lon_range[1] +
+              "&deg;<br/>";
+          }
+          this._div.innerHTML = infoMessage(s);
+        }
+      };
+
+      info.addTo(map);
+
+      function highlightStation(e) {
+        var layer = e.target;
+        var props = layer.feature.properties;
+
+        info.updateStation(props);
+
+        layer.setStyle({
+          weight: 5,
+          color: "#54278f",
+          dashArray: "",
+          fillOpacity: 0.7,
+        });
+      }
+
+      function resetStation(e) {
+        stations.resetStyle(e.target);
+        info.updateStation();
+      }
+
+      function clickStation(e) {
+        var layer = e.target;
+        var props = layer.feature.properties;
+        window.open("https://www.qrz.com/db/" + props.call);
+      }
+
+      function onEachStation(feature, layer) {
+        layer.on({
+          mouseover: highlightStation,
+          mouseout: resetStation,
+          click: clickStation,
+        });
+      }
+
+      var stationOptions = {
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng);
+        },
+        style: {
+          color: "#54278f",
+          weight: 2,
+          radius: 4,
+          fillColor: "#cccccc",
+          opacity: 1,
+          fillOpacity: 0.5,
+        },
+        onEachFeature: onEachStation,
+      };
+
+      function highlightGrid(e) {
+        var layer = e.target;
+        var props = layer.feature.properties;
+
+        info.updateGrid(props);
+
+        layer.setStyle({
+          weight: 5,
+          color: "#54278f",
+          dashArray: "",
+          fillOpacity: 0.7,
+        });
+      }
+
+      function resetGrid(e) {
+        grids.resetStyle(e.target);
+        info.updateGrid();
+      }
+
+      function clickGrid(e) {
+        map.fitBounds(e.target.getBounds());
+      }
+
+      function onEachGrid(feature, layer) {
+        layer.on({
+          mouseover: highlightGrid,
+          mouseout: resetGrid,
+          click: clickGrid,
+        });
+      }
+
+      function gridStyle(feature) {
+        return {
+          color: "#54278f",
+          fillColor: getGridColor(feature),
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.4,
+          dashArray: 3,
+        };
+      }
+
+      var gridOptions = {
+        style: gridStyle,
+        onEachFeature: onEachGrid,
+      };
+
       function geojsonLoad(json) {
-        const max_grid_qsos = Math.log(json[1].properties.max_qsos);
-        const fileContainer = document.getElementById("file-container");
-        fileContainer.remove(fileContainer);
-
-        function getGridColor(feature) {
-          // Using the log function given the distribution skew
-          grid_qsos = feature.properties.num_qsos;
-          grid_log = Math.log(grid_qsos);
-          return grid_log > max_grid_qsos * 0.8
-            ? "#54278f"
-            : grid_log > max_grid_qsos * 0.6
-              ? "#756bb1"
-              : grid_log > max_grid_qsos * 0.4
-                ? "#9e9ac8"
-                : grid_log > max_grid_qsos * 0.2
-                  ? "#cbc9e2"
-                  : "#f2f0f7";
+        max_grid_qsos = Math.log(json[1].properties.max_qsos);
+        if (stations) {
+          map.removeLayer(stations);
         }
-
-        var info = L.control();
-
-        info.onAdd = function (map) {
-          this._div = L.DomUtil.create("div", "info"); // create a div with a class "info"
-          this.updateStation();
-          this.updateGrid();
-          return this._div;
-        };
-
-        var defaultMessage =
-          "Hover over a station or grid for information.<br/>" +
-          "Click on a grid to zoom to it.<br/>" +
-          "Click on a station to launch its QRZ page.<br/>" +
-          "Reload the page to load a different ADIF file";
-
-        function infoMessage(body) {
-          return (
-            '<b><i><a href="https://ko6iue.org/">KO6IUE</a> Grid Viewer</i></b><br/><br/>' +
-            body
-          );
-        }
-
-        // method that we will use to update the control based on feature properties passed
-        info.updateStation = function (props) {
-          if (!props) {
-            this._div.innerHTML = infoMessage(defaultMessage);
-          } else {
-            s = "<h4>Station " + props.call + "</h4><br/>";
-            if (props.name) {
-              s += "<b>Name:</b> " + props.name + "<br/>";
-            }
-            if (props.grid) {
-              s += "<b>Grid:</b> " + props.grid + "<br/>";
-            }
-            if (props.lat) {
-              s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
-            }
-            if (props.lon) {
-              s += "<b>Longitude:</b> " + props.lon + "&deg;<br/>";
-            }
-            if (props.distance) {
-              s += "<b>Distance:</b> " + props.distance + " km<br/>";
-            }
-            if (props.bearing) {
-              s += "<b>Bearing:</b> " + props.bearing + "&deg;<br/>";
-            }
-            if (props.QTH) {
-              s += "<b>QTH:</b> " + props.QTH + "<br/>";
-            }
-            if (props.QSOs) {
-              s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
-            }
-            if (props.country) {
-              s += "<b>Country:</b> " + props.country + "<br/>";
-            }
-            this._div.innerHTML = infoMessage(s);
-          }
-        };
-
-        info.updateGrid = function (props) {
-          if (!props) {
-            this._div.innerHTML = infoMessage(defaultMessage);
-          } else {
-            s = "<h4>Grid " + props.name + "</h4>";
-            if (props.num_stations) {
-              s += "<b>Num Stations:</b> " + props.num_stations + "<br/>";
-            }
-            if (props.num_qsos) {
-              s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
-            }
-            if (props.lat_range) {
-              s +=
-                "<b>Latitude:</b> " +
-                props.lat_range[0] +
-                " to " +
-                props.lat_range[1] +
-                "&deg;<br/>";
-            }
-            if (props.lon_range) {
-              s +=
-                "<b>Longitude:</b> " +
-                props.lon_range[0] +
-                " to " +
-                props.lon_range[1] +
-                "&deg;<br/>";
-            }
-            this._div.innerHTML = infoMessage(s);
-          }
-        };
-
-        info.addTo(map);
-
-        function highlightStation(e) {
-          var layer = e.target;
-          var props = layer.feature.properties;
-
-          info.updateStation(props);
-
-          layer.setStyle({
-            weight: 5,
-            color: "#54278f",
-            dashArray: "",
-            fillOpacity: 0.7,
-          });
-        }
-
-        function resetStation(e) {
-          stations.resetStyle(e.target);
-          info.updateStation();
-        }
-
-        function clickStation(e) {
-          var layer = e.target;
-          var props = layer.feature.properties;
-          window.open("https://www.qrz.com/db/" + props.call);
-        }
-
-        function onEachStation(feature, layer) {
-          layer.on({
-            mouseover: highlightStation,
-            mouseout: resetStation,
-            click: clickStation,
-          });
-        }
-
-        var stationOptions = {
-          pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng);
-          },
-          style: {
-            color: "#54278f",
-            weight: 2,
-            radius: 4,
-            fillColor: "#cccccc",
-            opacity: 1,
-            fillOpacity: 0.5,
-          },
-          onEachFeature: onEachStation,
-        };
-
-        function highlightGrid(e) {
-          var layer = e.target;
-          var props = layer.feature.properties;
-
-          info.updateGrid(props);
-
-          layer.setStyle({
-            weight: 5,
-            color: "#54278f",
-            dashArray: "",
-            fillOpacity: 0.7,
-          });
-        }
-
-        function resetGrid(e) {
-          grids.resetStyle(e.target);
-          info.updateGrid();
-        }
-
-        function clickGrid(e) {
-          map.fitBounds(e.target.getBounds());
-        }
-
-        function onEachGrid(feature, layer) {
-          layer.on({
-            mouseover: highlightGrid,
-            mouseout: resetGrid,
-            click: clickGrid,
-          });
-        }
-
-        function gridStyle(feature) {
-          return {
-            color: "#54278f",
-            fillColor: getGridColor(feature),
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 0.4,
-            dashArray: 3,
-          };
-        }
-
-        var gridOptions = {
-          style: gridStyle,
-          onEachFeature: onEachGrid,
-        };
-
         stations = L.geoJSON(json[0], stationOptions).addTo(map);
+        if (grids) {
+          map.removeLayer(grids);
+        }
         grids = L.geoJSON(json[1], gridOptions).addTo(map);
         // Make sure stations are always on top or grid will mask them
         stations.bringToFront();
