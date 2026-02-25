@@ -1,14 +1,14 @@
 # adiftool
 
-Software to convert [Amateur Data Interchange Format (ADIF)](https://www.adif.org/) to [Keyhole Markup Language (KML)](https://en.wikipedia.org/wiki/Keyhole_Markup_Language).  This allows Amateur Radio operators to view their radio connections (QSOs) inside of KML viewers like [Google Earth](https://earth.google.com).
+Software to convert [Amateur Data Interchange Format (ADIF)](https://www.adif.org/) to [GeoJSON](https://geojson.org/) and Keyhole Markup Language (KML). It compiles to both a command-line tool and [WebAssembly (Wasm)](https://webassembly.org/) binary to support fast Amateur Radio web apps.   
 
-This software is deployed on the [KO6IUE](https://ko6iue.org/) web site so you do not need to install anything to run it.  It will just run inside your browser.
+To see this software at work, visit the [KO6IUE](https://ko6iue.org/) web site.
 
 This repository is a place for open-source developers to improve this software over time.
 
 ## Getting help
 
-Please feel free [to file an issue](https://github.com/ko6iue/adiftool/issues)
+Please feel free [to file an issue](https://github.com/ko6iue/adiftool/issues).
 
 ## Performance
 
