@@ -115,40 +115,44 @@
         "Click on a station to launch its QRZ page.<br/>" +
         "Click on a grid to zoom to it.<br/>";
 
+      function stationPropsHTML(props) {
+        s = "<h4>Station " + props.call + "</h4><br/>";
+        if (props.name) {
+          s += "<b>Name:</b> " + props.name + "<br/>";
+        }
+        if (props.grid) {
+          s += "<b>Grid:</b> " + props.grid + "<br/>";
+        }
+        if (props.lat) {
+          s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
+        }
+        if (props.lon) {
+          s += "<b>Longitude:</b> " + props.lon + "&deg;<br/>";
+        }
+        if (props.distance) {
+          s += "<b>Distance:</b> " + props.distance + " km<br/>";
+        }
+        if (props.bearing) {
+          s += "<b>Bearing:</b> " + props.bearing + "&deg;<br/>";
+        }
+        if (props.QTH) {
+          s += "<b>QTH:</b> " + props.QTH + "<br/>";
+        }
+        if (props.QSOs) {
+          s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
+        }
+        if (props.country) {
+          s += "<b>Country:</b> " + props.country + "<br/>";
+        }
+        return s;
+      }
+
       // method that we will use to update the control based on feature properties passed
       info.updateStation = function (props) {
         if (!props) {
           this._div.innerHTML = defaultMessage;
         } else {
-          s = "<h4>Station " + props.call + "</h4><br/>";
-          if (props.name) {
-            s += "<b>Name:</b> " + props.name + "<br/>";
-          }
-          if (props.grid) {
-            s += "<b>Grid:</b> " + props.grid + "<br/>";
-          }
-          if (props.lat) {
-            s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
-          }
-          if (props.lon) {
-            s += "<b>Longitude:</b> " + props.lon + "&deg;<br/>";
-          }
-          if (props.distance) {
-            s += "<b>Distance:</b> " + props.distance + " km<br/>";
-          }
-          if (props.bearing) {
-            s += "<b>Bearing:</b> " + props.bearing + "&deg;<br/>";
-          }
-          if (props.QTH) {
-            s += "<b>QTH:</b> " + props.QTH + "<br/>";
-          }
-          if (props.QSOs) {
-            s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
-          }
-          if (props.country) {
-            s += "<b>Country:</b> " + props.country + "<br/>";
-          }
-          this._div.innerHTML = s;
+          this._div.innerHTML = stationPropsHTML(props);
         }
       };
 
@@ -187,7 +191,8 @@
 
       function highlightStation(e) {
         var layer = e.target;
-        var props = layer.feature.properties;
+        var feature = layer.feature;
+        var props = feature.properties;
 
         info.updateStation(props);
 
@@ -200,7 +205,8 @@
       }
 
       function resetStation(e) {
-        stations.resetStyle(e.target);
+        var layer = e.target;
+        stations.resetStyle(layer);
         info.updateStation();
       }
 
