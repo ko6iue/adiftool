@@ -37,14 +37,15 @@
 
 // Up to the caller to free the memory
 char           *
-adi2callback(char *adi, void (*callback)(FILE *fp, struct adi_qso *qsos))
+adi2callback(char *adi,
+             void (*callback)(FILE *fp, adif_station_t *stations))
 {
     char           *buf = NULL;
     size_t          len = 0;
     FILE           *fp = open_memstream(&buf, &len);
-    struct adi_qso *qsos = load_qsos_mem(adi, strlen(adi));
+    adif_station_t *stations = load_stations_mem(adi, strlen(adi));
     free(adi);
-    callback(fp, qsos);
+    callback(fp, stations);
     fclose(fp);                 // flush to buf
     return buf;
 }

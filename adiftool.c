@@ -40,7 +40,7 @@ int
 runit(struct gengetopt_args_info *args_info)
 {
     FILE           *infp = stdin;
-    struct adi_qso *qsos = NULL;
+    adif_station_t *stations = NULL;
     FILE           *outfp = stdout;
 
     if (strcmp(args_info->input_arg, "-")) {
@@ -51,10 +51,10 @@ runit(struct gengetopt_args_info *args_info)
                 args_info->input_arg);
         return EXIT_FAILURE;
     }
-    qsos = load_qsos_fp(infp);
+    stations = load_stations_fp(infp);
     fclose(infp);
 
-    if (qsos == NULL) {
+    if (stations == NULL) {
         return EXIT_FAILURE;
     }
 
@@ -68,17 +68,15 @@ runit(struct gengetopt_args_info *args_info)
     }
 
     if (args_info->geojson_flag) {
-        write_geojson(outfp, qsos);
+        write_geojson(outfp, stations);
     } else {
-        write_kml(outfp, qsos);
+        write_kml(outfp, stations);
     }
     fclose(outfp);
 
-    printf("Processed %d QSOs\n", HASH_COUNT(qsos));
+    printf("Processed %d stations\n", HASH_COUNT(stations));
 
-    // print_qsos(stdout, qsos);
-
-    free_qsos(qsos);
+    free_stations(stations);
     return EXIT_SUCCESS;
 }
 

@@ -38,7 +38,7 @@
 
 #define GRID_LEN 16
 
-struct adi_qso {
+typedef struct {
     char           *their_call;
     char           *name;
     char           *country;
@@ -49,15 +49,14 @@ struct adi_qso {
     float           bearing_degrees;
     int             num_qsos;
     UT_hash_handle  hh;
-};
+} adif_station_t;
 
-int             print_qso(struct adi_qso *qso, void *arg, int last_item);
-struct adi_qso *load_qsos_mem(char *buf, size_t len);
-struct adi_qso *load_qsos_fp(FILE * fp);
-int             walk_qsos(struct adi_qso *qsos,
-                          int (*cb)(struct adi_qso *, void *arg,
-                                    int last_item), void *arg);
-int             print_qsos(FILE *, struct adi_qso *qsos);
-void            free_qsos(struct adi_qso *qsos);
+adif_station_t *load_stations_mem(char *buf, size_t len);
+adif_station_t *load_stations_fp(FILE * fp);
+int             walk_stations(adif_station_t * stations,
+                              int (*cb)(adif_station_t *, void *arg,
+                                        int last_item), void *arg);
+int             print_stations(FILE *, adif_station_t * stations);
+void            free_stations(adif_station_t * station);
 
 #endif

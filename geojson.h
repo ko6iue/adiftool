@@ -36,6 +36,6 @@
 #include <stdio.h>
 #include "./adif.h"
 
-void write_geojson(FILE *fp, struct adi_qso *qsos);
+void write_geojson(FILE *fp, adif_station_t *stations);
 
 #endif    

@@ -34,36 +34,37 @@
 #include "./kml.h"
 
 void
-write_description(struct adi_qso *qso, FILE *fp)
+write_description(adif_station_t *station, FILE *fp)
 {
     char           *cdata_open = "<![CDATA[";
     char           *cdata_close = "]]>";
     fprintf(fp, "<description>\n");
     fprintf(fp, "%s", cdata_open);
-    if (qso->name) {
-        fprintf(fp, "<h1>%s</h1>\n", qso->name);
+    if (station->name) {
+        fprintf(fp, "<h1>%s</h1>\n", station->name);
     }
-    if (qso->their_call) {
+    if (station->their_call) {
         fprintf(fp, "<b><a href=\"https://www.qrz.com/db/%s\">"
-                "QRZ Page</a></b><br/>\n", qso->their_call);
+                "QRZ Page</a></b><br/>\n", station->their_call);
     }
-    if (qso->qth) {
-        fprintf(fp, "<b>QTH</b>: %s<br/>\n", qso->qth);
+    if (station->qth) {
+        fprintf(fp, "<b>QTH</b>: %s<br/>\n", station->qth);
     }
-    fprintf(fp, "<b>Number of QSOs</b>: %d<br/>\n", qso->num_qsos);
+    fprintf(fp, "<b>Number of QSOs</b>: %d<br/>\n", station->num_qsos);
 
-    if (qso->country) {
-        fprintf(fp, "<b>Country</b>: %s<br/>\n", qso->country);
-    }
-
-    if (!maidenhead_is_null(&qso->their_grid)) {
-        fprintf(fp, "<b>Grid</b>: %s<br/>\n", qso->their_grid.mh);
+    if (station->country) {
+        fprintf(fp, "<b>Country</b>: %s<br/>\n", station->country);
     }
 
-    if (!maidenhead_is_null(&qso->my_grid)) {
-        fprintf(fp, "<b>Distance</b>: %.1f km<br/>\n", qso->distance_km);
+    if (!maidenhead_is_null(&station->their_grid)) {
+        fprintf(fp, "<b>Grid</b>: %s<br/>\n", station->their_grid.mh);
+    }
+
+    if (!maidenhead_is_null(&station->my_grid)) {
+        fprintf(fp, "<b>Distance</b>: %.1f km<br/>\n",
+                station->distance_km);
         fprintf(fp, "<b>Bearing</b>: %.1f&deg;</br>\n",
-                qso->bearing_degrees);
+                station->bearing_degrees);
     }
 
     fprintf(fp, "%s", cdata_close);
@@ -89,20 +90,20 @@ print_kml_point_style(FILE *fp)
 }
 
 void
-print_kml_point(struct adi_qso *qso, FILE *fp)
+print_kml_point(adif_station_t *station, FILE *fp)
 {
-    int             icon_num = qso->num_qsos;
+    int             icon_num = station->num_qsos;
     struct maidenhead *mh;
     latlon_t        ll;
     if (icon_num > 10) {
         icon_num = 10;
     }
     fprintf(fp, "<Placemark>\n");
-    fprintf(fp, "<name>%s</name>\n", qso->their_call);
-    write_description(qso, fp);
+    fprintf(fp, "<name>%s</name>\n", station->their_call);
+    write_description(station, fp);
     fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
-    mh = &qso->their_grid;
+    mh = &station->their_grid;
     mh->random_location(mh, &ll);
     fprintf(fp, "%.6f,%.6f,0", ll.lon, ll.lat);
     fprintf(fp, "</coordinates></Point>\n");
@@ -110,16 +111,16 @@ print_kml_point(struct adi_qso *qso, FILE *fp)
 }
 
 void
-print_kml_box(struct adi_qso *qso, FILE *fp)
+print_kml_box(adif_station_t *station, FILE *fp)
 {
     struct maidenhead *mh = NULL;
     const char     *fmt = "%.6f,%.6f,0\n";
-    if (!qso || !fp) {
+    if (!station || !fp) {
         return;
     }
-    mh = &qso->their_grid;
+    mh = &station->their_grid;
     fprintf(fp, "<Placemark>\n");
-    fprintf(fp, "<name>%s grid</name>\n", qso->their_call);
+    fprintf(fp, "<name>%s grid</name>\n", station->their_call);
     fprintf(fp, "<LineString><tessellate>1</tessellate>\n");
     fprintf(fp, "<coordinates>");
     fprintf(fp, fmt, mh->sw_corner.lon, mh->sw_corner.lat);
@@ -133,23 +134,23 @@ print_kml_box(struct adi_qso *qso, FILE *fp)
 }
 
 int
-print_kml_record(struct adi_qso *qso, void *arg, int last_item)
+print_kml_record(adif_station_t *station, void *arg, int last_item)
 {
     (void) last_item;
     FILE           *fp = (FILE *) arg;
-    print_kml_point(qso, fp);
-    print_kml_box(qso, fp);
+    print_kml_point(station, fp);
+    print_kml_box(station, fp);
     return 0;
 }
 
 void
-write_kml(FILE *fp, struct adi_qso *qsos)
+write_kml(FILE *fp, adif_station_t *stations)
 {
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
             "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
     fprintf(fp, "<name>KO6IUE ADIF to KML converter</name>\n");
     print_kml_point_style(fp);
-    walk_qsos(qsos, &print_kml_record, fp);
+    walk_stations(stations, &print_kml_record, fp);
     fprintf(fp, "</Document>\n</kml>\n");
 }

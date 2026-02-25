@@ -113,14 +113,14 @@ mh_print_coordinates(FILE *fp, struct maidenhead *mh)
 }
 
 int
-write_geojson_station(struct adi_qso *qso, void *arg, int last_item)
+write_geojson_station(adif_station_t *station, void *arg, int last_item)
 {
     FILE           *fp = (FILE *) arg;
     latlon_t        ll;
-    if (!qso) {
+    if (!station) {
         return -1;
     }
-    struct maidenhead *mh = &qso->their_grid;
+    struct maidenhead *mh = &station->their_grid;
 
     json_obj_open(fp);          // start feature
     json_attr(fp, "type");
@@ -128,44 +128,44 @@ write_geojson_station(struct adi_qso *qso, void *arg, int last_item)
     fprintf(fp, ",");
     json_attr(fp, "properties");
     json_obj_open(fp);          // start properties
-    if (qso->name) {
+    if (station->name) {
         json_attr(fp, "name");
-        json_val(fp, qso->name);
+        json_val(fp, station->name);
         fprintf(fp, ",");
     }
-    if (!maidenhead_is_null(&qso->their_grid)) {
+    if (!maidenhead_is_null(&station->their_grid)) {
         json_attr(fp, "grid");
-        json_val(fp, qso->their_grid.mh);
+        json_val(fp, station->their_grid.mh);
         fprintf(fp, ",");
         json_attr(fp, "lat");
         fprintf(fp, "%.6f,", mh->center.lat);
         json_attr(fp, "lon");
         fprintf(fp, "%.6f,", mh->center.lon);
     }
-    if (!maidenhead_is_null(&qso->my_grid)) {
+    if (!maidenhead_is_null(&station->my_grid)) {
         json_attr(fp, "distance");
-        fprintf(fp, "%.1f,", qso->distance_km);
+        fprintf(fp, "%.1f,", station->distance_km);
         json_attr(fp, "bearing");
-        fprintf(fp, "%.1f,", qso->bearing_degrees);
+        fprintf(fp, "%.1f,", station->bearing_degrees);
     }
-    if (qso->qth) {
+    if (station->qth) {
         json_attr(fp, "QTH");
-        json_val(fp, qso->qth);
+        json_val(fp, station->qth);
         fprintf(fp, ",");
     }
-    if (qso->num_qsos) {
+    if (station->num_qsos) {
         json_attr(fp, "QSOs");
-        fprintf(fp, "%d,", qso->num_qsos);
+        fprintf(fp, "%d,", station->num_qsos);
     }
-    if (qso->country) {
+    if (station->country) {
         json_attr(fp, "country");
-        json_val(fp, qso->country);
+        json_val(fp, station->country);
         fprintf(fp, ",");
     }
     // call is last because it's required
     // and we don't want to have a stray ','
     json_attr(fp, "call");
-    json_val(fp, qso->their_call);
+    json_val(fp, station->their_call);
     json_obj_close(fp);         // end properties
     fprintf(fp, ",");
     json_attr(fp, "geometry");
@@ -266,38 +266,38 @@ create_grid_info(char *name, int num_qsos)
 }
 
 int
-save_grid_info(struct adi_qso *qso, void *arg, int last_item)
+save_grid_info(adif_station_t *station, void *arg, int last_item)
 {
     (void) last_item;
     struct grid_info **table = (struct grid_info **) arg;
     char            base_mh[GRID_NAME_LEN + 1];
     struct grid_info *tmp = NULL;
-    memcpy(base_mh, &qso->their_grid.mh, GRID_NAME_LEN);
+    memcpy(base_mh, &station->their_grid.mh, GRID_NAME_LEN);
     base_mh[GRID_NAME_LEN] = '\0';
     if (!*table) {
-        tmp = create_grid_info(base_mh, qso->num_qsos);
+        tmp = create_grid_info(base_mh, station->num_qsos);
         HASH_ADD_STR(*table, name, tmp);
     } else {
         HASH_FIND_STR(*table, base_mh, tmp);
         if (tmp == NULL) {
             // New grid
-            tmp = create_grid_info(base_mh, qso->num_qsos);
+            tmp = create_grid_info(base_mh, station->num_qsos);
             HASH_ADD_STR(*table, name, tmp);
         } else {
             // Known grid
             tmp->num_stations++;
-            tmp->num_qsos += qso->num_qsos;
+            tmp->num_qsos += station->num_qsos;
         }
     }
     return 0;
 }
 
 struct grid_info *
-generate_grid_info_table(struct adi_qso *qsos)
+generate_grid_info_table(adif_station_t *stations)
 {
     struct grid_info *table = NULL;
-    if (qsos) {
-        walk_qsos(qsos, &save_grid_info, &table);
+    if (stations) {
+        walk_stations(stations, &save_grid_info, &table);
         return table;
     } else {
         return NULL;
@@ -331,23 +331,23 @@ write_open_featurecollection(FILE *fp, char *name)
 }
 
 void
-write_station_featurecollection(FILE *fp, struct adi_qso *qsos)
+write_station_featurecollection(FILE *fp, adif_station_t *stations)
 {
     write_open_featurecollection(fp, "stations");
     json_attr(fp, "features");
     fprintf(fp, "[");           // open features array
-    walk_qsos(qsos, &write_geojson_station, fp);
+    walk_stations(stations, &write_geojson_station, fp);
     fprintf(fp, "]");           // close features array
     json_obj_close(fp);         // close feature collections
 }
 
 void
-write_grid_featurecollection(FILE *fp, struct adi_qso *qsos)
+write_grid_featurecollection(FILE *fp, adif_station_t *stations)
 {
     struct grid_info *table = NULL;
     int             max_qsos;
 
-    table = generate_grid_info_table(qsos);
+    table = generate_grid_info_table(stations);
     max_qsos = max_grid_qsos(table);
 
     write_open_featurecollection(fp, "grids");
@@ -369,14 +369,14 @@ write_grid_featurecollection(FILE *fp, struct adi_qso *qsos)
 
 // Use 'jq . <json>' to validate
 void
-write_geojson(FILE *fp, struct adi_qso *qsos)
+write_geojson(FILE *fp, adif_station_t *stations)
 {
-    if (!fp || !qsos) {
+    if (!fp || !stations) {
         return;
     }
     fprintf(fp, "[");           // open top-level array
-    write_station_featurecollection(fp, qsos);
+    write_station_featurecollection(fp, stations);
     fprintf(fp, ",");
-    write_grid_featurecollection(fp, qsos);
+    write_grid_featurecollection(fp, stations);
     fprintf(fp, "]");           // close top-level array
 }
