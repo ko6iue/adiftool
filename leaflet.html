@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>KO6IUE Grid Viewer</title>
+    <title>KO6IUE Grid Explorer</title>
 
     <link
       rel="shortcut icon"
@@ -58,14 +58,16 @@
   </head>
 
   <body>
-    <div id="file-container">
-      <label for="file-input">
-        Choose an ADI file to view --&gt;
-        <input type="file" id="file-input"
-      /></label>
-      <div id="message"></div>
-    </div>
+    <b
+      ><i>&nbsp;<a href="https://ko6iue.org/">KO6IUE</a> Grid Explorer</i></b
+    >
+    <label for="file-input" class="custom-file-upload">
+      Choose an ADIF File --&gt;</label
+    >
+    <input type="file" id="file-input" value="Load an ADI File" />
+    <div id="message"></div>
     <div id="map"></div>
+
     <script>
       var stations; // populated by L.geojson later...
       var grids; // populated by L.geojson later...
@@ -112,17 +114,10 @@
         "Click on a station to launch its QRZ page.<br/>" +
         "Click on a grid to zoom to it.<br/>";
 
-      function infoMessage(body) {
-        return (
-          '<b><i><a href="https://ko6iue.org/">KO6IUE</a> Grid Viewer</i></b><br/><br/>' +
-          body
-        );
-      }
-
       // method that we will use to update the control based on feature properties passed
       info.updateStation = function (props) {
         if (!props) {
-          this._div.innerHTML = infoMessage(defaultMessage);
+          this._div.innerHTML = defaultMessage;
         } else {
           s = "<h4>Station " + props.call + "</h4><br/>";
           if (props.name) {
@@ -152,13 +147,13 @@
           if (props.country) {
             s += "<b>Country:</b> " + props.country + "<br/>";
           }
-          this._div.innerHTML = infoMessage(s);
+          this._div.innerHTML = s;
         }
       };
 
       info.updateGrid = function (props) {
         if (!props) {
-          this._div.innerHTML = infoMessage(defaultMessage);
+          this._div.innerHTML = defaultMessage;
         } else {
           s = "<h4>Grid " + props.name + "</h4>";
           if (props.num_stations) {
@@ -183,7 +178,7 @@
               props.lon_range[1] +
               "&deg;<br/>";
           }
-          this._div.innerHTML = infoMessage(s);
+          this._div.innerHTML = s;
         }
       };
 
@@ -343,5 +338,12 @@
         messageDisplay.style.color = type === "error" ? "red" : "green";
       }
     </script>
+    <small>
+      &nbsp;All source is freely available and
+      <a href="https://github.com/ko6iue/adiftool.git">open source</a> with a
+      Berkeley license. Credit to
+      <a href="https://agafonkin.com/">Volodymyr Agafonkin</a> for creating
+      <a href="https://leafletjs.com/">Leaflet</a>.
+    </small>
   </body>
 </html>
