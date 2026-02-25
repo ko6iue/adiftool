@@ -45,8 +45,8 @@ struct gengetopt_args_info
   char * output_arg;	/**< @brief File to write output to..  */
   char * output_orig;	/**< @brief File to write output to. original value given at command line.  */
   const char *output_help; /**< @brief File to write output to. help description.  */
-  int geojson_flag;	/**< @brief Output geojson (default=off).  */
-  const char *geojson_help; /**< @brief Output geojson help description.  */
+  int geojson_flag;	/**< @brief Output GeoJSON instead of KML (default=off).  */
+  const char *geojson_help; /**< @brief Output GeoJSON instead of KML help description.  */
   
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */

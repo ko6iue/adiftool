@@ -7,7 +7,8 @@ purpose "Commandline tool for converting ADIF to various other GIS formats"
 
 option "input" i "ADIF file to use as input." string yes 
 option "output" o "File to write output to." string yes
-option "geojson" g "Output geojson" flag off
+option "geojson" g "Output GeoJSON instead of KML" flag off
+
 
 #Usage (a little tutorial)
 #
