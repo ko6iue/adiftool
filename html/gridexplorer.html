@@ -87,18 +87,19 @@
       ).addTo(map);
 
       function getGridColor(feature) {
-        // Using the log function given the distribution skew
+        // We use the log function to handle the positive skew
+        const colors = ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"];
         grid_qsos = feature.properties.num_qsos;
         grid_log = Math.log(grid_qsos);
         return grid_log > max_grid_qsos * 0.8
-          ? "#54278f"
+          ? colors[4]
           : grid_log > max_grid_qsos * 0.6
-            ? "#756bb1"
+            ? colors[3]
             : grid_log > max_grid_qsos * 0.4
-              ? "#9e9ac8"
+              ? colors[2]
               : grid_log > max_grid_qsos * 0.2
-                ? "#cbc9e2"
-                : "#f2f0f7";
+                ? colors[1]
+                : colors[0];
       }
 
       var info = L.control();
