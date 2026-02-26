@@ -73,6 +73,7 @@
       var stations; // populated by L.geojson later...
       var grids; // populated by L.geojson later...
       var max_grid_qsos; // populated by geojsonLoad()
+      const colors = ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"];
 
       const map = L.map("map", { worldCopyJump: true }).setView([11, 11], 2);
 
@@ -88,7 +89,6 @@
 
       function getGridColor(feature) {
         // We use the log function to handle the positive skew
-        const colors = ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"];
         grid_qsos = feature.properties.num_qsos;
         grid_log = Math.log(grid_qsos);
         return grid_log > max_grid_qsos * 0.8
@@ -199,7 +199,7 @@
 
         layer.setStyle({
           weight: 5,
-          color: "#54278f",
+          color: colors[4],
           dashArray: "",
           fillOpacity: 0.7,
         });
@@ -230,7 +230,7 @@
           return L.circleMarker(latlng);
         },
         style: {
-          color: "#54278f",
+          color: colors[4],
           weight: 2,
           radius: 4,
           fillColor: "#cccccc",
@@ -248,7 +248,7 @@
 
         layer.setStyle({
           weight: 5,
-          color: "#54278f",
+          color: colors[4],
           dashArray: "",
           fillOpacity: 0.7,
         });
@@ -273,7 +273,7 @@
 
       function gridStyle(feature) {
         return {
-          color: "#54278f",
+          color: colors[4],
           fillColor: getGridColor(feature),
           weight: 2,
           opacity: 1,
