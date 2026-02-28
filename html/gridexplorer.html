@@ -198,12 +198,50 @@
 
       info.addTo(map);
 
+      var line2QTH;
+
+      function pointToQTH(layer, feature) {
+        if (!layer || !feature) {
+          return;
+        }
+        let latlons = Array();
+        let props = feature.properties;
+        function deg2rads(deg) {
+          return deg * (Math.PI / 180);
+        }
+        function rad2deg(rad) {
+          return rad * (180 / Math.PI);
+        }
+
+        if (!props || !props.bearing_rcvd) {
+          return;
+        }
+
+        let station_ll = layer.getLatLng();
+
+        let bearing_rcvd = deg2rads(props.bearing_rcvd);
+        let line_len_degrees = 2;
+        let dlon = line_len_degrees * Math.sin(bearing_rcvd);
+        let dlat = line_len_degrees * Math.cos(bearing_rcvd);
+
+        let lat = station_ll.lat + dlat;
+        let lon = station_ll.lng + dlon;
+
+        latlons.push(L.latLng(lat, lon));
+        latlons.push(station_ll);
+        line2QTH = L.polyline(latlons, {
+          color: colors[4],
+          dashArray: 3,
+        }).addTo(map);
+      }
+
       function highlightStation(e) {
         var layer = e.target;
         var feature = layer.feature;
         var props = feature.properties;
 
         info.updateStation(props);
+        pointToQTH(layer, feature);
 
         layer.setStyle({
           weight: 5,
@@ -216,6 +254,9 @@
       function resetStation(e) {
         var layer = e.target;
         stations.resetStyle(layer);
+
+        line2QTH.remove();
+
         info.updateStation();
       }
 
@@ -259,7 +300,7 @@
           weight: 5,
           color: colors[4],
           dashArray: "",
-          fillOpacity: 0.7,
+          //fillOpacity: 0.7,
         });
       }
 
