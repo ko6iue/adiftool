@@ -138,8 +138,11 @@
         if (props.distance) {
           s += "<b>Distance:</b> " + props.distance + " km<br/>";
         }
-        if (props.bearing) {
-          s += "<b>Bearing:</b> " + props.bearing + "&deg;<br/>";
+        if (props.bearing_sent) {
+          s += "<b>Bearing sent:</b> " + props.bearing_sent + "&deg;<br/>";
+        }
+        if (props.bearing_rcvd) {
+          s += "<b>Bearing rcvd:</b> " + props.bearing_rcvd + "&deg;<br/>";
         }
         if (props.QTH) {
           s += "<b>QTH:</b> " + props.QTH + "<br/>";
@@ -218,7 +221,8 @@
 
       function clickStation(e) {
         var layer = e.target;
-        var props = layer.feature.properties;
+        var feature = layer.feature;
+        var props = feature.properties;
         window.open("https://www.qrz.com/db/" + props.call);
       }
 

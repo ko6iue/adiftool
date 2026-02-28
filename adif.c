@@ -42,17 +42,18 @@ print_station(adif_station_t *station, void *arg, int last_item)
     (void) last_item;
     FILE           *fp = (FILE *) arg;
     fprintf(fp, "**********\n");
-    fprintf(fp, "       call: %s\n", station->their_call);
-    fprintf(fp, "     # QSOs: %d\n", station->num_qsos);
-    fprintf(fp, "       name: %s\n", station->name);
-    fprintf(fp, "    country: %s\n", station->country);
-    fprintf(fp, "        qth: %s\n", station->qth);
-    fprintf(fp, "    my grid\n");
+    fprintf(fp, "        call: %s\n", station->their_call);
+    fprintf(fp, "      # QSOs: %d\n", station->num_qsos);
+    fprintf(fp, "        name: %s\n", station->name);
+    fprintf(fp, "     country: %s\n", station->country);
+    fprintf(fp, "         qth: %s\n", station->qth);
+    fprintf(fp, "     my grid\n");
     maidenhead_print(fp, &station->my_grid);
-    fprintf(fp, " their grid\n");
+    fprintf(fp, "  their grid\n");
     maidenhead_print(fp, &station->their_grid);
-    fprintf(fp, "distance km: %f\n", station->distance_km);
-    fprintf(fp, "bearing deg: %f\n", station->bearing_degrees);
+    fprintf(fp, " distance km: %f\n", station->distance_km);
+    fprintf(fp, "bearing sent: %f\n", station->bearing_sent);
+    fprintf(fp, "bearing rcvd: %f\n", station->bearing_rcvd);
     fprintf(fp, "**********\n");
     return 0;
 }
@@ -195,9 +196,12 @@ load_stations_mem(char *buf, size_t buf_len)
                     station->distance_km =
                         maidenhead_distance_km(&station->my_grid,
                                                &station->their_grid);
-                    station->bearing_degrees =
+                    station->bearing_sent =
                         maidenhead_bearing_degrees(&station->my_grid,
                                                    &station->their_grid);
+                    station->bearing_rcvd =
+                        maidenhead_bearing_degrees(&station->their_grid,
+                                                   &station->my_grid);
                     station->num_qsos = 1;
                     tmp = (adif_station_t *) malloc(sizeof(*tmp));
                     memcpy(tmp, station, sizeof(*station));

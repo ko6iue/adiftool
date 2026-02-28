@@ -145,8 +145,10 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
     if (!maidenhead_is_null(&station->my_grid)) {
         json_attr(fp, "distance");
         fprintf(fp, "%.1f,", station->distance_km);
-        json_attr(fp, "bearing");
-        fprintf(fp, "%.1f,", station->bearing_degrees);
+        json_attr(fp, "bearing_sent");
+        fprintf(fp, "%.1f,", station->bearing_sent);
+        json_attr(fp, "bearing_rcvd");
+        fprintf(fp, "%.1f,", station->bearing_rcvd);
     }
     if (station->qth) {
         json_attr(fp, "QTH");

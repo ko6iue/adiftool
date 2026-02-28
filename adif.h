@@ -46,7 +46,10 @@ typedef struct {
     struct maidenhead my_grid;
     struct maidenhead their_grid;
     float           distance_km;
-    float           bearing_degrees;
+    // Bearing of signal sent from QTH
+    float           bearing_sent;
+    // Bearing of signal recv at station
+    float           bearing_rcvd;
     int             num_qsos;
     UT_hash_handle  hh;
 } adif_station_t;

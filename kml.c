@@ -63,8 +63,10 @@ write_description(adif_station_t *station, FILE *fp)
     if (!maidenhead_is_null(&station->my_grid)) {
         fprintf(fp, "<b>Distance</b>: %.1f km<br/>\n",
                 station->distance_km);
-        fprintf(fp, "<b>Bearing</b>: %.1f&deg;</br>\n",
-                station->bearing_degrees);
+        fprintf(fp, "<b>Bearing Sent</b>: %.1f&deg;</br>\n",
+                station->bearing_sent);
+        fprintf(fp, "<b>Bearing Received</b>: %.1f&deg;</br>\n",
+                station->bearing_rcvd);
     }
 
     fprintf(fp, "%s", cdata_close);
