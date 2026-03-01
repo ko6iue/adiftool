@@ -47,6 +47,7 @@ struct maidenhead {
     latlon_t        nw_corner;
     latlon_t        se_corner;
     latlon_t        ne_corner;
+    latlon_t        random;
 };
 
 int             maidenhead_is_null(struct maidenhead *mh);
@@ -59,7 +60,5 @@ float           maidenhead_distance_km(struct maidenhead *from,
                                        struct maidenhead *to);
 float           maidenhead_bearing_degrees(struct maidenhead *from,
                                            struct maidenhead *to);
-int             maidenhead_random_location(struct maidenhead *mh,
-                                           latlon_t * ll);
 
 #endif

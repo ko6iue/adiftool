@@ -25,6 +25,9 @@
       crossorigin=""
     ></script>
 
+    <!-- Make sure you put this AFTER leaflet.js -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic"></script>
+
     <script type="text/javascript" src="assets/adiftool.js"></script>
 
     <style>
@@ -198,42 +201,11 @@
 
       info.addTo(map);
 
-      var line2QTH;
-
-      function pointToQTH(layer, feature) {
-        if (!layer || !feature) {
-          return;
-        }
-        let latlons = Array();
-        let props = feature.properties;
-        function deg2rads(deg) {
-          return deg * (Math.PI / 180);
-        }
-        function rad2deg(rad) {
-          return rad * (180 / Math.PI);
-        }
-
-        if (!props || !props.bearing_rcvd) {
-          return;
-        }
-
-        let station_ll = layer.getLatLng();
-
-        let bearing_rcvd = deg2rads(props.bearing_rcvd);
-        let line_len_degrees = 2;
-        let dlon = line_len_degrees * Math.sin(bearing_rcvd);
-        let dlat = line_len_degrees * Math.cos(bearing_rcvd);
-
-        let lat = station_ll.lat + dlat;
-        let lon = station_ll.lng + dlon;
-
-        latlons.push(L.latLng(lat, lon));
-        latlons.push(station_ll);
-        line2QTH = L.polyline(latlons, {
-          color: colors[4],
-          dashArray: 3,
-        }).addTo(map);
-      }
+      const geodesicLine = new L.Geodesic([], {
+        color: colors[4],
+        dashArray: 3,
+        weight: 2,
+      }).addTo(map);
 
       function highlightStation(e) {
         var layer = e.target;
@@ -241,7 +213,13 @@
         var props = feature.properties;
 
         info.updateStation(props);
-        pointToQTH(layer, feature);
+
+        if (props.qth_lat) {
+          geodesicLine.setLatLngs([
+            [props.lat, props.lon],
+            [props.qth_lat, props.qth_lon],
+          ]);
+        }
 
         layer.setStyle({
           weight: 5,
@@ -254,8 +232,6 @@
       function resetStation(e) {
         var layer = e.target;
         stations.resetStyle(layer);
-
-        line2QTH.remove();
 
         info.updateStation();
       }

@@ -96,7 +96,6 @@ print_kml_point(adif_station_t *station, FILE *fp)
 {
     int             icon_num = station->num_qsos;
     struct maidenhead *mh;
-    latlon_t        ll;
     if (icon_num > 10) {
         icon_num = 10;
     }
@@ -106,8 +105,7 @@ print_kml_point(adif_station_t *station, FILE *fp)
     fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
     mh = &station->their_grid;
-    maidenhead_random_location(mh, &ll);
-    fprintf(fp, "%.6f,%.6f,0", ll.lon, ll.lat);
+    fprintf(fp, "%.6f,%.6f,0", mh->random.lon, mh->random.lat);
     fprintf(fp, "</coordinates></Point>\n");
     fprintf(fp, "</Placemark>\n");
 }

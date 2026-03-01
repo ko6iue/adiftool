@@ -116,7 +116,6 @@ int
 write_geojson_station(adif_station_t *station, void *arg, int last_item)
 {
     FILE           *fp = (FILE *) arg;
-    latlon_t        ll;
     if (!station) {
         return -1;
     }
@@ -136,9 +135,9 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
         json_val(fp, station->their_grid.mh);
         fprintf(fp, ",");
         json_attr(fp, "lat");
-        fprintf(fp, "%.6f,", station->their_grid.center.lat);
+        fprintf(fp, "%.6f,", station->their_grid.random.lat);
         json_attr(fp, "lon");
-        fprintf(fp, "%.6f,", station->their_grid.center.lon);
+        fprintf(fp, "%.6f,", station->their_grid.random.lon);
     }
     if (!maidenhead_is_null(&station->my_grid)) {
         json_attr(fp, "qth_lat");
@@ -179,8 +178,9 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
     fprintf(fp, ",");
     json_attr(fp, "coordinates");
 
-    maidenhead_random_location(&station->their_grid, &ll);
-    fprintf(fp, "[%.6f,%.6f,0.0]", ll.lon, ll.lat);
+    fprintf(fp, "[%.6f,%.6f,0.0]",
+            station->their_grid.random.lon,
+            station->their_grid.random.lat);
     json_obj_close(fp);         // end geometry
     json_obj_close(fp);         // end feature
     if (!last_item) {

@@ -181,6 +181,7 @@ populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
     // SE corner
     mh->se_corner.lat = mh->sw_corner.lat;
     mh->se_corner.lon = mh->sw_corner.lon + mh->res_degrees.lon;
+    maidenhead_random_location(mh, &mh->random);
     return len;
 }
 
