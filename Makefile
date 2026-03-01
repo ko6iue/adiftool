@@ -9,10 +9,10 @@ html/assets/adiftool.js: adiftool.c maidenhead.c adif.c emscripten.c kml.c geojs
 		-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE='$$stringToNewUTF8' -lm -s INVOKE_RUN=0
 
 adiftool: adiftool.c maidenhead.c adif.c kml.c geojson.c cmdline.c
-	gcc -Wall -W -O3 -o $@ $^ -lm
+	gcc -O2 -Wall -W -o $@ $^ -lm
 
 test-maidenhead: test-maidenhead.c maidenhead.c 
-	gcc -Wall -W -O3 -o $@ $^ -lm
+	gcc -Wall -W -O2 -o $@ $^ -lm
 
 test: test-maidenhead
 	./test-maidenhead

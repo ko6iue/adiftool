@@ -55,8 +55,9 @@ typedef struct {
     UT_hash_handle  hh;
 } adif_station_t;
 
-adif_station_t *load_stations_mem(char *buf, size_t len);
-adif_station_t *load_stations_fp(FILE * fp);
+adif_station_t *load_stations_mem(char *buf, size_t len,
+                                  char *default_qth);
+adif_station_t *load_stations_fp(FILE * fp, char *default_qth);
 int             walk_stations(adif_station_t * stations,
                               int (*cb)(adif_station_t *, void *arg,
                                         int last_item), void *arg);

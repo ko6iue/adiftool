@@ -51,7 +51,7 @@ runit(struct gengetopt_args_info *args_info)
                 args_info->input_arg);
         return EXIT_FAILURE;
     }
-    stations = load_stations_fp(infp);
+    stations = load_stations_fp(infp, NULL);
     fclose(infp);
 
     if (stations == NULL) {

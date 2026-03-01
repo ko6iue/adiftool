@@ -149,8 +149,14 @@ maidenhead_init(maidenhead_t *mh, const char *grid, const int len)
                                                        (5.0 / 600)}
     };
 
-    if (len == 0 || len % 2 || len > GRID_MAXLEN || mh == NULL)
+    if (mh == NULL) {
         return -1;
+    }
+
+    if (grid == NULL || len == 0 || len % 2 || len > GRID_MAXLEN) {
+        memset(mh, 0, sizeof(*mh));
+        return -1;
+    }
 
     rval = calc_offsets(offsets, GRID_MAXLEN, grid, len);
     if (rval != len) {

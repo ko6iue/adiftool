@@ -38,12 +38,14 @@
 // Up to the caller to free the memory
 char           *
 adi2callback(char *adi,
-             void (*callback)(FILE *fp, adif_station_t *stations))
+             void (*callback)(FILE *fp, adif_station_t *stations),
+             char *default_qth)
 {
     char           *buf = NULL;
     size_t          len = 0;
     FILE           *fp = open_memstream(&buf, &len);
-    adif_station_t *stations = load_stations_mem(adi, strlen(adi));
+    adif_station_t *stations =
+        load_stations_mem(adi, strlen(adi), default_qth);
     free(adi);
     callback(fp, stations);
     fclose(fp);                 // flush to buf
@@ -51,13 +53,13 @@ adi2callback(char *adi,
 }
 
 EMSCRIPTEN_KEEPALIVE char *
-adi2kml(char *adi)
+adi2kml(char *adi, char *default_qth)
 {
-    return adi2callback(adi, write_kml);
+    return adi2callback(adi, write_kml, default_qth);
 }
 
 EMSCRIPTEN_KEEPALIVE char *
-adi2geojson(char *adi)
+adi2geojson(char *adi, char *default_qth)
 {
-    return adi2callback(adi, write_geojson);
+    return adi2callback(adi, write_geojson, default_qth);
 }

@@ -75,7 +75,7 @@ valid_station(adif_station_t *station)
 }
 
 adif_station_t *
-load_stations_fp(FILE *fp)
+load_stations_fp(FILE *fp, char *default_qth)
 {
     size_t          fsize;
     char           *data;
@@ -95,7 +95,7 @@ load_stations_fp(FILE *fp)
     assert(fread(data, fsize, 1, fp) == 1);
     data[fsize] = '\0';
 
-    rval = load_stations_mem(data, fsize);
+    rval = load_stations_mem(data, fsize, default_qth);
     free(data);
     return rval;
 }
@@ -144,13 +144,14 @@ trim_end_space(char *p)
 #define ATTR_DELIMITER ":"
 
 adif_station_t *
-load_stations_mem(char *buf, size_t buf_len)
+load_stations_mem(char *buf, size_t buf_len, char *default_qth)
 {
     (void) buf_len;
     adif_station_t *stations = NULL,
         *station,
         *tmp;
-    int             i;
+    int             i,
+                    rval;
     char
                    *field,
                    *fieldattrs,
@@ -164,6 +165,16 @@ load_stations_mem(char *buf, size_t buf_len)
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
         "lotw_qsl_rcvd", NULL
     };
+    struct maidenhead default_mh;
+
+    if (default_qth) {
+        rval =
+            populate_maidenhead(&default_mh, default_qth,
+                                strlen(default_qth));
+        if (rval != (int) strlen(default_qth)) {
+            printf("Invalid maidenhead");
+        }
+    }
 
     station = (adif_station_t *) malloc(sizeof *station);
     assert(station);
