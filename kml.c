@@ -106,7 +106,7 @@ print_kml_point(adif_station_t *station, FILE *fp)
     fprintf(fp, "<styleUrl>#pointStyle%02d</styleUrl>\n", icon_num);
     fprintf(fp, "<Point><coordinates>");
     mh = &station->their_grid;
-    mh->random_location(mh, &ll);
+    maidenhead_random_location(mh, &ll);
     fprintf(fp, "%.6f,%.6f,0", ll.lon, ll.lat);
     fprintf(fp, "</coordinates></Point>\n");
     fprintf(fp, "</Placemark>\n");

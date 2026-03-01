@@ -121,7 +121,7 @@ random_value_in_range(float min, float max)
 }
 
 int
-internal_mh_random_location(struct maidenhead *mh, latlon_t *ll)
+maidenhead_random_location(struct maidenhead *mh, latlon_t *ll)
 {
     if (maidenhead_is_null(mh) || !ll) {
         return -1;
@@ -181,8 +181,6 @@ populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
     // SE corner
     mh->se_corner.lat = mh->sw_corner.lat;
     mh->se_corner.lon = mh->sw_corner.lon + mh->res_degrees.lon;
-
-    mh->random_location = internal_mh_random_location;
     return len;
 }
 
