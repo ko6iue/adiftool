@@ -51,6 +51,7 @@ typedef struct {
     // Bearing of signal recv at station
     float           bearing_rcvd;
     int             num_qsos;
+    int             confirmed;
     UT_hash_handle  hh;
 } adif_station_t;
 

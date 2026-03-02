@@ -76,7 +76,15 @@
       var stations; // populated by L.geojson later...
       var grids; // populated by L.geojson later...
       var max_grid_qsos; // populated by geojsonLoad()
-      const colors = ["#f7f7f7", "#cccccc", "#969696", "#636363", "#252525"];
+      var geodesicLine;
+
+      function getColors(props) {
+        const colors = [
+          ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#756bb1", "#54278f"],
+          ["#f7f7f7", "#cccccc", "#969696", "#636363", "#252525"],
+        ];
+        return props.confirmed ? colors[0] : colors[1];
+      }
 
       const map = L.map("map", { worldCopyJump: true }).setView([11, 11], 2);
 
@@ -92,17 +100,17 @@
 
       function getGridColor(feature) {
         // We use the log function to handle the positive skew
-        grid_qsos = feature.properties.num_qsos;
-        grid_log = Math.log(grid_qsos);
+        var props = feature.properties;
+        grid_log = Math.log(props.num_qsos);
         return grid_log > max_grid_qsos * 0.8
-          ? colors[4]
+          ? getColors(props)[4]
           : grid_log > max_grid_qsos * 0.6
-            ? colors[3]
+            ? getColors(props)[3]
             : grid_log > max_grid_qsos * 0.4
-              ? colors[2]
+              ? getColors(props)[2]
               : grid_log > max_grid_qsos * 0.2
-                ? colors[1]
-                : colors[0];
+                ? getColors(props)[1]
+                : getColors(props)[0];
       }
 
       var info = L.control();
@@ -126,6 +134,9 @@
 
       function stationPropsHTML(props) {
         s = "<h4>Station " + props.call + "</h4><br/>";
+        s += "<b>";
+        s += props.confirmed ? "Confirmed" : "Unconfirmed";
+        s += "</b><br/>";
         if (props.name) {
           s += "<b>Name:</b> " + props.name + "<br/>";
         }
@@ -173,6 +184,9 @@
           this._div.innerHTML = defaultMessage;
         } else {
           s = "<h4>Grid " + props.name + "</h4>";
+          s += "<b>";
+          s += props.confirmed ? "Confirmed" : "Unconfirmed";
+          s += "</b><br/>";
           if (props.num_stations) {
             s += "<b>Num Stations:</b> " + props.num_stations + "<br/>";
           }
@@ -201,12 +215,6 @@
 
       info.addTo(map);
 
-      const geodesicLine = new L.Geodesic([], {
-        color: colors[4],
-        dashArray: 3,
-        weight: 2,
-      }).addTo(map);
-
       function highlightStation(e) {
         var layer = e.target;
         var feature = layer.feature;
@@ -215,25 +223,26 @@
         info.updateStation(props);
 
         if (props.qth_lat) {
-          geodesicLine.setLatLngs([
-            [props.lat, props.lon],
-            [props.qth_lat, props.qth_lon],
-          ]);
+          geodesicLine = new L.Geodesic(
+            [
+              [props.lat, props.lon],
+              [props.qth_lat, props.qth_lon],
+            ],
+            { color: getColors(props)[4], dashArray: 3, weight: 3 },
+          ).addTo(map);
         }
 
         layer.setStyle({
-          weight: 5,
-          color: colors[4],
-          dashArray: "",
-          fillOpacity: 0.7,
+          weight: 6,
+          radius: 6,
         });
       }
 
       function resetStation(e) {
         var layer = e.target;
         stations.resetStyle(layer);
-
         info.updateStation();
+        geodesicLine.remove();
       }
 
       function clickStation(e) {
@@ -251,18 +260,35 @@
         });
       }
 
+      function getStationColor(feature) {
+        var props = feature.properties;
+        return getColors(props)[4];
+      }
+
+      function stationStyle(feature) {
+        var props = feature.properties;
+        return props.confirmed
+          ? {
+              color: getColors(props)[4],
+              radius: 4,
+              fillColor: getColors(props)[2],
+              opacity: 1,
+              fillOpacity: 1.0,
+            }
+          : {
+              color: getColors(props)[4],
+              fillColor: getColors(props)[2],
+              radius: 4,
+              opacity: 0.5,
+              fillOpacity: 0.5,
+            };
+      }
+
       var stationOptions = {
         pointToLayer: function (feature, latlng) {
           return L.circleMarker(latlng);
         },
-        style: {
-          color: colors[4],
-          weight: 2,
-          radius: 4,
-          fillColor: "#cccccc",
-          opacity: 1,
-          fillOpacity: 0.5,
-        },
+        style: stationStyle,
         onEachFeature: onEachStation,
       };
 
@@ -274,7 +300,7 @@
 
         layer.setStyle({
           weight: 5,
-          color: colors[4],
+          color: getColors(props)[4],
           dashArray: "",
           //fillOpacity: 0.7,
         });
@@ -298,8 +324,9 @@
       }
 
       function gridStyle(feature) {
+        let props = feature.properties;
         return {
-          color: colors[4],
+          color: getColors(props)[4],
           fillColor: getGridColor(feature),
           weight: 2,
           opacity: 1,
@@ -313,24 +340,31 @@
         onEachFeature: onEachGrid,
       };
 
-      function geojsonLoad(json) {
-        max_grid_qsos = Math.log(json[1].properties.max_qsos);
+      function clearMap() {
+        if (geodesicLine) {
+          geodesicLine.remove();
+        }
         if (stations) {
           map.removeLayer(stations);
         }
-        stations = L.geoJSON(json[0], stationOptions).addTo(map);
         if (grids) {
           map.removeLayer(grids);
         }
+      }
+
+      function geojsonLoad(json) {
+        clearMap();
+        max_grid_qsos = Math.log(json[1].properties.max_qsos);
+        stations = L.geoJSON(json[0], stationOptions).addTo(map);
         grids = L.geoJSON(json[1], gridOptions).addTo(map);
         // Make sure stations are always on top or grid will mask them
         stations.bringToFront();
       }
 
       /* For now, load sample data from a fixed location. In the
-      future, provide a way to users to convert their ADIF to
-      Grid Explorer GeoJSON to enable publishing/sharing their
-      contacts */
+           future, provide a way to users to convert their ADIF to
+           Grid Explorer GeoJSON to enable publishing/sharing their
+           contacts */
       async function getData() {
         const url = "https://ko6iue.org/assets/contacts.json";
         try {

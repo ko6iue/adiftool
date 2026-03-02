@@ -161,7 +161,8 @@ load_stations_mem(char *buf, size_t buf_len)
         *pairptr = NULL;
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
-        "my_gridsquare", NULL
+        "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
+        "lotw_qsl_rcvd", NULL
     };
 
     station = (adif_station_t *) malloc(sizeof *station);
@@ -212,6 +213,9 @@ load_stations_mem(char *buf, size_t buf_len)
                 } else {
                     // Process QSO from existing station
                     tmp->num_qsos += 1;
+                    if (!tmp->confirmed && station->confirmed) {
+                        tmp->confirmed = 1;
+                    }
                 }
             }
             // Reset working QSO and start again
@@ -236,6 +240,14 @@ load_stations_mem(char *buf, size_t buf_len)
             break;
         case 6:                // my_gridsquare
             populate_maidenhead(&station->my_grid, value, strlen(value));
+            break;
+        case 7:                // eqsl_qsl_rcvd
+        case 8:                // dcl_qsl_rcvd
+        case 9:                // qsl_rcvd
+        case 10:               // lotw_qsl_rcvd
+            if (!station->confirmed && (strcasecmp("y", value) == 0)) {
+                station->confirmed = 1;
+            }
             break;
         }
     }

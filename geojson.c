@@ -40,6 +40,7 @@ struct grid_info {
     char            name[GRID_NAME_LEN + 1];
     int             num_stations;
     int             num_qsos;
+    int             confirmed;
     UT_hash_handle  hh;
 };
 
@@ -165,6 +166,8 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
         json_val(fp, station->country);
         fprintf(fp, ",");
     }
+    json_attr(fp, "confirmed");
+    fprintf(fp, "%s,", station->confirmed ? "true" : "false");
     // call is last because it's required
     // and we don't want to have a stray ','
     json_attr(fp, "call");
@@ -207,7 +210,6 @@ write_gridinfo(FILE *fp, struct grid_info *table)
                    *tmp;
     struct maidenhead mh;
     int             first = 1;
-
     if (!fp || !table) {
         return;
     }
@@ -232,6 +234,8 @@ write_gridinfo(FILE *fp, struct grid_info *table)
         fprintf(fp, "%d,", s->num_qsos);
         json_attr(fp, "num_stations");
         fprintf(fp, "%d,", s->num_stations);
+        json_attr(fp, "confirmed");
+        fprintf(fp, "%s,", s->confirmed ? "true" : "false");
         json_attr(fp, "lat_range");
         // Note: if you change grid resolution
         // you may need to use a floats here
@@ -257,15 +261,16 @@ write_gridinfo(FILE *fp, struct grid_info *table)
 }
 
 struct grid_info *
-create_grid_info(char *name, int num_qsos)
+create_grid_info(char *name, adif_station_t *station)
 {
     struct grid_info *rval;
     rval = (struct grid_info *) malloc(sizeof(*rval));
     assert(rval);
     memset(rval, 0, sizeof(*rval));
     memcpy(rval->name, name, GRID_NAME_LEN);
-    rval->num_qsos = num_qsos;
+    rval->num_qsos = station->num_qsos;
     rval->num_stations = 1;
+    rval->confirmed = station->confirmed;
     return rval;
 }
 
@@ -279,18 +284,21 @@ save_grid_info(adif_station_t *station, void *arg, int last_item)
     memcpy(base_mh, &station->their_grid.mh, GRID_NAME_LEN);
     base_mh[GRID_NAME_LEN] = '\0';
     if (!*table) {
-        tmp = create_grid_info(base_mh, station->num_qsos);
+        tmp = create_grid_info(base_mh, station);
         HASH_ADD_STR(*table, name, tmp);
     } else {
         HASH_FIND_STR(*table, base_mh, tmp);
         if (tmp == NULL) {
             // New grid
-            tmp = create_grid_info(base_mh, station->num_qsos);
+            tmp = create_grid_info(base_mh, station);
             HASH_ADD_STR(*table, name, tmp);
         } else {
             // Known grid
             tmp->num_stations++;
             tmp->num_qsos += station->num_qsos;
+            if (!tmp->confirmed && station->confirmed) {
+                tmp->confirmed = 1;
+            }
         }
     }
     return 0;
