@@ -43,8 +43,8 @@ typedef struct {
     char           *name;
     char           *country;
     char           *qth;
-    struct maidenhead my_grid;
-    struct maidenhead their_grid;
+    maidenhead_t    my_grid;
+    maidenhead_t    their_grid;
     float           distance_km;
     // Bearing of signal sent from QTH
     float           bearing_sent;

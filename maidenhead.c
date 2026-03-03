@@ -39,7 +39,7 @@
 #include "./maidenhead.h"
 
 void
-maidenhead_print(FILE *fp, struct maidenhead *mh)
+maidenhead_print(FILE *fp, maidenhead_t *mh)
 {
     if (!fp) {
         return;
@@ -58,7 +58,7 @@ maidenhead_print(FILE *fp, struct maidenhead *mh)
 }
 
 int
-maidenhead_is_null(struct maidenhead *mh)
+maidenhead_is_null(maidenhead_t *mh)
 {
     return (!mh || strlen(mh->mh) == 0);
 }
@@ -121,7 +121,7 @@ random_value_in_range(float min, float max)
 }
 
 int
-maidenhead_random_location(struct maidenhead *mh, latlon_t *ll)
+maidenhead_random_location(maidenhead_t *mh, latlon_t *ll)
 {
     if (maidenhead_is_null(mh) || !ll) {
         return -1;
@@ -140,7 +140,7 @@ maidenhead_random_location(struct maidenhead *mh, latlon_t *ll)
 // rval -1 on bad arguments
 // returns 
 int
-populate_maidenhead(struct maidenhead *mh, const char *grid, const int len)
+populate_maidenhead(maidenhead_t *mh, const char *grid, const int len)
 {
     int             rval;
     int             i;
@@ -204,7 +204,7 @@ haversine(float theta)
 }
 
 float
-maidenhead_distance_km(struct maidenhead *from, struct maidenhead *to)
+maidenhead_distance_km(maidenhead_t *from, maidenhead_t *to)
 {
     float           volumetric_mean_radius_earth_km = 6371.0;
     float           lat1 = degrees_to_rads(from->center.lat);
@@ -219,7 +219,7 @@ maidenhead_distance_km(struct maidenhead *from, struct maidenhead *to)
 }
 
 float
-maidenhead_bearing_degrees(struct maidenhead *from, struct maidenhead *to)
+maidenhead_bearing_degrees(maidenhead_t *from, maidenhead_t *to)
 {
     float           lat1 = degrees_to_rads(from->center.lat);
     float           lon1 = degrees_to_rads(from->center.lon);

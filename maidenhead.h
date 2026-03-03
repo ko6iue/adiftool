@@ -33,13 +33,13 @@
 #ifndef MAIDENHEAD_H
 #define MAIDENHEAD_H
 
-typedef struct latlon {
+typedef struct {
     float           lat;
     float           lon;
 } latlon_t;
 
 #define MAIDENHEAD_MAXLEN 16
-struct maidenhead {
+typedef struct {
     char            mh[MAIDENHEAD_MAXLEN];
     latlon_t        res_degrees;
     latlon_t        center;
@@ -48,17 +48,17 @@ struct maidenhead {
     latlon_t        se_corner;
     latlon_t        ne_corner;
     latlon_t        random;
-};
+} maidenhead_t;
 
-int             maidenhead_is_null(struct maidenhead *mh);
+int             maidenhead_is_null(maidenhead_t * mh);
 
-void            maidenhead_print(FILE * fp, struct maidenhead *mh);
+void            maidenhead_print(FILE * fp, maidenhead_t * mh);
 // rval -1 on bad arguments, 0 OK, positive is offset of invalid character
-int             populate_maidenhead(struct maidenhead *mh,
+int             populate_maidenhead(maidenhead_t * mh,
                                     const char *grid, const int len);
-float           maidenhead_distance_km(struct maidenhead *from,
-                                       struct maidenhead *to);
-float           maidenhead_bearing_degrees(struct maidenhead *from,
-                                           struct maidenhead *to);
+float           maidenhead_distance_km(maidenhead_t * from,
+                                       maidenhead_t * to);
+float           maidenhead_bearing_degrees(maidenhead_t * from,
+                                           maidenhead_t * to);
 
 #endif

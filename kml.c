@@ -95,7 +95,7 @@ void
 print_kml_point(adif_station_t *station, FILE *fp)
 {
     int             icon_num = station->num_qsos;
-    struct maidenhead *mh;
+    maidenhead_t   *mh;
     if (icon_num > 10) {
         icon_num = 10;
     }
@@ -113,7 +113,7 @@ print_kml_point(adif_station_t *station, FILE *fp)
 void
 print_kml_box(adif_station_t *station, FILE *fp)
 {
-    struct maidenhead *mh = NULL;
+    maidenhead_t   *mh = NULL;
     const char     *fmt = "%.6f,%.6f,0\n";
     if (!station || !fp) {
         return;

@@ -99,7 +99,7 @@ json_val(FILE *fp, char *val)
 }
 
 void
-mh_print_coordinates(FILE *fp, struct maidenhead *mh)
+mh_print_coordinates(FILE *fp, maidenhead_t *mh)
 {
     char           *fmt = "[%.6f,%.6f]";
     fprintf(fp, fmt, mh->sw_corner.lon, mh->sw_corner.lat);
@@ -208,7 +208,7 @@ write_gridinfo(FILE *fp, struct grid_info *table)
 {
     struct grid_info *s,
                    *tmp;
-    struct maidenhead mh;
+    maidenhead_t    mh;
     int             first = 1;
     if (!fp || !table) {
         return;

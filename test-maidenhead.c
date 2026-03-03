@@ -9,8 +9,8 @@
 int
 main(void)
 {
-    struct maidenhead from;
-    struct maidenhead to;
+    maidenhead_t    from;
+    maidenhead_t    to;
     float           distance,
                     bearing;
 
