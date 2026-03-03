@@ -54,8 +54,8 @@ int             maidenhead_is_null(maidenhead_t * mh);
 
 void            maidenhead_print(FILE * fp, maidenhead_t * mh);
 // rval -1 on bad arguments, 0 OK, positive is offset of invalid character
-int             populate_maidenhead(maidenhead_t * mh,
-                                    const char *grid, const int len);
+int             maidenhead_init(maidenhead_t * mh,
+                                const char *grid, const int len);
 float           maidenhead_distance_km(maidenhead_t * from,
                                        maidenhead_t * to);
 float           maidenhead_bearing_degrees(maidenhead_t * from,

@@ -235,11 +235,10 @@ load_stations_mem(char *buf, size_t buf_len)
             station->qth = strdup(value);
             break;
         case 5:                // gridsquare
-            populate_maidenhead(&station->their_grid, value,
-                                strlen(value));
+            maidenhead_init(&station->their_grid, value, strlen(value));
             break;
         case 6:                // my_gridsquare
-            populate_maidenhead(&station->my_grid, value, strlen(value));
+            maidenhead_init(&station->my_grid, value, strlen(value));
             break;
         case 7:                // eqsl_qsl_rcvd
         case 8:                // dcl_qsl_rcvd

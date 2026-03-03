@@ -215,7 +215,7 @@ write_gridinfo(FILE *fp, struct grid_info *table)
     }
 
     HASH_ITER(hh, table, s, tmp) {
-        populate_maidenhead(&mh, s->name, GRID_NAME_LEN);
+        maidenhead_init(&mh, s->name, GRID_NAME_LEN);
         if (first) {
             first = 0;
         } else {

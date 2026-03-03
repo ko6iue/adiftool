@@ -140,7 +140,7 @@ maidenhead_random_location(maidenhead_t *mh, latlon_t *ll)
 // rval -1 on bad arguments
 // returns 
 int
-populate_maidenhead(maidenhead_t *mh, const char *grid, const int len)
+maidenhead_init(maidenhead_t *mh, const char *grid, const int len)
 {
     int             rval;
     int             i;

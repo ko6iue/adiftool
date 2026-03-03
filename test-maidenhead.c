@@ -15,24 +15,24 @@ main(void)
                     bearing;
 
     // all characters valid
-    assert(populate_maidenhead(&from, "JK42", 4) == 4);
+    assert(maidenhead_init(&from, "JK42", 4) == 4);
     // Bad character position 0
-    assert(populate_maidenhead(&to, "ZZ", 2) == 0);
+    assert(maidenhead_init(&to, "ZZ", 2) == 0);
     // Bad character position 1
-    assert(populate_maidenhead(&to, "CZ", 2) == 1);
+    assert(maidenhead_init(&to, "CZ", 2) == 1);
     // Bad character position 2 
-    assert(populate_maidenhead(&to, "CCA1", 4) == 2);
+    assert(maidenhead_init(&to, "CCA1", 4) == 2);
     // Odd number of characters, invalid args
-    assert(populate_maidenhead(&to, "CCA", 3) == -1);
-    assert(populate_maidenhead(&to, "CC1", 3) == -1);
-    assert(populate_maidenhead(&to, "CC10A", 5) == -1);
+    assert(maidenhead_init(&to, "CCA", 3) == -1);
+    assert(maidenhead_init(&to, "CC1", 3) == -1);
+    assert(maidenhead_init(&to, "CC10A", 5) == -1);
     // Too many characters
-    assert(populate_maidenhead(&to, "AB12CD34EF56GH78", 12) == -1);
+    assert(maidenhead_init(&to, "AB12CD34EF56GH78", 12) == -1);
     // Not enough characters
-    assert(populate_maidenhead(&to, "", 0) == -1);
+    assert(maidenhead_init(&to, "", 0) == -1);
 
-    assert(populate_maidenhead(&from, "AA00AA00", 8) == 8);
-    assert(populate_maidenhead(&to, "AR00AX09", 8) == 8);
+    assert(maidenhead_init(&from, "AA00AA00", 8) == 8);
+    assert(maidenhead_init(&to, "AR00AX09", 8) == 8);
     // maidenhead_print(&from);
     // maidenhead_print(&to);
     distance = maidenhead_distance_km(&from, &to);
