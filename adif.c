@@ -139,7 +139,7 @@ trim_end_space(char *p)
     }
 }
 
-#define FIELD_LIMITER "<"
+#define FIELD_DELIMITER "<"
 #define PAIR_DELIMITER ">"
 #define ATTR_DELIMITER ":"
 
@@ -169,8 +169,9 @@ load_stations_mem(char *buf, size_t buf_len)
     assert(station);
     memset(station, 0, sizeof(*station));
 
-    for (field = strtok_r(buf, FIELD_LIMITER, &fieldptr);
-         field != NULL; field = strtok_r(NULL, FIELD_LIMITER, &fieldptr)) {
+    for (field = strtok_r(buf, FIELD_DELIMITER, &fieldptr);
+         field != NULL;
+         field = strtok_r(NULL, FIELD_DELIMITER, &fieldptr)) {
 
         fieldattrs = strtok_r(field, PAIR_DELIMITER, &pairptr);
         assert(fieldattrs);
@@ -218,7 +219,7 @@ load_stations_mem(char *buf, size_t buf_len)
                     }
                 }
             }
-            // Reset working QSO and start again
+            // Cleanup / reset station for more data
             free_station_strdups(station);
             memset(station, 0, sizeof(*station));
             break;
