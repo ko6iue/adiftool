@@ -31,7 +31,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
-#include <ctype.h>
+#include <ctype.h>              // isspace
 #include <assert.h>
 
 #include "./adif.h"

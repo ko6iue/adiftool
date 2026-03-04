@@ -31,9 +31,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
+#include <string.h>             // strlen memset memcpy
+#include <stdlib.h>             // rand_r RAND_MAX
 #include <math.h>
 
 #include "./maidenhead.h"
