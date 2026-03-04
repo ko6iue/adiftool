@@ -36,19 +36,20 @@
 #include "./geojson.h"
 
 // Up to the caller to free the memory
+
 char           *
-adi2callback(char *adi,
-             void (*callback)(FILE *fp, adif_station_t *stations))
+adi2callback(char *adi, void (*callback)(FILE *fp, adif_data_t *data))
 {
     char           *buf = NULL;
     size_t          len = 0;
     FILE           *fp = open_memstream(&buf, &len);
-    adif_station_t *stations = load_stations_mem(adi, strlen(adi));
+    adif_data_t    *data = load_adif_mem(adi, strlen(adi));
     free(adi);
-    callback(fp, stations);
-    fclose(fp);                 // flush to buf
+    callback(fp, data);
+    fclose(fp);                 // flush to buf return buf
     return buf;
 }
+
 
 EMSCRIPTEN_KEEPALIVE char *
 adi2kml(char *adi)

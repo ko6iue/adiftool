@@ -74,12 +74,12 @@ valid_station(adif_station_t *station)
     return 1;
 }
 
-adif_station_t *
-load_stations_fp(FILE *fp)
+adif_data_t    *
+load_adif_fp(FILE *fp)
 {
     size_t          fsize;
     char           *data;
-    adif_station_t *rval;
+    adif_data_t    *rval;
 
     if (!fp) {
         return NULL;
@@ -95,7 +95,7 @@ load_stations_fp(FILE *fp)
     assert(fread(data, fsize, 1, fp) == 1);
     data[fsize] = '\0';
 
-    rval = load_stations_mem(data, fsize);
+    rval = load_adif_mem(data, fsize);
     free(data);
     return rval;
 }
@@ -126,6 +126,30 @@ free_stations(adif_station_t *stations)
 }
 
 void
+free_grids(adif_grid_t *grids)
+{
+    adif_grid_t    *grid,
+                   *tmp;
+    if (grids) {
+        HASH_ITER(hh, grids, grid, tmp) {
+            HASH_DEL(grids, grid);
+            free(grid);
+        }
+    }
+}
+
+void
+free_data(adif_data_t *data)
+{
+    if (!data) {
+        return;
+    }
+    free_stations(data->stations);
+    free_grids(data->grids);
+    free(data);
+}
+
+void
 trim_end_space(char *p)
 {
     char           *q;
@@ -139,17 +163,80 @@ trim_end_space(char *p)
     }
 }
 
+adif_grid_t    *
+grid_create(char *name)
+{
+    adif_grid_t    *grid;
+    grid = (adif_grid_t *) malloc(sizeof(*grid));
+    assert(grid);
+    memset(grid, 0, sizeof(*grid));
+    memcpy(grid->name, name, GRID_NAME_LEN);
+    grid->name[GRID_NAME_LEN] = '\0';
+    return grid;
+}
+
+int
+build_grid_data(adif_station_t *station, void *arg, int last_item)
+{
+    (void) last_item;
+    adif_data_t    *data = (adif_data_t *) arg;
+    char            base_mh[GRID_NAME_LEN + 1];
+    adif_grid_t    *grid;
+
+    memcpy(base_mh, &station->their_grid.mh, GRID_NAME_LEN);
+    base_mh[GRID_NAME_LEN] = '\0';
+    HASH_FIND_STR(data->grids, base_mh, grid);
+    if (grid == NULL) {
+        grid = grid_create(base_mh);
+        HASH_ADD_STR(data->grids, name, grid);
+    }
+    grid->num_stations++;
+    if (station->confirmed) {
+        grid->num_confirmed_stations++;
+    }
+    grid->num_qsos += station->num_qsos;
+    return 0;
+}
+
+void
+build_grid_summary_data(adif_data_t *data)
+{
+    adif_grid_t    *grid,
+                   *tmp = NULL;
+    data->grid_max_qsos = -1;
+    HASH_ITER(hh, data->grids, grid, tmp) {
+        if (grid->num_qsos > data->grid_max_qsos) {
+            data->grid_max_qsos = grid->num_qsos;
+        }
+        data->num_qsos += grid->num_qsos;
+        data->num_stations += grid->num_stations;
+        data->num_confirmed_stations += grid->num_confirmed_stations;
+    }
+}
+
+void
+summarize_data(adif_data_t *data)
+{
+    if (!data) {
+        return;
+    }
+    // Build grid data
+    walk_stations(data->stations, &build_grid_data, data);
+    // Build grid summary information
+    build_grid_summary_data(data);
+}
+
 #define FIELD_DELIMITER "<"
 #define PAIR_DELIMITER ">"
 #define ATTR_DELIMITER ":"
 
-adif_station_t *
-load_stations_mem(char *buf, size_t buf_len)
+adif_data_t    *
+load_adif_mem(char *buf, size_t buf_len)
 {
     (void) buf_len;
-    adif_station_t *stations = NULL,
-        *station,
-        *tmp;
+    adif_data_t    *data = NULL;
+    adif_station_t *station,
+                   *tmp;
     int             i;
     char
                    *field,
@@ -164,6 +251,10 @@ load_stations_mem(char *buf, size_t buf_len)
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
         "lotw_qsl_rcvd", NULL
     };
+
+    data = (adif_data_t *) malloc(sizeof *data);
+    assert(data);
+    memset(data, 0, sizeof *data);
 
     station = (adif_station_t *) malloc(sizeof *station);
     assert(station);
@@ -192,9 +283,9 @@ load_stations_mem(char *buf, size_t buf_len)
         case 0:                // EOR
             if (valid_station(station)) {
                 // process this useable QSO record
-                HASH_FIND_STR(stations, station->their_call, tmp);
+                HASH_FIND_STR(data->stations, station->their_call, tmp);
                 if (tmp == NULL) {
-                    // Add QSO from a new station
+                    // Data from a new station
                     station->distance_km =
                         maidenhead_distance_km(&station->my_grid,
                                                &station->their_grid);
@@ -208,11 +299,11 @@ load_stations_mem(char *buf, size_t buf_len)
                     tmp = (adif_station_t *) malloc(sizeof(*tmp));
                     memcpy(tmp, station, sizeof(*station));
                     // Add a copy of this new valid QSO
-                    HASH_ADD_STR(stations, their_call, tmp);
+                    HASH_ADD_STR(data->stations, their_call, tmp);
                     // Set our working QSO to zero
                     memset(station, 0, sizeof(*station));
                 } else {
-                    // Process QSO from existing station
+                    // Data from an existing station
                     tmp->num_qsos += 1;
                     if (!tmp->confirmed && station->confirmed) {
                         tmp->confirmed = 1;
@@ -255,7 +346,9 @@ load_stations_mem(char *buf, size_t buf_len)
     // Free our working QSO
     free_station_strdups(station);
     free(station);
-    return stations;
+
+    summarize_data(data);
+    return data;
 }
 
 
@@ -273,6 +366,28 @@ walk_stations(adif_station_t *stations,
         HASH_ITER(hh, stations, station, tmp) {
             nitems--;
             rval = (*cb) (station, arg, nitems == 0);
+            if (rval) {
+                // abort on error. cb returns 0 on success.
+                return rval;
+            }
+        }
+    }
+    return 0;
+}
+
+int
+walk_grids(adif_grid_t *grids,
+           int (*cb)(adif_grid_t *, void *arg, int is_last), void *arg)
+{
+    int             rval,
+                    nitems;
+    adif_grid_t    *grid,
+                   *tmp;
+    if (grids && cb) {
+        nitems = HASH_COUNT(grids);
+        HASH_ITER(hh, grids, grid, tmp) {
+            nitems--;
+            rval = (*cb) (grid, arg, nitems == 0);
             if (rval) {
                 // abort on error. cb returns 0 on success.
                 return rval;

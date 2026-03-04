@@ -77,6 +77,8 @@
       var grids; // populated by L.geojson later...
       var max_grid_qsos; // populated by geojsonLoad()
       var geodesicLine;
+      var totalStations;
+      var totalQSOs;
 
       function getColors(props) {
         const colors = [
@@ -102,13 +104,13 @@
         // We use the log function to handle the positive skew
         var props = feature.properties;
         grid_log = Math.log(props.num_qsos);
-        return grid_log > max_grid_qsos * 0.8
+        return grid_log > grid_max_qsos * 0.8
           ? getColors(props)[4]
-          : grid_log > max_grid_qsos * 0.6
+          : grid_log > grid_max_qsos * 0.6
             ? getColors(props)[3]
-            : grid_log > max_grid_qsos * 0.4
+            : grid_log > grid_max_qsos * 0.4
               ? getColors(props)[2]
-              : grid_log > max_grid_qsos * 0.2
+              : grid_log > grid_max_qsos * 0.2
                 ? getColors(props)[1]
                 : getColors(props)[0];
       }
@@ -122,10 +124,17 @@
         return this._div;
       };
 
-      var defaultMessage =
-        "Hover over a station or grid for information.<br/>" +
-        "Click on a station to launch its QRZ page.<br/>" +
-        "Click on a grid to zoom to it.<br/>";
+      function defaultMessage() {
+        return (
+          (totalStations
+            ? "<b>Total Stations:</b> " + totalStations + "<br/>"
+            : "") +
+          (totalQSOs ? "<b>Total QSOs:</b> " + totalQSOs + "<br/>" : "") +
+          "Hover over a station or grid for information.<br/>" +
+          "Click on a station to launch its QRZ page.<br/>" +
+          "Click on a grid to zoom to it.<br/>"
+        );
+      }
 
       function stationPropsHTML(props) {
         s = "<h4>Station " + props.call + "</h4><br/>";
@@ -168,7 +177,7 @@
       // method that we will use to update the control based on feature properties passed
       info.updateStation = function (props) {
         if (!props) {
-          this._div.innerHTML = defaultMessage;
+          this._div.innerHTML = defaultMessage();
         } else {
           this._div.innerHTML = stationPropsHTML(props);
         }
@@ -176,7 +185,7 @@
 
       info.updateGrid = function (props) {
         if (!props) {
-          this._div.innerHTML = defaultMessage;
+          this._div.innerHTML = defaultMessage();
         } else {
           s = "<h4>Grid " + props.name + "</h4>";
           s += "<b>";
@@ -184,6 +193,12 @@
           s += "</b><br/>";
           if (props.num_stations) {
             s += "<b>Num Stations:</b> " + props.num_stations + "<br/>";
+          }
+          if (props.num_confirmed_stations) {
+            s +=
+              "<b>Confirmed Stations:</b> " +
+              props.num_confirmed_stations +
+              "<br/>";
           }
           if (props.num_qsos) {
             s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
@@ -349,9 +364,16 @@
 
       function geojsonLoad(json) {
         clearMap();
-        max_grid_qsos = Math.log(json[1].properties.max_qsos);
+        grid_max_qsos = Math.log(json[1].properties.grid_max_qsos);
         stations = L.geoJSON(json[0], stationOptions).addTo(map);
         grids = L.geoJSON(json[1], gridOptions).addTo(map);
+        let props = json[1].properties;
+        if (props.num_stations) {
+          totalStations = props.num_stations;
+        }
+        if (props.total_qsos) {
+          totalQSOs = props.total_qsos;
+        }
         // Make sure stations are always on top or grid will mask them
         stations.bringToFront();
       }

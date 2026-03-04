@@ -40,7 +40,7 @@ int
 runit(struct gengetopt_args_info *args_info)
 {
     FILE           *infp = stdin;
-    adif_station_t *stations = NULL;
+    adif_data_t    *data = NULL;
     FILE           *outfp = stdout;
 
     if (strcmp(args_info->input_arg, "-")) {
@@ -51,10 +51,10 @@ runit(struct gengetopt_args_info *args_info)
                 args_info->input_arg);
         return EXIT_FAILURE;
     }
-    stations = load_stations_fp(infp);
+    data = load_adif_fp(infp);
     fclose(infp);
 
-    if (stations == NULL) {
+    if (data == NULL) {
         return EXIT_FAILURE;
     }
 
@@ -68,15 +68,15 @@ runit(struct gengetopt_args_info *args_info)
     }
 
     if (args_info->geojson_flag) {
-        write_geojson(outfp, stations);
+        write_geojson(outfp, data);
     } else {
-        write_kml(outfp, stations);
+        write_kml(outfp, data);
     }
+
     fclose(outfp);
 
-    printf("Processed %d stations\n", HASH_COUNT(stations));
-
-    free_stations(stations);
+    printf("Processed %d stations\n", HASH_COUNT(data->stations));
+    free_data(data);
     return EXIT_SUCCESS;
 }
 

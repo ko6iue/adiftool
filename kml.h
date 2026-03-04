@@ -36,6 +36,6 @@
 #include <stdio.h>
 #include "./adif.h"
 
-void write_kml(FILE *fp, adif_station_t *stations);
+void write_kml(FILE *fp, adif_data_t *data);
 
 #endif    // KML_H

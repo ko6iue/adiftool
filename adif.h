@@ -36,8 +36,6 @@
 #include "maidenhead.h"
 #include "uthash.h"
 
-#define GRID_LEN 16
-
 typedef struct {
     char           *their_call;
     char           *name;
@@ -46,21 +44,45 @@ typedef struct {
     maidenhead_t    my_grid;
     maidenhead_t    their_grid;
     float           distance_km;
-    // Bearing of signal sent from QTH
     float           bearing_sent;
-    // Bearing of signal recv at station
     float           bearing_rcvd;
     int             num_qsos;
     int             confirmed;
     UT_hash_handle  hh;
 } adif_station_t;
 
-adif_station_t *load_stations_mem(char *buf, size_t len);
-adif_station_t *load_stations_fp(FILE * fp);
+#define GRID_NAME_LEN 4
+typedef struct {
+    char            name[GRID_NAME_LEN + 1];
+    maidenhead_t    mh;
+    int             num_stations;
+    int             num_confirmed_stations;
+    int             num_qsos;
+    UT_hash_handle  hh;
+} adif_grid_t;
+
+typedef struct {
+    int             grid_max_qsos;
+    int             num_stations;
+    int             num_confirmed_stations;
+    int             num_qsos;
+    adif_grid_t    *grids;
+    adif_station_t *stations;
+} adif_data_t;
+
+adif_data_t    *load_adif_mem(char *buf, size_t len);
+adif_data_t    *load_adif_fp(FILE * fp);
+
+
 int             walk_stations(adif_station_t * stations,
                               int (*cb)(adif_station_t *, void *arg,
                                         int last_item), void *arg);
+int             walk_grids(adif_grid_t * grids,
+                           int (*cb)(adif_grid_t *, void *arg,
+                                     int last_item), void *arg);
+
 int             print_stations(FILE *, adif_station_t * stations);
-void            free_stations(adif_station_t * station);
+
+void            free_data(adif_data_t * data);
 
 #endif

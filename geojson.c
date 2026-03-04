@@ -33,16 +33,6 @@
 #include <assert.h>
 #include "./geojson.h"
 
-#define GRID_NAME_LEN 4
-
-struct grid_info {
-    char            name[GRID_NAME_LEN + 1];
-    int             num_stations;
-    int             num_qsos;
-    int             confirmed;
-    UT_hash_handle  hh;
-};
-
 #define DEBUG_JSON 0
 
 void
@@ -191,142 +181,58 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
     return 0;
 }
 
-void
-free_gridinfo(struct grid_info *table)
-{
-    struct grid_info *s,
-                   *tmp;
-    HASH_ITER(hh, table, s, tmp) {
-        HASH_DEL(table, s);
-        free(s);
-    }
-}
-
-void
-write_gridinfo(FILE *fp, struct grid_info *table)
-{
-    struct grid_info *s,
-                   *tmp;
-    maidenhead_t    mh;
-    int             first = 1;
-    if (!fp || !table) {
-        return;
-    }
-
-    HASH_ITER(hh, table, s, tmp) {
-        maidenhead_init(&mh, s->name, GRID_NAME_LEN);
-        if (first) {
-            first = 0;
-        } else {
-            fprintf(fp, ",");
-        }
-        json_obj_open(fp);      // start feature
-        json_attr(fp, "type");
-        json_val(fp, "Feature");
-        fprintf(fp, ",");
-        json_attr(fp, "properties");
-        json_obj_open(fp);      // start properties
-        json_attr(fp, "name");
-        json_val(fp, s->name);
-        fprintf(fp, ",");
-        json_attr(fp, "num_qsos");
-        fprintf(fp, "%d,", s->num_qsos);
-        json_attr(fp, "num_stations");
-        fprintf(fp, "%d,", s->num_stations);
-        json_attr(fp, "confirmed");
-        fprintf(fp, "%s,", s->confirmed ? "true" : "false");
-        json_attr(fp, "lat_range");
-        // Note: if you change grid resolution
-        // you may need to use a floats here
-        fprintf(fp, "[%d,%d],",
-                (int) mh.sw_corner.lat, (int) mh.nw_corner.lat);
-        json_attr(fp, "lon_range");
-        fprintf(fp, "[%d,%d]",
-                (int) mh.sw_corner.lon, (int) mh.se_corner.lon);
-        json_obj_close(fp);     // end properties
-        fprintf(fp, ",");
-        json_attr(fp, "geometry");
-        json_obj_open(fp);      // start geometry
-        json_attr(fp, "type");
-        json_val(fp, "Polygon");
-        fprintf(fp, ",");
-        json_attr(fp, "coordinates");
-        fprintf(fp, "[[");
-        mh_print_coordinates(fp, &mh);
-        fprintf(fp, "]]");
-        json_obj_close(fp);     // end geometry
-        json_obj_close(fp);     // end feature
-    }
-}
-
-struct grid_info *
-create_grid_info(char *name, adif_station_t *station)
-{
-    struct grid_info *rval;
-    rval = (struct grid_info *) malloc(sizeof(*rval));
-    assert(rval);
-    memset(rval, 0, sizeof(*rval));
-    memcpy(rval->name, name, GRID_NAME_LEN);
-    rval->num_qsos = station->num_qsos;
-    rval->num_stations = 1;
-    rval->confirmed = station->confirmed;
-    return rval;
-}
-
 int
-save_grid_info(adif_station_t *station, void *arg, int last_item)
+write_geojson_grid(adif_grid_t *grid, void *arg, int last_item)
 {
-    (void) last_item;
-    struct grid_info **table = (struct grid_info **) arg;
-    char            base_mh[GRID_NAME_LEN + 1];
-    struct grid_info *tmp = NULL;
-    memcpy(base_mh, &station->their_grid.mh, GRID_NAME_LEN);
-    base_mh[GRID_NAME_LEN] = '\0';
-    if (!*table) {
-        tmp = create_grid_info(base_mh, station);
-        HASH_ADD_STR(*table, name, tmp);
-    } else {
-        HASH_FIND_STR(*table, base_mh, tmp);
-        if (tmp == NULL) {
-            // New grid
-            tmp = create_grid_info(base_mh, station);
-            HASH_ADD_STR(*table, name, tmp);
-        } else {
-            // Known grid
-            tmp->num_stations++;
-            tmp->num_qsos += station->num_qsos;
-            if (!tmp->confirmed && station->confirmed) {
-                tmp->confirmed = 1;
-            }
-        }
+    FILE           *fp = (FILE *) arg;
+    maidenhead_t    mh;
+    if (!fp || !grid) {
+        return -1;
+    }
+
+    maidenhead_init(&mh, grid->name, GRID_NAME_LEN);
+    json_obj_open(fp);          // start feature
+    json_attr(fp, "type");
+    json_val(fp, "Feature");
+    fprintf(fp, ",");
+    json_attr(fp, "properties");
+    json_obj_open(fp);          // start properties
+    json_attr(fp, "name");
+    json_val(fp, grid->name);
+    fprintf(fp, ",");
+    json_attr(fp, "num_qsos");
+    fprintf(fp, "%d,", grid->num_qsos);
+    json_attr(fp, "num_stations");
+    fprintf(fp, "%d,", grid->num_stations);
+    json_attr(fp, "num_confirmed_stations");
+    fprintf(fp, "%d,", grid->num_confirmed_stations);
+    json_attr(fp, "confirmed");
+    fprintf(fp, "%s,",
+            grid->num_confirmed_stations >= 1 ? "true" : "false");
+    json_attr(fp, "lat_range");
+    // Note: if you change grid resolution
+    // you may need to use a floats here
+    fprintf(fp, "[%d,%d],",
+            (int) mh.sw_corner.lat, (int) mh.nw_corner.lat);
+    json_attr(fp, "lon_range");
+    fprintf(fp, "[%d,%d]", (int) mh.sw_corner.lon, (int) mh.se_corner.lon);
+    json_obj_close(fp);         // end properties
+    fprintf(fp, ",");
+    json_attr(fp, "geometry");
+    json_obj_open(fp);          // start geometry
+    json_attr(fp, "type");
+    json_val(fp, "Polygon");
+    fprintf(fp, ",");
+    json_attr(fp, "coordinates");
+    fprintf(fp, "[[");
+    mh_print_coordinates(fp, &mh);
+    fprintf(fp, "]]");
+    json_obj_close(fp);         // end geometry
+    json_obj_close(fp);         // end feature
+    if (!last_item) {
+        fprintf(fp, ",");
     }
     return 0;
-}
-
-struct grid_info *
-generate_grid_info_table(adif_station_t *stations)
-{
-    struct grid_info *table = NULL;
-    if (stations) {
-        walk_stations(stations, &save_grid_info, &table);
-        return table;
-    } else {
-        return NULL;
-    }
-}
-
-int
-max_grid_qsos(struct grid_info *table)
-{
-    struct grid_info *s,
-                   *tmp = NULL;
-    int             rval = -1;
-    HASH_ITER(hh, table, s, tmp) {
-        if (s->num_qsos > rval) {
-            rval = s->num_qsos;
-        }
-    }
-    return rval;
 }
 
 void
@@ -342,52 +248,55 @@ write_open_featurecollection(FILE *fp, char *name)
 }
 
 void
-write_station_featurecollection(FILE *fp, adif_station_t *stations)
+write_station_featurecollection(FILE *fp, adif_data_t *data)
 {
+    if (!data) {
+        return;
+    }
     write_open_featurecollection(fp, "stations");
     json_attr(fp, "features");
     fprintf(fp, "[");           // open features array
-    walk_stations(stations, &write_geojson_station, fp);
+    if (data->stations) {
+        walk_stations(data->stations, &write_geojson_station, fp);
+    }
     fprintf(fp, "]");           // close features array
     json_obj_close(fp);         // close feature collections
 }
 
 void
-write_grid_featurecollection(FILE *fp, adif_station_t *stations)
+write_grid_featurecollection(FILE *fp, adif_data_t *data)
 {
-    struct grid_info *table = NULL;
-    int             max_qsos;
-
-    table = generate_grid_info_table(stations);
-    max_qsos = max_grid_qsos(table);
-
     write_open_featurecollection(fp, "grids");
     json_attr(fp, "features");
     fprintf(fp, "[");
-    if (table) {
-        write_gridinfo(fp, table);
-        free_gridinfo(table);
+    if (data->grids) {
+        walk_grids(data->grids, &write_geojson_grid, fp);
     }
     fprintf(fp, "]");
     fprintf(fp, ",");
     json_attr(fp, "properties");
     json_obj_open(fp);          // open properties
-    json_attr(fp, "max_qsos");
-    fprintf(fp, "%d", max_qsos);
+    json_attr(fp, "grid_max_qsos");
+    fprintf(fp, "%d,", data->grid_max_qsos);
+    json_attr(fp, "num_stations");
+    fprintf(fp, "%d,", data->num_stations);
+    json_attr(fp, "num_confirmed_stations");
+    fprintf(fp, "%d,", data->num_confirmed_stations);
+    json_attr(fp, "total_qsos");
+    fprintf(fp, "%d", data->num_qsos);
     json_obj_close(fp);         // close properties
     json_obj_close(fp);         // close feature collections
 }
 
-// Use 'jq . <json>' to validate
 void
-write_geojson(FILE *fp, adif_station_t *stations)
+write_geojson(FILE *fp, adif_data_t *data)
 {
-    if (!fp || !stations) {
+    if (!fp || !data) {
         return;
     }
     fprintf(fp, "[");           // open top-level array
-    write_station_featurecollection(fp, stations);
+    write_station_featurecollection(fp, data);
     fprintf(fp, ",");
-    write_grid_featurecollection(fp, stations);
+    write_grid_featurecollection(fp, data);
     fprintf(fp, "]");           // close top-level array
 }

@@ -143,8 +143,12 @@ print_kml_record(adif_station_t *station, void *arg, int last_item)
 }
 
 void
-write_kml(FILE *fp, adif_station_t *stations)
+write_kml(FILE *fp, adif_data_t *data)
 {
+    if (!data) {
+        return;
+    }
+    adif_station_t *stations = data->stations;
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
             "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
