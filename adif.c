@@ -165,12 +165,11 @@ load_stations_mem(char *buf, size_t buf_len, char *default_qth)
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
         "lotw_qsl_rcvd", NULL
     };
-    struct maidenhead default_mh;
+    maidenhead_t    default_mh;
 
     if (default_qth) {
         rval =
-            populate_maidenhead(&default_mh, default_qth,
-                                strlen(default_qth));
+            maidenhead_init(&default_mh, default_qth, strlen(default_qth));
         if (rval != (int) strlen(default_qth)) {
             printf("Invalid maidenhead");
         }
