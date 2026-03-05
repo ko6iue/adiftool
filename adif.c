@@ -220,7 +220,7 @@ build_country_data(adif_station_t *station, void *arg, int last_item)
     adif_data_t    *data = (adif_data_t *) arg;
     adif_country_t *country;
     if (!station->country) {
-        return -1;
+        return 0;
     }
     HASH_FIND_STR(data->countries, station->country, country);
     if (country == NULL) {
