@@ -139,6 +139,20 @@ free_grids(adif_grid_t *grids)
 }
 
 void
+free_countries(adif_country_t *countries)
+{
+    adif_country_t *country,
+                   *tmp;
+    if (countries) {
+        HASH_ITER(hh, countries, country, tmp) {
+            HASH_DEL(countries, country);
+            // NOTE: country->name is freed in station
+            free(country);
+        }
+    }
+}
+
+void
 free_data(adif_data_t *data)
 {
     if (!data) {
@@ -146,6 +160,7 @@ free_data(adif_data_t *data)
     }
     free_stations(data->stations);
     free_grids(data->grids);
+    free_countries(data->countries);
     free(data);
 }
 
@@ -198,6 +213,28 @@ build_grid_data(adif_station_t *station, void *arg, int last_item)
     return 0;
 }
 
+int
+build_country_data(adif_station_t *station, void *arg, int last_item)
+{
+    (void) last_item;
+    adif_data_t    *data = (adif_data_t *) arg;
+    adif_country_t *country;
+    HASH_FIND_STR(data->countries, station->country, country);
+    if (country == NULL) {
+        country = (adif_country_t *) malloc(sizeof(*country));
+        assert(country);
+        memset(country, 0, sizeof(*country));
+        country->name = station->country;
+        HASH_ADD_STR(data->countries, name, country);
+    }
+    country->num_stations++;
+    if (station->confirmed) {
+        country->num_confirmed_stations++;
+    }
+    country->num_qsos += station->num_qsos;
+    return 0;
+}
+
 void
 build_grid_summary_data(adif_data_t *data)
 {
@@ -215,6 +252,20 @@ build_grid_summary_data(adif_data_t *data)
 }
 
 void
+build_country_summary_data(adif_data_t *data)
+{
+    adif_country_t *country,
+                   *tmp = NULL;
+    data->num_countries = HASH_COUNT(data->countries);
+    data->num_confirmed_countries = 0;
+    HASH_ITER(hh, data->countries, country, tmp) {
+        if (country->num_confirmed_stations >= 1) {
+            data->num_confirmed_countries++;
+        }
+    }
+}
+
+void
 summarize_data(adif_data_t *data)
 {
     if (!data) {
@@ -222,8 +273,12 @@ summarize_data(adif_data_t *data)
     }
     // Build grid data
     walk_stations(data->stations, &build_grid_data, data);
+    // Build country data
+    walk_stations(data->stations, &build_country_data, data);
     // Build grid summary information
     build_grid_summary_data(data);
+    // Build country summary data
+    build_country_summary_data(data);
 }
 
 #define FIELD_DELIMITER "<"

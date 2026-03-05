@@ -62,12 +62,23 @@ typedef struct {
 } adif_grid_t;
 
 typedef struct {
+    char           *name;
+    int             num_stations;
+    int             num_confirmed_stations;
+    int             num_qsos;
+    UT_hash_handle  hh;
+} adif_country_t;
+
+typedef struct {
     int             grid_max_qsos;
     int             num_stations;
     int             num_confirmed_stations;
     int             num_qsos;
+    int             num_countries;
+    int             num_confirmed_countries;
     adif_grid_t    *grids;
     adif_station_t *stations;
+    adif_country_t *countries;
 } adif_data_t;
 
 adif_data_t    *load_adif_mem(char *buf, size_t len);

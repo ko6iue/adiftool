@@ -283,7 +283,11 @@ write_grid_featurecollection(FILE *fp, adif_data_t *data)
     json_attr(fp, "num_confirmed_stations");
     fprintf(fp, "%d,", data->num_confirmed_stations);
     json_attr(fp, "total_qsos");
-    fprintf(fp, "%d", data->num_qsos);
+    fprintf(fp, "%d,", data->num_qsos);
+    json_attr(fp, "num_countries");
+    fprintf(fp, "%d,", data->num_countries);
+    json_attr(fp, "num_confirmed_countries");
+    fprintf(fp, "%d", data->num_confirmed_countries);
     json_obj_close(fp);         // close properties
     json_obj_close(fp);         // close feature collections
 }

@@ -79,6 +79,8 @@
       var geodesicLine;
       var totalStations;
       var totalQSOs;
+      var totalCountries;
+      var totalConfirmedCountries;
 
       function getColors(props) {
         const colors = [
@@ -130,6 +132,12 @@
             ? "<b>Total Stations:</b> " + totalStations + "<br/>"
             : "") +
           (totalQSOs ? "<b>Total QSOs:</b> " + totalQSOs + "<br/>" : "") +
+          (totalCountries
+            ? "<b>Countries:</b> " + totalCountries + "<br/>"
+            : "") +
+          (totalConfirmedCountries
+            ? "<b>Confirmed Countries:</b> " + totalConfirmedCountries + "<br/>"
+            : "") +
           "Hover over a station or grid for information.<br/>" +
           "Click on a station to launch its QRZ page.<br/>" +
           "Click on a grid to zoom to it.<br/>"
@@ -373,7 +381,13 @@
         if (props.total_qsos) {
           totalQSOs = props.total_qsos;
         }
-	// Update info panel with new totals
+        if (props.num_countries) {
+          totalCountries = props.num_countries;
+        }
+        if (props.num_confirmed_countries) {
+          totalConfirmedCountries = props.num_confirmed_countries;
+        }
+        // Update info panel with new totals
         info.updateGrid(null);
         // Make sure stations are always on top or grid will mask them
         stations.bringToFront();
