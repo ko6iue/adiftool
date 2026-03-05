@@ -312,7 +312,6 @@
           weight: 5,
           color: getColors(props)[4],
           dashArray: "",
-          //fillOpacity: 0.7,
         });
       }
 
@@ -374,6 +373,8 @@
         if (props.total_qsos) {
           totalQSOs = props.total_qsos;
         }
+	// Update info panel with new totals
+        info.updateGrid(null);
         // Make sure stations are always on top or grid will mask them
         stations.bringToFront();
       }
