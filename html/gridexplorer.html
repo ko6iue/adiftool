@@ -444,6 +444,10 @@
                 return;
               }
               var json = JSON.parse(rval);
+              if (!json[0].features || json[0].features.length == 0) {
+                showMessage("No station data found. Check file and try again.");
+                return;
+              }
               geojsonLoad(json);
             } catch (e) {
               showMessage(e.message, "error");
@@ -458,7 +462,9 @@
     </script>
     <small>
       &nbsp;All
-      <a href="https://github.com/ko6iue/adiftool.git">Grid Explorer source code</a>
+      <a href="https://github.com/ko6iue/adiftool.git"
+        >Grid Explorer source code</a
+      >
       is freely available and open source with a Berkeley license. Credit to
       <a href="https://agafonkin.com/">Volodymyr Agafonkin</a> and the Leaflet
       team for creating <a href="https://leafletjs.com/">Leaflet</a>.
