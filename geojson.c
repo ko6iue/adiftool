@@ -273,23 +273,39 @@ write_grid_featurecollection(FILE *fp, adif_data_t *data)
         walk_grids(data->grids, &write_geojson_grid, fp);
     }
     fprintf(fp, "]");
-    fprintf(fp, ",");
-    json_attr(fp, "properties");
-    json_obj_open(fp);          // open properties
-    json_attr(fp, "grid_max_qsos");
-    fprintf(fp, "%d,", data->grid_max_qsos);
-    json_attr(fp, "num_stations");
-    fprintf(fp, "%d,", data->num_stations);
-    json_attr(fp, "num_confirmed_stations");
-    fprintf(fp, "%d,", data->num_confirmed_stations);
-    json_attr(fp, "total_qsos");
-    fprintf(fp, "%d,", data->num_qsos);
-    json_attr(fp, "num_countries");
-    fprintf(fp, "%d,", data->num_countries);
-    json_attr(fp, "num_confirmed_countries");
-    fprintf(fp, "%d", data->num_confirmed_countries);
-    json_obj_close(fp);         // close properties
-    json_obj_close(fp);         // close feature collections
+    json_obj_close(fp);
+}
+
+int
+write_global_information(FILE *fp, adif_data_t *data)
+{
+    int             rval = 0;
+    json_obj_open(fp);
+    // TODO: better error checks and reporting
+    if (!data->stations) {
+        json_attr(fp, "success");
+        fprintf(fp, "false,");
+        json_attr(fp, "error_msg");
+        json_val(fp, "No data found in file");
+        rval = 1;
+    } else {
+        json_attr(fp, "success");
+        fprintf(fp, "true,");
+        json_attr(fp, "grid_max_qsos");
+        fprintf(fp, "%d,", data->grid_max_qsos);
+        json_attr(fp, "total_stations");
+        fprintf(fp, "%d,", data->num_stations);
+        json_attr(fp, "total_confirmed_stations");
+        fprintf(fp, "%d,", data->num_confirmed_stations);
+        json_attr(fp, "total_qsos");
+        fprintf(fp, "%d,", data->num_qsos);
+        json_attr(fp, "total_countries");
+        fprintf(fp, "%d,", data->num_countries);
+        json_attr(fp, "total_confirmed_countries");
+        fprintf(fp, "%d", data->num_confirmed_countries);
+    }
+    json_obj_close(fp);
+    return rval;
 }
 
 void
@@ -298,9 +314,15 @@ write_geojson(FILE *fp, adif_data_t *data)
     if (!fp || !data) {
         return;
     }
-    fprintf(fp, "[");           // open top-level array
-    write_station_featurecollection(fp, data);
-    fprintf(fp, ",");
-    write_grid_featurecollection(fp, data);
-    fprintf(fp, "]");           // close top-level array
+    json_obj_open(fp);
+    json_attr(fp, "globals");
+    if (write_global_information(fp, data) == 0) {
+        fprintf(fp, ",");
+        json_attr(fp, "stations");
+        write_station_featurecollection(fp, data);
+        fprintf(fp, ",");
+        json_attr(fp, "grids");
+        write_grid_featurecollection(fp, data);
+    }
+    json_obj_close(fp);
 }

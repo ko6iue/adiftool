@@ -73,14 +73,11 @@
     <div id="map"></div>
 
     <script>
-      var stations; // populated by L.geojson later...
-      var grids; // populated by L.geojson later...
+      var stationLayer; // populated by L.geojson later...
+      var gridLayer; // populated by L.geojson later...
+      var globals = {};
       var max_grid_qsos; // populated by geojsonLoad()
       var geodesicLine;
-      var totalStations;
-      var totalQSOs;
-      var totalCountries;
-      var totalConfirmedCountries;
 
       function getColors(props) {
         const colors = [
@@ -128,15 +125,19 @@
 
       function defaultMessage() {
         return (
-          (totalStations
-            ? "<b>Total Stations:</b> " + totalStations + "<br/>"
+          (globals.total_stations
+            ? "<b>Total Stations:</b> " + globals.total_stations + "<br/>"
             : "") +
-          (totalQSOs ? "<b>Total QSOs:</b> " + totalQSOs + "<br/>" : "") +
-          (totalCountries
-            ? "<b>Countries:</b> " + totalCountries + "<br/>"
+          (globals.total_qsos
+            ? "<b>Total QSOs:</b> " + globals.total_qsos + "<br/>"
             : "") +
-          (totalConfirmedCountries
-            ? "<b>Confirmed Countries:</b> " + totalConfirmedCountries + "<br/>"
+          (globals.total_countries
+            ? "<b>Countries:</b> " + globals.total_countries + "<br/>"
+            : "") +
+          (globals.total_confirmed_countries
+            ? "<b>Confirmed Countries:</b> " +
+              globals.total_confirmed_countries +
+              "<br/>"
             : "") +
           "Hover over a station or grid for information.<br/>" +
           "Click on a station to launch its QRZ page.<br/>" +
@@ -258,7 +259,7 @@
 
       function resetStation(e) {
         var layer = e.target;
-        stations.resetStyle(layer);
+        stationLayer.resetStyle(layer);
         info.updateStation();
         geodesicLine.remove();
       }
@@ -324,7 +325,7 @@
       }
 
       function resetGrid(e) {
-        grids.resetStyle(e.target);
+        gridLayer.resetStyle(e.target);
         info.updateGrid();
       }
 
@@ -361,40 +362,29 @@
         if (geodesicLine) {
           geodesicLine.remove();
         }
-        if (stations) {
-          map.removeLayer(stations);
+        if (stationLayer) {
+          map.removeLayer(stationLayer);
         }
-        if (grids) {
-          map.removeLayer(grids);
+        if (gridLayer) {
+          map.removeLayer(gridLayer);
         }
-        totalStations = null;
-        totalQSOs = null;
-        totalCountries = null;
-        totalConfirmedCountries = null;
+        globals = {};
       }
 
       function geojsonLoad(json) {
+        if (!(json.globals && json.globals.success)) {
+          return;
+        }
         clearMap();
-        grid_max_qsos = Math.log(json[1].properties.grid_max_qsos);
-        stations = L.geoJSON(json[0], stationOptions).addTo(map);
-        grids = L.geoJSON(json[1], gridOptions).addTo(map);
-        let props = json[1].properties;
-        if (props.num_stations) {
-          totalStations = props.num_stations;
-        }
-        if (props.total_qsos) {
-          totalQSOs = props.total_qsos;
-        }
-        if (props.num_countries) {
-          totalCountries = props.num_countries;
-        }
-        if (props.num_confirmed_countries) {
-          totalConfirmedCountries = props.num_confirmed_countries;
-        }
+        globals = json.globals;
+        grid_max_qsos = Math.log(globals.grid_max_qsos);
+        stationLayer = L.geoJSON(json.stations, stationOptions).addTo(map);
+        gridLayer = L.geoJSON(json.grids, gridOptions).addTo(map);
+
         // Update info panel with new totals
         info.updateGrid(null);
         // Make sure stations are always on top or grid will mask them
-        stations.bringToFront();
+        stationLayer.bringToFront();
       }
 
       /* For now, load sample data from a fixed location. In the
@@ -444,8 +434,8 @@
                 return;
               }
               var json = JSON.parse(rval);
-              if (!json[0].features || json[0].features.length == 0) {
-                showMessage("No station data found. Check file and try again.");
+              if (!json || json.length == 0) {
+                showMessage("Empty JSON. Internal error.");
                 return;
               }
               geojsonLoad(json);
