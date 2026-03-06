@@ -372,9 +372,6 @@
       }
 
       function geojsonLoad(json) {
-        if (!(json.globals && json.globals.success)) {
-          return;
-        }
         clearMap();
         globals = json.globals;
         grid_max_qsos = Math.log(globals.grid_max_qsos);
@@ -434,13 +431,17 @@
                 return;
               }
               var json = JSON.parse(rval);
-              if (!json || json.length == 0) {
-                showMessage("Empty JSON. Internal error.");
+              if (!json || json.length == 0 || !json.globals) {
+                showMessage("Invalid JSON. Internal error.");
+                return;
+              }
+              if (!json.globals.success) {
+                showMessage(json.globals.error_msg);
                 return;
               }
               geojsonLoad(json);
             } catch (e) {
-              showMessage(e.message, "error");
+              showMessage(e.message);
             }
           };
           reader.onerror = () => {
