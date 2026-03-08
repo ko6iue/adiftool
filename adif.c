@@ -335,7 +335,7 @@ strtoupper(char *in)
 }
 
 void
-update_named_counters(char *name, adif_counter_t **counters)
+update_named_counters(adif_counter_t **counters, char *name, int count)
 {
     adif_counter_t *query;
     if (!name || !counters) {
@@ -345,10 +345,10 @@ update_named_counters(char *name, adif_counter_t **counters)
     if (!query) {
         query = (adif_counter_t *) malloc(sizeof(*query));
         query->name = strdup(name);
-        query->count = 1;
+        query->count = count;
         HASH_ADD_STR(*counters, name, query);
     } else {
-        query->count++;
+        query->count += count;
     }
 }
 
@@ -468,12 +468,12 @@ load_adif_mem(char *buf, size_t buf_len)
                     }
                 }
                 if (strlen(mode_field)) {
-                    update_named_counters(strtoupper(mode_field),
-                                          &query->modes);
+                    update_named_counters(&query->modes,
+                                          strtoupper(mode_field), 1);
                 }
                 if (strlen(band_field)) {
-                    update_named_counters(strtoupper(band_field),
-                                          &query->bands);
+                    update_named_counters(&query->bands,
+                                          strtoupper(band_field), 1);
                 }
             }
             // Cleanup / reset station for more data
