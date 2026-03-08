@@ -54,6 +54,8 @@ print_station(adif_station_t *station, void *arg, int last_item)
     fprintf(fp, " distance km: %f\n", station->distance_km);
     fprintf(fp, "bearing sent: %f\n", station->bearing_sent);
     fprintf(fp, "bearing rcvd: %f\n", station->bearing_rcvd);
+    fprintf(fp, "   first QSO: %s\n", station->first_contact);
+    fprintf(fp, "    last QSO: %s\n", station->last_contact);
     fprintf(fp, "**********\n");
     return 0;
 }
@@ -203,7 +205,21 @@ build_grid_data(adif_station_t *station, void *arg, int last_item)
     HASH_FIND_STR(data->grids, base_mh, grid);
     if (grid == NULL) {
         grid = grid_create(base_mh);
+        strncpy(grid->first_contact, station->first_contact,
+                sizeof(grid->first_contact));
+        strncpy(grid->last_contact, station->last_contact,
+                sizeof(grid->last_contact));
+
         HASH_ADD_STR(data->grids, name, grid);
+    } else {
+        if (strcmp(station->first_contact, grid->first_contact) < 0) {
+            strncpy(grid->first_contact, station->first_contact,
+                    sizeof(grid->first_contact));
+        }
+        if (strcmp(station->last_contact, grid->last_contact) > 0) {
+            strncpy(grid->last_contact, station->last_contact,
+                    sizeof(grid->last_contact));
+        }
     }
     grid->num_stations++;
     if (station->confirmed) {
@@ -244,7 +260,25 @@ build_grid_summary_data(adif_data_t *data)
     adif_grid_t    *grid,
                    *tmp = NULL;
     data->grid_max_qsos = -1;
+    int             first = 1;
+
     HASH_ITER(hh, data->grids, grid, tmp) {
+        if (first) {
+            strncpy(data->first_contact, grid->first_contact,
+                    sizeof(data->first_contact));
+            strncpy(data->last_contact, grid->last_contact,
+                    sizeof(data->last_contact));
+            first = 0;
+        } else {
+            if (strcmp(grid->first_contact, data->first_contact) < 0) {
+                strncpy(data->first_contact, grid->first_contact,
+                        sizeof(data->first_contact));
+            }
+            if (strcmp(grid->last_contact, data->last_contact) > 0) {
+                strncpy(data->last_contact, grid->last_contact,
+                        sizeof(data->last_contact));
+            }
+        }
         if (grid->num_qsos > data->grid_max_qsos) {
             data->grid_max_qsos = grid->num_qsos;
         }
@@ -307,8 +341,9 @@ load_adif_mem(char *buf, size_t buf_len)
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
-        "lotw_qsl_rcvd", NULL
+        "lotw_qsl_rcvd", "qso_date", NULL
     };
+    char            date_field[ADIF_DATE_LEN];
 
     data = (adif_data_t *) malloc(sizeof *data);
     assert(data);
@@ -356,6 +391,12 @@ load_adif_mem(char *buf, size_t buf_len)
                     station->num_qsos = 1;
                     tmp = (adif_station_t *) malloc(sizeof(*tmp));
                     memcpy(tmp, station, sizeof(*station));
+
+                    strncpy(tmp->first_contact, date_field,
+                            sizeof(tmp->first_contact));
+                    strncpy(tmp->last_contact, date_field,
+                            sizeof(tmp->last_contact));
+
                     // Add a copy of this new valid QSO
                     HASH_ADD_STR(data->stations, their_call, tmp);
                     // Set our working QSO to zero
@@ -366,11 +407,21 @@ load_adif_mem(char *buf, size_t buf_len)
                     if (!tmp->confirmed && station->confirmed) {
                         tmp->confirmed = 1;
                     }
+
+                    if (strcmp(date_field, tmp->first_contact) < 0) {
+                        strncpy(tmp->first_contact, date_field,
+                                sizeof(tmp->first_contact));
+                    }
+                    if (strcmp(date_field, tmp->last_contact) > 0) {
+                        strncpy(tmp->last_contact, date_field,
+                                sizeof(tmp->last_contact));
+                    }
                 }
             }
             // Cleanup / reset station for more data
             free_station_strdups(station);
             memset(station, 0, sizeof(*station));
+            memset(date_field, 0, sizeof(date_field));
             break;
         case 1:                // call
             station->their_call = strdup(value);
@@ -397,6 +448,10 @@ load_adif_mem(char *buf, size_t buf_len)
             if (!station->confirmed && (strcasecmp("y", value) == 0)) {
                 station->confirmed = 1;
             }
+            break;
+        case 11:               // qso_date
+            memset(date_field, 0, sizeof(date_field));
+            strncpy(date_field, value, sizeof(date_field) - 1);
             break;
         }
     }

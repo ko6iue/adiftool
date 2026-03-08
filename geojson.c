@@ -155,6 +155,16 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
         json_val(fp, station->country);
         fprintf(fp, ",");
     }
+    if (strlen(station->first_contact) > 0) {
+        json_attr(fp, "first_contact");
+        json_val(fp, station->first_contact);
+        fprintf(fp, ",");
+    }
+    if (strlen(station->last_contact) > 0) {
+        json_attr(fp, "last_contact");
+        json_val(fp, station->last_contact);
+        fprintf(fp, ",");
+    }
     json_attr(fp, "confirmed");
     fprintf(fp, "%s,", station->confirmed ? "true" : "false");
     // call is last because it's required
@@ -199,6 +209,12 @@ write_geojson_grid(adif_grid_t *grid, void *arg, int last_item)
     json_obj_open(fp);          // start properties
     json_attr(fp, "name");
     json_val(fp, grid->name);
+    fprintf(fp, ",");
+    json_attr(fp, "first_contact");
+    json_val(fp, grid->first_contact);
+    fprintf(fp, ",");
+    json_attr(fp, "last_contact");
+    json_val(fp, grid->last_contact);
     fprintf(fp, ",");
     json_attr(fp, "num_qsos");
     fprintf(fp, "%d,", grid->num_qsos);
@@ -302,7 +318,12 @@ write_global_information(FILE *fp, adif_data_t *data)
         json_attr(fp, "total_countries");
         fprintf(fp, "%d,", data->num_countries);
         json_attr(fp, "total_confirmed_countries");
-        fprintf(fp, "%d", data->num_confirmed_countries);
+        fprintf(fp, "%d,", data->num_confirmed_countries);
+        json_attr(fp, "first_contact");
+        json_val(fp, data->first_contact);
+        fprintf(fp, ",");
+        json_attr(fp, "last_contact");
+        json_val(fp, data->last_contact);
     }
     json_obj_close(fp);
     return rval;

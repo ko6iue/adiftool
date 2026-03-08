@@ -139,6 +139,12 @@
               globals.total_confirmed_countries +
               "<br/>"
             : "") +
+          (globals.first_contact
+            ? "<b>Start date:</b> " + globals.first_contact + "<br/>"
+            : "") +
+          (globals.last_contact
+            ? "<b>End date:</b> " + globals.last_contact + "<br/>"
+            : "") +
           "Hover over a station or grid for information.<br/>" +
           "Click on a station to launch its QRZ page.<br/>" +
           "Click on a grid to zoom to it.<br/>"
@@ -155,6 +161,12 @@
         }
         if (props.grid) {
           s += "<b>Grid:</b> " + props.grid + "<br/>";
+        }
+        if (props.first_contact) {
+          s += "<b>First contact:</b> " + props.first_contact + "<br/>";
+        }
+        if (props.last_contact) {
+          s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
         }
         if (props.lat) {
           s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
@@ -211,6 +223,12 @@
           }
           if (props.num_qsos) {
             s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
+          }
+          if (props.first_contact) {
+            s += "<b>First contact:</b> " + props.first_contact + "<br/>";
+          }
+          if (props.last_contact) {
+            s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
           }
           if (props.lat_range) {
             s +=
