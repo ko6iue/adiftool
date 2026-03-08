@@ -122,6 +122,8 @@ free_stations(adif_station_t *stations)
         HASH_ITER(hh, stations, station, tmp) {
             HASH_DEL(stations, station);
             free_station_strdups(station);
+            free_counters(station->bands);
+            free_counters(station->modes);
             free(station);
         }
     }
@@ -332,6 +334,38 @@ strtoupper(char *in)
     return in;
 }
 
+void
+update_named_counter(char *name, adif_counter_t *counter)
+{
+    adif_counter_t *query;
+    if (!name) {
+        return;
+    }
+    HASH_FIND_STR(counter, name, query);
+    if (!query) {
+        query = (adif_counter_t *) malloc(sizeof(*query));
+        query->name = strdup(name);
+        query->count = 1;
+        HASH_ADD_STR(counter, name, query);
+    } else {
+        query->count++;
+    }
+}
+
+void
+free_counters(adif_counter_t *counters)
+{
+    adif_counter_t *counter,
+                   *tmp;
+    if (counters) {
+        HASH_ITER(hh, counters, counter, tmp) {
+            HASH_DEL(counters, counter);
+            free(counter->name);
+            free(counter);
+        }
+    }
+}
+
 #define FIELD_DELIMITER "<"
 #define PAIR_DELIMITER ">"
 #define ATTR_DELIMITER ":"
@@ -433,6 +467,8 @@ load_adif_mem(char *buf, size_t buf_len)
                                 sizeof(query->last_contact));
                     }
                 }
+                update_named_counter(mode_field, query->modes);
+                update_named_counter(band_field, query->bands);
             }
             // Cleanup / reset station for more data
             free_station_strdups(station);

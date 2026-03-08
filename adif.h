@@ -114,5 +114,6 @@ int             walk_grids(adif_grid_t * grids,
 int             print_stations(FILE *, adif_station_t * stations);
 
 void            free_data(adif_data_t * data);
+void            free_counters(adif_counter_t * counter);
 
 #endif
