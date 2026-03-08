@@ -467,15 +467,21 @@ load_adif_mem(char *buf, size_t buf_len)
                                 sizeof(query->last_contact));
                     }
                 }
-                update_named_counters(strtoupper(mode_field),
-                                      &query->modes);
-                update_named_counters(strtoupper(band_field),
-                                      &query->bands);
+                if (strlen(mode_field)) {
+                    update_named_counters(strtoupper(mode_field),
+                                          &query->modes);
+                }
+                if (strlen(band_field)) {
+                    update_named_counters(strtoupper(band_field),
+                                          &query->bands);
+                }
             }
             // Cleanup / reset station for more data
             free_station_strdups(station);
             memset(station, 0, sizeof(*station));
             memset(date_field, 0, sizeof(date_field));
+            memset(mode_field, 0, sizeof(mode_field));
+            memset(band_field, 0, sizeof(band_field));
             break;
         case 1:                // call
             station->their_call = strdup(value);
