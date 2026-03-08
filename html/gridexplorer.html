@@ -159,14 +159,23 @@
         if (props.name) {
           s += "<b>Name:</b> " + props.name + "<br/>";
         }
-        if (props.grid) {
-          s += "<b>Grid:</b> " + props.grid + "<br/>";
+        if (props.QSOs) {
+          s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
         }
         if (props.first_contact) {
           s += "<b>First contact:</b> " + props.first_contact + "<br/>";
         }
         if (props.last_contact) {
           s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
+        }
+        if (props.QTH) {
+          s += "<b>QTH:</b> " + props.QTH + "<br/>";
+        }
+        if (props.grid) {
+          s += "<b>Grid:</b> " + props.grid + "<br/>";
+        }
+        if (props.country) {
+          s += "<b>Country:</b> " + props.country + "<br/>";
         }
         if (props.lat) {
           s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
@@ -182,15 +191,6 @@
         }
         if (props.bearing_rcvd) {
           s += "<b>Bearing rcvd:</b> " + props.bearing_rcvd + "&deg;<br/>";
-        }
-        if (props.QTH) {
-          s += "<b>QTH:</b> " + props.QTH + "<br/>";
-        }
-        if (props.QSOs) {
-          s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
-        }
-        if (props.country) {
-          s += "<b>Country:</b> " + props.country + "<br/>";
         }
         return s;
       }
