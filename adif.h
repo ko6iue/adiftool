@@ -115,5 +115,7 @@ int             print_stations(FILE *, adif_station_t * stations);
 
 void            free_data(adif_data_t * data);
 void            free_counters(adif_counter_t * counter);
+void            merge_named_counters(adif_counter_t ** dst,
+                                     adif_counter_t * src);
 
 #endif

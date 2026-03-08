@@ -137,6 +137,8 @@ free_grids(adif_grid_t *grids)
     if (grids) {
         HASH_ITER(hh, grids, grid, tmp) {
             HASH_DEL(grids, grid);
+            free_counters(grid->bands);
+            free_counters(grid->modes);
             free(grid);
         }
     }
@@ -165,6 +167,8 @@ free_data(adif_data_t *data)
     free_stations(data->stations);
     free_grids(data->grids);
     free_countries(data->countries);
+    free_counters(data->bands);
+    free_counters(data->modes);
     free(data);
 }
 
@@ -228,6 +232,12 @@ build_grid_data(adif_station_t *station, void *arg, int last_item)
         grid->num_confirmed_stations++;
     }
     grid->num_qsos += station->num_qsos;
+    if (station->bands) {
+        merge_named_counters(&grid->bands, station->bands);
+    }
+    if (station->modes) {
+        merge_named_counters(&grid->modes, station->modes);
+    }
     return 0;
 }
 
@@ -335,20 +345,36 @@ strtoupper(char *in)
 }
 
 void
-update_named_counters(adif_counter_t **counters, char *name, int count)
+update_named_counters(adif_counter_t **counters, const char *name,
+                      const int count)
 {
-    adif_counter_t *query;
+    adif_counter_t *query = NULL;
     if (!name || !counters) {
         return;
     }
     HASH_FIND_STR(*counters, name, query);
-    if (!query) {
+    if (query == NULL) {
         query = (adif_counter_t *) malloc(sizeof(*query));
+        printf("%p STRLEN %d %s %d\n", *counters, strlen(name), name, sizeof(*query));
         query->name = strdup(name);
         query->count = count;
         HASH_ADD_STR(*counters, name, query);
+	printf("%p AFTER ADD\n", *counters);
     } else {
+	printf("%p EXISTING %s %s\n", *counters, name, query->name);
         query->count += count;
+    }
+}
+
+void
+merge_named_counters(adif_counter_t **dst, adif_counter_t *src)
+{
+    adif_counter_t *counter,
+                   *tmp;
+    if (dst && src) {
+        HASH_ITER(hh, src, counter, tmp) {
+            update_named_counters(dst, counter->name, counter->count);
+        }
     }
 }
 
@@ -363,6 +389,17 @@ free_counters(adif_counter_t *counters)
             free(counter->name);
             free(counter);
         }
+    }
+}
+
+void
+update_station_mode_band(adif_station_t *station, char *mode_field, char *band_field)
+{
+    if (strlen(mode_field) > 0) {
+        update_named_counters(&station->modes, strtoupper(mode_field), 1);
+    }
+    if (strlen(band_field) > 0) {
+        update_named_counters(&station->bands, strtoupper(band_field), 1);
     }
 }
 
@@ -394,6 +431,10 @@ load_adif_mem(char *buf, size_t buf_len)
     char            date_field[ADIF_DATE_LEN];
     char            band_field[16];
     char            mode_field[16];
+
+    memset(date_field, 0, sizeof(date_field));
+    memset(band_field, 0, sizeof(band_field));
+    memset(mode_field, 0, sizeof(mode_field));
 
     data = (adif_data_t *) malloc(sizeof *data);
     assert(data);
@@ -447,6 +488,8 @@ load_adif_mem(char *buf, size_t buf_len)
                     strncpy(query->last_contact, date_field,
                             sizeof(query->last_contact));
 
+		    update_station_mode_band(query, mode_field, band_field);
+ 
                     // Add a copy of this new valid QSO
                     HASH_ADD_STR(data->stations, their_call, query);
                     // Set our working QSO to zero
@@ -466,14 +509,8 @@ load_adif_mem(char *buf, size_t buf_len)
                         strncpy(query->last_contact, date_field,
                                 sizeof(query->last_contact));
                     }
-                }
-                if (strlen(mode_field)) {
-                    update_named_counters(&query->modes,
-                                          strtoupper(mode_field), 1);
-                }
-                if (strlen(band_field)) {
-                    update_named_counters(&query->bands,
-                                          strtoupper(band_field), 1);
+
+		    update_station_mode_band(query, mode_field, band_field);
                 }
             }
             // Cleanup / reset station for more data
