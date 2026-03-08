@@ -318,6 +318,20 @@ summarize_data(adif_data_t *data)
     build_country_summary_data(data);
 }
 
+char           *
+strtoupper(char *in)
+{
+    char           *str = in;
+    if (!in) {
+        return NULL;
+    }
+    while (*str) {
+        *str = toupper(*str);
+        str++;
+    }
+    return in;
+}
+
 #define FIELD_DELIMITER "<"
 #define PAIR_DELIMITER ">"
 #define ATTR_DELIMITER ":"
@@ -328,7 +342,7 @@ load_adif_mem(char *buf, size_t buf_len)
     (void) buf_len;
     adif_data_t    *data = NULL;
     adif_station_t *station,
-                   *tmp;
+                   *query;
     int             i;
     char
                    *field,
@@ -341,9 +355,11 @@ load_adif_mem(char *buf, size_t buf_len)
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
-        "lotw_qsl_rcvd", "qso_date", NULL
+        "lotw_qsl_rcvd", "qso_date", "mode", "band", NULL
     };
     char            date_field[ADIF_DATE_LEN];
+    char            band_field[16];
+    char            mode_field[16];
 
     data = (adif_data_t *) malloc(sizeof *data);
     assert(data);
@@ -376,8 +392,8 @@ load_adif_mem(char *buf, size_t buf_len)
         case 0:                // EOR
             if (valid_station(station)) {
                 // process this useable QSO record
-                HASH_FIND_STR(data->stations, station->their_call, tmp);
-                if (tmp == NULL) {
+                HASH_FIND_STR(data->stations, station->their_call, query);
+                if (query == NULL) {
                     // Data from a new station
                     station->distance_km =
                         maidenhead_distance_km(&station->my_grid,
@@ -389,32 +405,32 @@ load_adif_mem(char *buf, size_t buf_len)
                         maidenhead_bearing_degrees(&station->their_grid,
                                                    &station->my_grid);
                     station->num_qsos = 1;
-                    tmp = (adif_station_t *) malloc(sizeof(*tmp));
-                    memcpy(tmp, station, sizeof(*station));
+                    query = (adif_station_t *) malloc(sizeof(*query));
+                    memcpy(query, station, sizeof(*station));
 
-                    strncpy(tmp->first_contact, date_field,
-                            sizeof(tmp->first_contact));
-                    strncpy(tmp->last_contact, date_field,
-                            sizeof(tmp->last_contact));
+                    strncpy(query->first_contact, date_field,
+                            sizeof(query->first_contact));
+                    strncpy(query->last_contact, date_field,
+                            sizeof(query->last_contact));
 
                     // Add a copy of this new valid QSO
-                    HASH_ADD_STR(data->stations, their_call, tmp);
+                    HASH_ADD_STR(data->stations, their_call, query);
                     // Set our working QSO to zero
                     memset(station, 0, sizeof(*station));
                 } else {
                     // Data from an existing station
-                    tmp->num_qsos += 1;
-                    if (!tmp->confirmed && station->confirmed) {
-                        tmp->confirmed = 1;
+                    query->num_qsos += 1;
+                    if (!query->confirmed && station->confirmed) {
+                        query->confirmed = 1;
                     }
 
-                    if (strcmp(date_field, tmp->first_contact) < 0) {
-                        strncpy(tmp->first_contact, date_field,
-                                sizeof(tmp->first_contact));
+                    if (strcmp(date_field, query->first_contact) < 0) {
+                        strncpy(query->first_contact, date_field,
+                                sizeof(query->first_contact));
                     }
-                    if (strcmp(date_field, tmp->last_contact) > 0) {
-                        strncpy(tmp->last_contact, date_field,
-                                sizeof(tmp->last_contact));
+                    if (strcmp(date_field, query->last_contact) > 0) {
+                        strncpy(query->last_contact, date_field,
+                                sizeof(query->last_contact));
                     }
                 }
             }
@@ -452,6 +468,14 @@ load_adif_mem(char *buf, size_t buf_len)
         case 11:               // qso_date
             memset(date_field, 0, sizeof(date_field));
             strncpy(date_field, value, sizeof(date_field) - 1);
+            break;
+        case 12:               // mode
+            memset(mode_field, 0, sizeof(mode_field));
+            strncpy(mode_field, value, sizeof(mode_field) - 1);
+            break;
+        case 13:               // band
+            memset(band_field, 0, sizeof(band_field));
+            strncpy(band_field, value, sizeof(band_field) - 1);
             break;
         }
     }

@@ -36,6 +36,12 @@
 #include "maidenhead.h"
 #include "uthash.h"
 
+typedef struct {
+    char           *name;
+    int             count;
+    UT_hash_handle  hh;
+} adif_counter_t;
+
 #define ADIF_DATE_LEN 16
 typedef struct {
     char           *their_call;
@@ -51,6 +57,8 @@ typedef struct {
     int             confirmed;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     UT_hash_handle  hh;
 } adif_station_t;
 
@@ -63,6 +71,8 @@ typedef struct {
     int             num_qsos;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     UT_hash_handle  hh;
 } adif_grid_t;
 
@@ -83,6 +93,8 @@ typedef struct {
     int             num_confirmed_countries;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     adif_grid_t    *grids;
     adif_station_t *stations;
     adif_country_t *countries;
