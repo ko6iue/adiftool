@@ -103,6 +103,37 @@ mh_print_coordinates(FILE *fp, maidenhead_t *mh)
 }
 
 int
+by_count(const adif_counter_t *a, const adif_counter_t *b)
+{
+    return (b->count - a->count);
+}
+
+void
+write_counter_array(FILE *fp, adif_counter_t *counters)
+{
+    adif_counter_t *counter,
+                   *tmp;
+    int             first = 1;
+    if (!fp) {
+        return;
+    }
+    fprintf(fp, "[");
+    if (counters) {
+        HASH_SORT(counters, by_count);
+        HASH_ITER(hh, counters, counter, tmp) {
+            if (first) {
+                first = 0;
+            } else {
+                fprintf(fp, ",");
+            }
+            fprintf(fp, "[\"%s\",%d]", counter->name, counter->count);
+        }
+
+    }
+    fprintf(fp, "]");
+}
+
+int
 write_geojson_station(adif_station_t *station, void *arg, int last_item)
 {
     FILE           *fp = (FILE *) arg;
@@ -163,6 +194,16 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
     if (strlen(station->last_contact) > 0) {
         json_attr(fp, "last_contact");
         json_val(fp, station->last_contact);
+        fprintf(fp, ",");
+    }
+    if (station->bands) {
+        json_attr(fp, "bands");
+        write_counter_array(fp, station->bands);
+        fprintf(fp, ",");
+    }
+    if (station->modes) {
+        json_attr(fp, "modes");
+        write_counter_array(fp, station->modes);
         fprintf(fp, ",");
     }
     json_attr(fp, "confirmed");
