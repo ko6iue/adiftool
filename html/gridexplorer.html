@@ -168,6 +168,20 @@
         if (props.last_contact) {
           s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
         }
+        if (props.modes) {
+          s += "<b>Modes:</b><ul>";
+          props.modes.forEach(function (item, index) {
+            s += "<li>" + item[0] + " (" + item[1] + ")";
+          });
+          s += "</ul>";
+        }
+        if (props.bands) {
+          s += "<b>Bands:</b><ul>";
+          props.bands.forEach(function (item, index) {
+            s += "<li>" + item[0] + " (" + item[1] + ")";
+          });
+          s += "</ul>";
+        }
         if (props.QTH) {
           s += "<b>QTH:</b> " + props.QTH + "<br/>";
         }
