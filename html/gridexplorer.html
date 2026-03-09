@@ -128,9 +128,6 @@
           (globals.total_stations
             ? "<b>Total Stations:</b> " + globals.total_stations + "<br/>"
             : "") +
-          (globals.total_qsos
-            ? "<b>Total QSOs:</b> " + globals.total_qsos + "<br/>"
-            : "") +
           (globals.total_countries
             ? "<b>Countries:</b> " + globals.total_countries + "<br/>"
             : "") +
@@ -145,10 +142,27 @@
           (globals.last_contact
             ? "<b>End date:</b> " + globals.last_contact + "<br/>"
             : "") +
+          (globals.total_qsos
+            ? "<b>Total QSOs:</b> " + globals.total_qsos + "<br/>"
+            : "") +
+          counterHTML("Modes", globals.modes) +
+          counterHTML("Bands", globals.bands) +
           "Hover over a station or grid for information.<br/>" +
           "Click on a station to launch its QRZ page.<br/>" +
           "Click on a grid to zoom to it.<br/>"
         );
+      }
+
+      function counterHTML(name, counter) {
+        let s = "";
+        if (counter) {
+          s += "<b>" + name + ":</b><ul>";
+          counter.forEach(function (item, index) {
+            s += "<li>" + item[0] + " (" + item[1] + ")";
+          });
+          s += "</ul>";
+        }
+        return s;
       }
 
       function stationPropsHTML(props) {
@@ -168,6 +182,8 @@
         if (props.last_contact) {
           s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
         }
+        s += counterHTML("Modes", props.modes);
+        s += counterHTML("Bands", props.bands);
         if (props.QTH) {
           s += "<b>QTH:</b> " + props.QTH + "<br/>";
         }
@@ -224,6 +240,8 @@
           if (props.num_qsos) {
             s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
           }
+          s += counterHTML("Modes", props.modes);
+          s += counterHTML("Bands", props.bands);
           if (props.first_contact) {
             s += "<b>First contact:</b> " + props.first_contact + "<br/>";
           }

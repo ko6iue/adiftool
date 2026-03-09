@@ -6,6 +6,7 @@ maidenhead
 *.wasm
 *.kml
 test-maidenhead
+test-counter
 adi2kml.js
 adiftool.js
 *.adi

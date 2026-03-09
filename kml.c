@@ -133,10 +133,8 @@ print_kml_box(adif_station_t *station, FILE *fp)
 }
 
 int
-print_kml_record(adif_station_t *station, void *arg, int last_item)
+print_kml_record(adif_station_t *station, FILE *fp)
 {
-    (void) last_item;
-    FILE           *fp = (FILE *) arg;
     print_kml_point(station, fp);
     print_kml_box(station, fp);
     return 0;
@@ -145,15 +143,18 @@ print_kml_record(adif_station_t *station, void *arg, int last_item)
 void
 write_kml(FILE *fp, adif_data_t *data)
 {
+    adif_station_t *station,
+                   *tmp;
     if (!data) {
         return;
     }
-    adif_station_t *stations = data->stations;
     fprintf(fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     fprintf(fp,
             "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n<Document>\n");
     fprintf(fp, "<name>KO6IUE ADIF to KML converter</name>\n");
     print_kml_point_style(fp);
-    walk_stations(stations, &print_kml_record, fp);
+    HASH_ITER(hh, data->stations, station, tmp) {
+        print_kml_record(station, fp);
+    }
     fprintf(fp, "</Document>\n</kml>\n");
 }

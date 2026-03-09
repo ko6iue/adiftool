@@ -102,10 +102,48 @@ mh_print_coordinates(FILE *fp, maidenhead_t *mh)
     fprintf(fp, fmt, mh->sw_corner.lon, mh->sw_corner.lat);
 }
 
-int
-write_geojson_station(adif_station_t *station, void *arg, int last_item)
+void
+__write_counter_array(FILE *fp, adif_counter_t *counters)
 {
-    FILE           *fp = (FILE *) arg;
+    adif_counter_t *counter,
+                   *tmp;
+    int             first = 1;
+    if (!fp) {
+        return;
+    }
+    fprintf(fp, "[");
+    if (counters) {
+        HASH_ITER(hh, counters, counter, tmp) {
+            if (first) {
+                first = 0;
+            } else {
+                fprintf(fp, ",");
+            }
+            fprintf(fp, "[\"%s\",%d]", counter->name, counter->count);
+        }
+
+    }
+    fprintf(fp, "]");
+}
+
+void
+__write_bands_modes(FILE *fp, adif_counter_t *bands, adif_counter_t *modes)
+{
+    if (bands) {
+        json_attr(fp, "bands");
+        __write_counter_array(fp, bands);
+        fprintf(fp, ",");
+    }
+    if (modes) {
+        json_attr(fp, "modes");
+        __write_counter_array(fp, modes);
+        fprintf(fp, ",");
+    }
+}
+
+int
+write_geojson_station(adif_station_t *station, FILE *fp, int last_item)
+{
     if (!station) {
         return -1;
     }
@@ -165,6 +203,7 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
         json_val(fp, station->last_contact);
         fprintf(fp, ",");
     }
+    __write_bands_modes(fp, station->bands, station->modes);
     json_attr(fp, "confirmed");
     fprintf(fp, "%s,", station->confirmed ? "true" : "false");
     // call is last because it's required
@@ -192,9 +231,8 @@ write_geojson_station(adif_station_t *station, void *arg, int last_item)
 }
 
 int
-write_geojson_grid(adif_grid_t *grid, void *arg, int last_item)
+write_geojson_grid(adif_grid_t *grid, FILE *fp, int last_item)
 {
-    FILE           *fp = (FILE *) arg;
     maidenhead_t    mh;
     if (!fp || !grid) {
         return -1;
@@ -216,6 +254,7 @@ write_geojson_grid(adif_grid_t *grid, void *arg, int last_item)
     json_attr(fp, "last_contact");
     json_val(fp, grid->last_contact);
     fprintf(fp, ",");
+    __write_bands_modes(fp, grid->bands, grid->modes);
     json_attr(fp, "num_qsos");
     fprintf(fp, "%d,", grid->num_qsos);
     json_attr(fp, "num_stations");
@@ -266,14 +305,18 @@ write_open_featurecollection(FILE *fp, char *name)
 void
 write_station_featurecollection(FILE *fp, adif_data_t *data)
 {
+    adif_station_t *station,
+                   *tmp;
+    int             i;
     if (!data) {
         return;
     }
     write_open_featurecollection(fp, "stations");
     json_attr(fp, "features");
     fprintf(fp, "[");           // open features array
-    if (data->stations) {
-        walk_stations(data->stations, &write_geojson_station, fp);
+    i = HASH_COUNT(data->stations);
+    HASH_ITER(hh, data->stations, station, tmp) {
+        write_geojson_station(station, fp, --i == 0);
     }
     fprintf(fp, "]");           // close features array
     json_obj_close(fp);         // close feature collections
@@ -282,11 +325,15 @@ write_station_featurecollection(FILE *fp, adif_data_t *data)
 void
 write_grid_featurecollection(FILE *fp, adif_data_t *data)
 {
+    adif_grid_t    *grid,
+                   *tmp;
+    int             i;
     write_open_featurecollection(fp, "grids");
     json_attr(fp, "features");
     fprintf(fp, "[");
-    if (data->grids) {
-        walk_grids(data->grids, &write_geojson_grid, fp);
+    i = HASH_COUNT(data->grids);
+    HASH_ITER(hh, data->grids, grid, tmp) {
+        write_geojson_grid(grid, fp, --i == 0);
     }
     fprintf(fp, "]");
     json_obj_close(fp);
@@ -307,6 +354,7 @@ write_global_information(FILE *fp, adif_data_t *data)
     } else {
         json_attr(fp, "success");
         fprintf(fp, "true,");
+        __write_bands_modes(fp, data->bands, data->modes);
         json_attr(fp, "grid_max_qsos");
         fprintf(fp, "%d,", data->grid_max_qsos);
         json_attr(fp, "total_stations");

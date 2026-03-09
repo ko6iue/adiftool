@@ -85,14 +85,14 @@
 <![CDATA[<h1>CHARLES H ALLEN, JR</h1>
 <b><a href="https://www.qrz.com/db/W5RL">QRZ Page</a></b><br/>
 <b>QTH</b>: MESQUITE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM12QT<br/>
 <b>Distance</b>: 2345.5 km<br/>
 <b>Bearing Sent</b>: 98.1&deg;</br>
 <b>Bearing Received</b>: 292.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-96.595245,32.824776,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -112,14 +112,14 @@
 <![CDATA[<h1>Dino Moriello</h1>
 <b><a href="https://www.qrz.com/db/VA6DM">QRZ Page</a></b><br/>
 <b>QTH</b>: Calgary<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO21VA<br/>
 <b>Distance</b>: 1504.5 km<br/>
 <b>Bearing Sent</b>: 20.5&deg;</br>
 <b>Bearing Received</b>: 205.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-114.214661,51.039246,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -139,14 +139,14 @@
 <![CDATA[<h1>Kevin Clements</h1>
 <b><a href="https://www.qrz.com/db/VA6RCN">QRZ Page</a></b><br/>
 <b>QTH</b>: Stony Plain<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO24EH<br/>
 <b>Distance</b>: 1810.6 km<br/>
 <b>Bearing Sent</b>: 12.7&deg;</br>
 <b>Bearing Received</b>: 197.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-115.603920,54.294987,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -166,14 +166,14 @@
 <![CDATA[<h1>Thomas Smith</h1>
 <b><a href="https://www.qrz.com/db/VE6TJS">QRZ Page</a></b><br/>
 <b>QTH</b>: Airdrie<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO31AG<br/>
 <b>Distance</b>: 1537.2 km<br/>
 <b>Bearing Sent</b>: 20.7&deg;</br>
 <b>Bearing Received</b>: 206.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-113.957695,51.252758,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -193,14 +193,14 @@
 <![CDATA[<h1>Jose N. Talens Jr.</h1>
 <b><a href="https://www.qrz.com/db/VE6JNT">QRZ Page</a></b><br/>
 <b>QTH</b>: EDMONTON<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO33GN<br/>
 <b>Distance</b>: 1782.4 km<br/>
 <b>Bearing Sent</b>: 18.0&deg;</br>
 <b>Bearing Received</b>: 204.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-113.430504,53.558949,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -220,14 +220,14 @@
 <![CDATA[<h1>TOBIN L PARKER</h1>
 <b><a href="https://www.qrz.com/db/KB2OBF">QRZ Page</a></b><br/>
 <b>QTH</b>: BEMUS POINT<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 6<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN02HD<br/>
 <b>Distance</b>: 3572.4 km<br/>
 <b>Bearing Sent</b>: 69.9&deg;</br>
 <b>Bearing Received</b>: 278.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle06</styleUrl>
 <Point><coordinates>-79.338539,42.137115,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -247,14 +247,14 @@
 <![CDATA[<h1>Drew Keating</h1>
 <b><a href="https://www.qrz.com/db/VA6DRU">QRZ Page</a></b><br/>
 <b>QTH</b>: Calgary<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 12<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO31AA<br/>
 <b>Distance</b>: 1512.3 km<br/>
 <b>Bearing Sent</b>: 21.1&deg;</br>
 <b>Bearing Received</b>: 206.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle10</styleUrl>
 <Point><coordinates>-113.957596,51.009201,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -274,14 +274,14 @@
 <![CDATA[<h1>James Tan</h1>
 <b><a href="https://www.qrz.com/db/VA7VB">QRZ Page</a></b><br/>
 <b>QTH</b>: Maple Ridge<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: CN89QF<br/>
 <b>Distance</b>: 1188.3 km<br/>
 <b>Bearing Sent</b>: 356.8&deg;</br>
 <b>Bearing Received</b>: 176.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.625664,49.209522,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -301,14 +301,14 @@
 <![CDATA[<h1>James J Curtis</h1>
 <b><a href="https://www.qrz.com/db/N8HAM">QRZ Page</a></b><br/>
 <b>QTH</b>: South Lyon<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN82EL<br/>
 <b>Distance</b>: 3221.0 km<br/>
 <b>Bearing Sent</b>: 69.9&deg;</br>
 <b>Bearing Received</b>: 275.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-83.631363,42.468197,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -328,14 +328,14 @@
 <![CDATA[<h1>Nicholas Robinson</h1>
 <b><a href="https://www.qrz.com/db/NR6TT">QRZ Page</a></b><br/>
 <b>QTH</b>: Davis<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CM98DM<br/>
 <b>Distance</b>: 4.6 km<br/>
 <b>Bearing Sent</b>: 180.0&deg;</br>
 <b>Bearing Received</b>: 0.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-121.688545,38.506676,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -355,14 +355,14 @@
 <![CDATA[<h1>Steven E Rubin</h1>
 <b><a href="https://www.qrz.com/db/AE6CH">QRZ Page</a></b><br/>
 <b>QTH</b>: San Jose<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CM97BI<br/>
 <b>Distance</b>: 135.2 km<br/>
 <b>Bearing Sent</b>: 186.3&deg;</br>
 <b>Bearing Received</b>: 6.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-121.844238,37.335415,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -382,14 +382,14 @@
 <![CDATA[<h1>Gary Wheeler</h1>
 <b><a href="https://www.qrz.com/db/VE6CV">QRZ Page</a></b><br/>
 <b>QTH</b>: LETHBRIDGE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DN39NP<br/>
 <b>Distance</b>: 1417.7 km<br/>
 <b>Bearing Sent</b>: 26.8&deg;</br>
 <b>Bearing Received</b>: 213.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-112.909164,49.639336,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -409,14 +409,14 @@
 <![CDATA[<h1>Kevin MacDonald</h1>
 <b><a href="https://www.qrz.com/db/VE7KVO">QRZ Page</a></b><br/>
 <b>QTH</b>: Burnaby<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: CN89<br/>
 <b>Distance</b>: 1220.5 km<br/>
 <b>Bearing Sent</b>: 355.6&deg;</br>
 <b>Bearing Received</b>: 174.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-123.698563,49.968822,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -436,14 +436,14 @@
 <![CDATA[<h1>Pete Norloff</h1>
 <b><a href="https://www.qrz.com/db/KG4OJT">QRZ Page</a></b><br/>
 <b>QTH</b>: Oakton<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM18IV<br/>
 <b>Distance</b>: 3814.0 km<br/>
 <b>Bearing Sent</b>: 75.1&deg;</br>
 <b>Bearing Received</b>: 283.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-77.260284,38.888783,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -463,14 +463,14 @@
 <![CDATA[<h1>Don MacLeod</h1>
 <b><a href="https://www.qrz.com/db/VA7KOC">QRZ Page</a></b><br/>
 <b>QTH</b>: Victoria<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: CN88FJ<br/>
 <b>Distance</b>: 1103.3 km<br/>
 <b>Bearing Sent</b>: 352.9&deg;</br>
 <b>Bearing Received</b>: 171.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-123.554573,48.407341,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -490,14 +490,14 @@
 <![CDATA[<h1>DELBERT J MC CORD</h1>
 <b><a href="https://www.qrz.com/db/K8OCN">QRZ Page</a></b><br/>
 <b>QTH</b>: MOUNT MORRIS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN83DC77<br/>
 <b>Distance</b>: 3210.2 km<br/>
 <b>Bearing Sent</b>: 68.6&deg;</br>
 <b>Bearing Received</b>: 274.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-83.688332,43.113647,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -868,14 +868,14 @@
 <![CDATA[<h1>Edgar PeA+-a</h1>
 <b><a href="https://www.qrz.com/db/XE2SSB">QRZ Page</a></b><br/>
 <b>QTH</b>: San Buenaventura Coahuila<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: Mexico<br/>
 <b>Grid</b>: DL97FB<br/>
 <b>Distance</b>: 2269.2 km<br/>
 <b>Bearing Sent</b>: 118.3&deg;</br>
 <b>Bearing Received</b>: 309.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-101.541580,27.053852,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -895,14 +895,14 @@
 <![CDATA[<h1>TIMOTHY J TILLEMAN</h1>
 <b><a href="https://www.qrz.com/db/NL8F">QRZ Page</a></b><br/>
 <b>QTH</b>: Dutch Harbor<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 15<br/>
 <b>Country</b>: Alaska<br/>
 <b>Grid</b>: AO63RU<br/>
 <b>Distance</b>: 3764.4 km<br/>
 <b>Bearing Sent</b>: 311.7&deg;</br>
 <b>Bearing Received</b>: 98.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle10</styleUrl>
 <Point><coordinates>-166.541626,53.869038,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -922,14 +922,14 @@
 <![CDATA[<h1>Anthony G Molnar</h1>
 <b><a href="https://www.qrz.com/db/KB0NG">QRZ Page</a></b><br/>
 <b>QTH</b>: Rexford<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN28JX06<br/>
 <b>Distance</b>: 1268.7 km<br/>
 <b>Bearing Sent</b>: 21.9&deg;</br>
 <b>Bearing Received</b>: 206.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-115.249931,48.986115,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1003,14 +1003,14 @@
 <![CDATA[<h1>YOSHIHISA HATTORI</h1>
 <b><a href="https://www.qrz.com/db/JO1LVZ">QRZ Page</a></b><br/>
 <b>QTH</b>: Tokorozawa, Saitama<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95RT60<br/>
 <b>Distance</b>: 8283.4 km<br/>
 <b>Bearing Sent</b>: 303.7&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.471909,35.792095,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1219,14 +1219,14 @@
 <![CDATA[<h1>Tihomir Sokcevic</h1>
 <b><a href="https://www.qrz.com/db/CE3TSK">QRZ Page</a></b><br/>
 <b>QTH</b>: Santiago<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Chile<br/>
 <b>Grid</b>: FF46QP<br/>
 <b>Distance</b>: 9576.8 km<br/>
 <b>Bearing Sent</b>: 139.4&deg;</br>
 <b>Bearing Received</b>: 322.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-70.606049,-33.345551,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1381,14 +1381,14 @@
 <![CDATA[<h1>Charles L Mills</h1>
 <b><a href="https://www.qrz.com/db/W3YNI">QRZ Page</a></b><br/>
 <b>QTH</b>: Irwin<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN00DH39<br/>
 <b>Distance</b>: 3576.7 km<br/>
 <b>Bearing Sent</b>: 73.3&deg;</br>
 <b>Bearing Received</b>: 280.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-79.719246,40.330372,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1408,14 +1408,14 @@
 <![CDATA[<h1>Yoshihiro Nakamura</h1>
 <b><a href="https://www.qrz.com/db/JA2KVB">QRZ Page</a></b><br/>
 <b>QTH</b>: Yaizu-City, Shizuoka<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM94DU<br/>
 <b>Distance</b>: 8431.7 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 52.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>138.293091,34.859768,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1435,14 +1435,14 @@
 <![CDATA[<h1>Pablo Rodriguez</h1>
 <b><a href="https://www.qrz.com/db/K5PYT">QRZ Page</a></b><br/>
 <b>QTH</b>: San Antonio<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EL09SQ16<br/>
 <b>Distance</b>: 2345.0 km<br/>
 <b>Bearing Sent</b>: 107.9&deg;</br>
 <b>Bearing Received</b>: 301.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-98.485283,29.694880,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1462,14 +1462,14 @@
 <![CDATA[<h1>Teddy D Boyd</h1>
 <b><a href="https://www.qrz.com/db/WA4TED">QRZ Page</a></b><br/>
 <b>QTH</b>: McMinnville<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM75DQ<br/>
 <b>Distance</b>: 3187.3 km<br/>
 <b>Bearing Sent</b>: 84.4&deg;</br>
 <b>Bearing Received</b>: 286.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-85.708725,35.691677,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1516,14 +1516,14 @@
 <![CDATA[<h1>Kui Yang</h1>
 <b><a href="https://www.qrz.com/db/BI4KVT">QRZ Page</a></b><br/>
 <b>QTH</b>: a+-+-a,?c??i 1/4 ?aeu?a??a,?i 1/4 ?a$?(c)ae!Y=a?<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: OM86LQ<br/>
 <b>Distance</b>: 9712.1 km<br/>
 <b>Bearing Sent</b>: 316.7&deg;</br>
 <b>Bearing Received</b>: 42.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>116.932907,36.707561,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1543,14 +1543,14 @@
 <![CDATA[<h1>Masahiro Tamura</h1>
 <b><a href="https://www.qrz.com/db/JH7APL">QRZ Page</a></b><br/>
 <b>QTH</b>: Sendai-city, Miyagi,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM08KF<br/>
 <b>Distance</b>: 8023.2 km<br/>
 <b>Bearing Sent</b>: 305.1&deg;</br>
 <b>Bearing Received</b>: 54.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.886749,38.248474,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1570,14 +1570,14 @@
 <![CDATA[<h1>Michael G Beck</h1>
 <b><a href="https://www.qrz.com/db/KE6JNO">QRZ Page</a></b><br/>
 <b>QTH</b>: Midvale<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN40BO<br/>
 <b>Distance</b>: 872.2 km<br/>
 <b>Bearing Sent</b>: 71.8&deg;</br>
 <b>Bearing Received</b>: 258.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-111.872749,40.622295,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1597,14 +1597,14 @@
 <![CDATA[<h1>Clint L Miles</h1>
 <b><a href="https://www.qrz.com/db/KE7V">QRZ Page</a></b><br/>
 <b>QTH</b>: Litchfield Park<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM33SL<br/>
 <b>Distance</b>: 1004.9 km<br/>
 <b>Bearing Sent</b>: 121.4&deg;</br>
 <b>Bearing Received</b>: 306.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-112.429619,33.494461,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1678,14 +1678,14 @@
 <![CDATA[<h1>MAURICE E AUSTIN</h1>
 <b><a href="https://www.qrz.com/db/N7NHS">QRZ Page</a></b><br/>
 <b>QTH</b>: MISSOULA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN36BU<br/>
 <b>Distance</b>: 1121.1 km<br/>
 <b>Bearing Sent</b>: 32.2&deg;</br>
 <b>Bearing Received</b>: 217.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-113.893105,46.858730,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1732,14 +1732,14 @@
 <![CDATA[<h1>Jose M Pantaleon</h1>
 <b><a href="https://www.qrz.com/db/K6HZR">QRZ Page</a></b><br/>
 <b>QTH</b>: LA VERNE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM14CC<br/>
 <b>Distance</b>: 607.2 km<br/>
 <b>Bearing Sent</b>: 143.5&deg;</br>
 <b>Bearing Received</b>: 325.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-117.793625,34.116947,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1759,14 +1759,14 @@
 <![CDATA[<h1>Sean J Hartley</h1>
 <b><a href="https://www.qrz.com/db/AI7EQ">QRZ Page</a></b><br/>
 <b>QTH</b>: Crooked River Ranch<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN94IK<br/>
 <b>Distance</b>: 654.2 km<br/>
 <b>Bearing Sent</b>: 2.9&deg;</br>
 <b>Bearing Received</b>: 183.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-121.274094,44.445518,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1813,14 +1813,14 @@
 <![CDATA[<h1>TIM J ANNABLE</h1>
 <b><a href="https://www.qrz.com/db/WW8L">QRZ Page</a></b><br/>
 <b>QTH</b>: Windsor<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN70ML86<br/>
 <b>Distance</b>: 1452.7 km<br/>
 <b>Bearing Sent</b>: 76.2&deg;</br>
 <b>Bearing Received</b>: 267.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-104.925346,40.486073,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1840,14 +1840,14 @@
 <![CDATA[<h1>EDWARD J "Ed" KUEBERT</h1>
 <b><a href="https://www.qrz.com/db/K5EK">QRZ Page</a></b><br/>
 <b>QTH</b>: Southport<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM03WW<br/>
 <b>Distance</b>: 3905.3 km<br/>
 <b>Bearing Sent</b>: 83.8&deg;</br>
 <b>Bearing Received</b>: 290.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-78.092789,33.941360,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1867,14 +1867,14 @@
 <![CDATA[<h1>Wayne R Michael</h1>
 <b><a href="https://www.qrz.com/db/AC9HP">QRZ Page</a></b><br/>
 <b>QTH</b>: Indianapolis<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM69TS<br/>
 <b>Distance</b>: 3029.3 km<br/>
 <b>Bearing Sent</b>: 76.2&deg;</br>
 <b>Bearing Received</b>: 278.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-86.369209,39.755920,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -1894,14 +1894,14 @@
 <![CDATA[<h1>John A "Andy" Van Tol</h1>
 <b><a href="https://www.qrz.com/db/WM8Q">QRZ Page</a></b><br/>
 <b>QTH</b>: Saratoga<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN61OK<br/>
 <b>Distance</b>: 1308.4 km<br/>
 <b>Bearing Sent</b>: 71.1&deg;</br>
 <b>Bearing Received</b>: 260.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-106.791924,41.430252,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2056,14 +2056,14 @@
 <![CDATA[<h1>Michael J Young</h1>
 <b><a href="https://www.qrz.com/db/KJ7BFE">QRZ Page</a></b><br/>
 <b>QTH</b>: Friday Harbor<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN88LM<br/>
 <b>Distance</b>: 1117.1 km<br/>
 <b>Bearing Sent</b>: 354.9&deg;</br>
 <b>Bearing Received</b>: 174.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-123.047600,48.527283,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2110,14 +2110,14 @@
 <![CDATA[<h1>MATTHEW N ANDERSON</h1>
 <b><a href="https://www.qrz.com/db/KA0BOJ">QRZ Page</a></b><br/>
 <b>QTH</b>: RAYMOND<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN10NW<br/>
 <b>Distance</b>: 2133.3 km<br/>
 <b>Bearing Sent</b>: 74.9&deg;</br>
 <b>Bearing Received</b>: 270.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-96.882729,40.935062,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2351,14 +2351,14 @@
 <![CDATA[<h1>Hirotaka "nabe" Watanabe</h1>
 <b><a href="https://www.qrz.com/db/JH1DSX">QRZ Page</a></b><br/>
 <b>QTH</b>: TACHIKAWA-CITY, TOKYO,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95RR<br/>
 <b>Distance</b>: 8291.2 km<br/>
 <b>Bearing Sent</b>: 303.7&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.453659,35.731304,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2459,14 +2459,14 @@
 <![CDATA[<h1>JUNJI FUJIWARA</h1>
 <b><a href="https://www.qrz.com/db/JG4AKL">QRZ Page</a></b><br/>
 <b>QTH</b>: KURASHIKI,OKAYAMA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM64UM<br/>
 <b>Distance</b>: 8785.5 km<br/>
 <b>Bearing Sent</b>: 305.7&deg;</br>
 <b>Bearing Received</b>: 50.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>133.725296,34.516068,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2540,14 +2540,14 @@
 <![CDATA[<h1>STEVEN R STEPHENS</h1>
 <b><a href="https://www.qrz.com/db/N5UG">QRZ Page</a></b><br/>
 <b>QTH</b>: Bartlesville<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM16XQ<br/>
 <b>Distance</b>: 2262.9 km<br/>
 <b>Bearing Sent</b>: 87.2&deg;</br>
 <b>Bearing Received</b>: 283.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-96.006813,36.688484,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2567,14 +2567,14 @@
 <![CDATA[<h1>Wirzamrisal "wir" Bahnur</h1>
 <b><a href="https://www.qrz.com/db/YB5WIR">QRZ Page</a></b><br/>
 <b>QTH</b>: Umbansari , Rumbai, Pekanbaru - Riau<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: Indonesia<br/>
 <b>Grid</b>: OJ00RN<br/>
 <b>Distance</b>: 13829.1 km<br/>
 <b>Bearing Sent</b>: 304.0&deg;</br>
 <b>Bearing Received</b>: 40.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>101.438080,0.581340,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2594,14 +2594,14 @@
 <![CDATA[<h1>Denis Grisak</h1>
 <b><a href="https://www.qrz.com/db/K0TX">QRZ Page</a></b><br/>
 <b>QTH</b>: Grand Junction<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM59QC<br/>
 <b>Distance</b>: 1134.5 km<br/>
 <b>Bearing Sent</b>: 82.6&deg;</br>
 <b>Bearing Received</b>: 270.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-108.632401,39.084152,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2621,14 +2621,14 @@
 <![CDATA[<h1>Jason Daniels</h1>
 <b><a href="https://www.qrz.com/db/VK2LAW">QRZ Page</a></b><br/>
 <b>QTH</b>: New South Wales<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 6<br/>
 <b>Country</b>: Australia<br/>
 <b>Grid</b>: QF56NB<br/>
 <b>Distance</b>: 12053.3 km<br/>
 <b>Bearing Sent</b>: 240.8&deg;</br>
 <b>Bearing Received</b>: 55.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle06</styleUrl>
 <Point><coordinates>151.131195,-33.932938,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2729,14 +2729,14 @@
 <![CDATA[<h1>JOSEPH H OATES, JR</h1>
 <b><a href="https://www.qrz.com/db/WO8J">QRZ Page</a></b><br/>
 <b>QTH</b>: BELLEVUE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN87WP<br/>
 <b>Distance</b>: 1015.2 km<br/>
 <b>Bearing Sent</b>: 358.2&deg;</br>
 <b>Bearing Received</b>: 177.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.098183,47.635674,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2783,14 +2783,14 @@
 <![CDATA[<h1>DAVID C WANG, MD</h1>
 <b><a href="https://www.qrz.com/db/N8BMA">QRZ Page</a></b><br/>
 <b>QTH</b>: Sheridan<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN64MQ<br/>
 <b>Distance</b>: 1402.0 km<br/>
 <b>Bearing Sent</b>: 56.0&deg;</br>
 <b>Bearing Received</b>: 245.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-106.970787,44.697353,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2810,14 +2810,14 @@
 <![CDATA[<h1>RICHARD D NELSON</h1>
 <b><a href="https://www.qrz.com/db/WH6S">QRZ Page</a></b><br/>
 <b>QTH</b>: KEKAHA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Hawaii<br/>
 <b>Grid</b>: BL01DX<br/>
 <b>Distance</b>: 4048.4 km<br/>
 <b>Bearing Sent</b>: 254.1&deg;</br>
 <b>Bearing Received</b>: 54.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-159.727875,21.974262,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2837,14 +2837,14 @@
 <![CDATA[<h1>MICHAEL C STANDON</h1>
 <b><a href="https://www.qrz.com/db/N7PMS">QRZ Page</a></b><br/>
 <b>QTH</b>: COLUMBIA FALLS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN28WI<br/>
 <b>Distance</b>: 1251.7 km<br/>
 <b>Bearing Sent</b>: 26.7&deg;</br>
 <b>Bearing Received</b>: 211.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-114.135193,48.374851,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -2972,14 +2972,14 @@
 <![CDATA[<h1>N6F: Fire Prevention Week SES - Station Owner K6QC</h1>
 <b><a href="https://www.qrz.com/db/N6F">QRZ Page</a></b><br/>
 <b>QTH</b>: Parsippany<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN90TS<br/>
 <b>Distance</b>: 275.0 km<br/>
 <b>Bearing Sent</b>: 24.1&deg;</br>
 <b>Bearing Received</b>: 205.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-120.349342,40.773407,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3107,14 +3107,14 @@
 <![CDATA[<h1>jerald l slama</h1>
 <b><a href="https://www.qrz.com/db/HS0ZOY">QRZ Page</a></b><br/>
 <b>QTH</b>: prakhon chai, Buriram<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Thailand<br/>
 <b>Grid</b>: OK14MQ<br/>
 <b>Distance</b>: 12488.0 km<br/>
 <b>Bearing Sent</b>: 312.6&deg;</br>
 <b>Bearing Received</b>: 36.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>103.026443,14.693445,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3161,14 +3161,14 @@
 <![CDATA[<h1>LESTER C "JR" FREY, JR</h1>
 <b><a href="https://www.qrz.com/db/KK7OIW">QRZ Page</a></b><br/>
 <b>QTH</b>: TUCSON<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM42PE<br/>
 <b>Distance</b>: 1219.7 km<br/>
 <b>Bearing Sent</b>: 121.9&deg;</br>
 <b>Bearing Received</b>: 308.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-110.717865,32.190197,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3215,14 +3215,14 @@
 <![CDATA[<h1>EDWIN R WALRAVEN</h1>
 <b><a href="https://www.qrz.com/db/KM4IOA">QRZ Page</a></b><br/>
 <b>QTH</b>: SUGAR VALLEY<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM42<br/>
 <b>Distance</b>: 1176.7 km<br/>
 <b>Bearing Sent</b>: 121.4&deg;</br>
 <b>Bearing Received</b>: 307.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-110.883667,32.315754,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3269,14 +3269,14 @@
 <![CDATA[<h1>LELAND D "Lee" BUNCH</h1>
 <b><a href="https://www.qrz.com/db/WB7CYO">QRZ Page</a></b><br/>
 <b>QTH</b>: TWIN FALLS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN22SO<br/>
 <b>Distance</b>: 761.9 km<br/>
 <b>Bearing Sent</b>: 51.1&deg;</br>
 <b>Bearing Received</b>: 235.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-114.445076,42.605103,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3296,14 +3296,14 @@
 <![CDATA[<h1>JOHN A MARDOCK</h1>
 <b><a href="https://www.qrz.com/db/KR0P">QRZ Page</a></b><br/>
 <b>QTH</b>: Firth<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN10RM<br/>
 <b>Distance</b>: 2162.7 km<br/>
 <b>Bearing Sent</b>: 76.1&deg;</br>
 <b>Bearing Received</b>: 272.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-96.555946,40.513569,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3350,14 +3350,14 @@
 <![CDATA[<h1>HAROLD R "DUTCH" GRUSE, JR</h1>
 <b><a href="https://www.qrz.com/db/KY0R">QRZ Page</a></b><br/>
 <b>QTH</b>: PUEBLO<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM78PF<br/>
 <b>Distance</b>: 1480.2 km<br/>
 <b>Bearing Sent</b>: 85.9&deg;</br>
 <b>Bearing Received</b>: 276.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-104.730774,38.216820,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3485,14 +3485,14 @@
 <![CDATA[<h1>Mikalai Makeichyk</h1>
 <b><a href="https://www.qrz.com/db/D2UY">QRZ Page</a></b><br/>
 <b>QTH</b>: Cabinda<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Angola<br/>
 <b>Grid</b>: JI64CK<br/>
 <b>Distance</b>: 14111.1 km<br/>
 <b>Bearing Sent</b>: 63.7&deg;</br>
 <b>Bearing Received</b>: 315.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>12.228860,-5.559037,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3593,14 +3593,14 @@
 <![CDATA[<h1>Donald G Shaffer</h1>
 <b><a href="https://www.qrz.com/db/AC8RJ">QRZ Page</a></b><br/>
 <b>QTH</b>: Athens<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM89WG<br/>
 <b>Distance</b>: 3399.0 km<br/>
 <b>Bearing Sent</b>: 75.9&deg;</br>
 <b>Bearing Received</b>: 281.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-82.159164,39.258659,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3728,14 +3728,14 @@
 <![CDATA[<h1>MICHAEL T CORBETT</h1>
 <b><a href="https://www.qrz.com/db/N9MC">QRZ Page</a></b><br/>
 <b>QTH</b>: Lake City<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM80QE<br/>
 <b>Distance</b>: 3676.0 km<br/>
 <b>Bearing Sent</b>: 92.6&deg;</br>
 <b>Bearing Received</b>: 295.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-82.620682,30.169952,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3755,14 +3755,14 @@
 <![CDATA[<h1>A Ogura</h1>
 <b><a href="https://www.qrz.com/db/JA3FQO">QRZ Page</a></b><br/>
 <b>QTH</b>: sennan city osaka<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74PI<br/>
 <b>Distance</b>: 8684.7 km<br/>
 <b>Bearing Sent</b>: 304.7&deg;</br>
 <b>Bearing Received</b>: 51.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>135.323212,34.357468,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3782,14 +3782,14 @@
 <![CDATA[<h1>YOSHIKUNI SATO</h1>
 <b><a href="https://www.qrz.com/db/JR8AMF">QRZ Page</a></b><br/>
 <b>QTH</b>: KITA-KU,SAPPORO-CITY 002-0858<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN03QD<br/>
 <b>Distance</b>: 7680.7 km<br/>
 <b>Bearing Sent</b>: 309.2&deg;</br>
 <b>Bearing Received</b>: 56.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>141.394882,43.126904,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -3809,14 +3809,14 @@
 <![CDATA[<h1>MICHAEL D DAY</h1>
 <b><a href="https://www.qrz.com/db/KF9UG">QRZ Page</a></b><br/>
 <b>QTH</b>: Auburn<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN71LH<br/>
 <b>Distance</b>: 3119.1 km<br/>
 <b>Bearing Sent</b>: 72.5&deg;</br>
 <b>Bearing Received</b>: 276.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-85.020355,41.315140,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4023,14 +4023,14 @@
 <![CDATA[<h1>GENE I GELLER</h1>
 <b><a href="https://www.qrz.com/db/K0VN">QRZ Page</a></b><br/>
 <b>QTH</b>: Scottsdale<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM43BO<br/>
 <b>Distance</b>: 1038.4 km<br/>
 <b>Bearing Sent</b>: 118.8&deg;</br>
 <b>Bearing Received</b>: 304.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-111.898949,33.602566,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4050,14 +4050,14 @@
 <![CDATA[<h1>Isao Tozuka</h1>
 <b><a href="https://www.qrz.com/db/JG1IPZ">QRZ Page</a></b><br/>
 <b>QTH</b>: Isesaki-city, Gunma,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM96OG<br/>
 <b>Distance</b>: 8273.2 km<br/>
 <b>Bearing Sent</b>: 304.3&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.200180,36.273727,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4077,14 +4077,14 @@
 <![CDATA[<h1>Eric S Martin</h1>
 <b><a href="https://www.qrz.com/db/KK7LRD">QRZ Page</a></b><br/>
 <b>QTH</b>: Casper<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN62UU<br/>
 <b>Distance</b>: 1383.8 km<br/>
 <b>Bearing Sent</b>: 64.7&deg;</br>
 <b>Bearing Received</b>: 254.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-106.266319,42.836540,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4266,14 +4266,14 @@
 <![CDATA[<h1>Dan S Kissel</h1>
 <b><a href="https://www.qrz.com/db/KC9DK">QRZ Page</a></b><br/>
 <b>QTH</b>: Evansville<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM68EB<br/>
 <b>Distance</b>: 2957.8 km<br/>
 <b>Bearing Sent</b>: 80.2&deg;</br>
 <b>Bearing Received</b>: 281.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-87.592575,38.062000,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4293,14 +4293,14 @@
 <![CDATA[<h1>David P Accardi</h1>
 <b><a href="https://www.qrz.com/db/KC2HFQ">QRZ Page</a></b><br/>
 <b>QTH</b>: West Seneca<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN02OU<br/>
 <b>Distance</b>: 3611.0 km<br/>
 <b>Bearing Sent</b>: 68.4&deg;</br>
 <b>Bearing Received</b>: 277.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-78.767982,42.851688,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4320,14 +4320,14 @@
 <![CDATA[<h1>Gary L Johnson</h1>
 <b><a href="https://www.qrz.com/db/WY0V">QRZ Page</a></b><br/>
 <b>QTH</b>: SIOUX CITY<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN12SM<br/>
 <b>Distance</b>: 2170.0 km<br/>
 <b>Bearing Sent</b>: 70.2&deg;</br>
 <b>Bearing Received</b>: 266.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-96.418106,42.510262,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4374,14 +4374,14 @@
 <![CDATA[<h1>Dr. Andre T. Scholz</h1>
 <b><a href="https://www.qrz.com/db/V31DL">QRZ Page</a></b><br/>
 <b>QTH</b>: Belmopan<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Belize<br/>
 <b>Grid</b>: EK57NF<br/>
 <b>Distance</b>: 3966.6 km<br/>
 <b>Bearing Sent</b>: 117.4&deg;</br>
 <b>Bearing Received</b>: 313.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-88.898674,17.224010,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4428,14 +4428,14 @@
 <![CDATA[<h1>Brendan F O'Connor</h1>
 <b><a href="https://www.qrz.com/db/K3QB">QRZ Page</a></b><br/>
 <b>QTH</b>: Seattle<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN87UM<br/>
 <b>Distance</b>: 997.2 km<br/>
 <b>Bearing Sent</b>: 357.5&deg;</br>
 <b>Bearing Received</b>: 177.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.264435,47.528763,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4536,14 +4536,14 @@
 <![CDATA[<h1>LUIS SEGURA</h1>
 <b><a href="https://www.qrz.com/db/EA1A">QRZ Page</a></b><br/>
 <b>QTH</b>: 39360 AVIOS - CANTABRIA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Spain<br/>
 <b>Grid</b>: IN73<br/>
 <b>Distance</b>: 8895.7 km<br/>
 <b>Bearing Sent</b>: 41.1&deg;</br>
 <b>Bearing Received</b>: 314.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-5.831600,43.029087,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4563,14 +4563,14 @@
 <![CDATA[<h1>ROBERT M ANDERSON</h1>
 <b><a href="https://www.qrz.com/db/W0OVX">QRZ Page</a></b><br/>
 <b>QTH</b>: MINOT<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 10<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN98KC<br/>
 <b>Distance</b>: 1967.5 km<br/>
 <b>Bearing Sent</b>: 50.6&deg;</br>
 <b>Bearing Received</b>: 244.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle10</styleUrl>
 <Point><coordinates>-101.094368,48.107670,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4941,14 +4941,14 @@
 <![CDATA[<h1>Ryan Huggins</h1>
 <b><a href="https://www.qrz.com/db/KI6BTY">QRZ Page</a></b><br/>
 <b>QTH</b>: Thousand Oaks<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM04<br/>
 <b>Distance</b>: 512.4 km<br/>
 <b>Bearing Sent</b>: 151.0&deg;</br>
 <b>Bearing Received</b>: 332.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-119.457779,34.267460,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -4995,14 +4995,14 @@
 <![CDATA[<h1>Marc Couture</h1>
 <b><a href="https://www.qrz.com/db/VE2CKW">QRZ Page</a></b><br/>
 <b>QTH</b>: sabrevois<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN35JE29<br/>
 <b>Distance</b>: 4018.7 km<br/>
 <b>Bearing Sent</b>: 63.4&deg;</br>
 <b>Bearing Received</b>: 276.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-73.232208,45.204418,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5022,14 +5022,14 @@
 <![CDATA[<h1>Michael A Abbey</h1>
 <b><a href="https://www.qrz.com/db/KC2NJ">QRZ Page</a></b><br/>
 <b>QTH</b>: Short Hills<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN20US<br/>
 <b>Distance</b>: 4016.4 km<br/>
 <b>Bearing Sent</b>: 71.1&deg;</br>
 <b>Bearing Received</b>: 282.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-74.292946,40.760170,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5049,14 +5049,14 @@
 <![CDATA[<h1>RICHARD C LARSON</h1>
 <b><a href="https://www.qrz.com/db/KD0XD">QRZ Page</a></b><br/>
 <b>QTH</b>: SIOUX CITY<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN12<br/>
 <b>Distance</b>: 2125.6 km<br/>
 <b>Bearing Sent</b>: 70.2&deg;</br>
 <b>Bearing Received</b>: 266.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-96.144524,42.097675,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5103,14 +5103,14 @@
 <![CDATA[<h1>Lori J Feister</h1>
 <b><a href="https://www.qrz.com/db/KO4YIN">QRZ Page</a></b><br/>
 <b>QTH</b>: Apache-Sitgreaves National Forest<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM44QJ<br/>
 <b>Distance</b>: 1092.9 km<br/>
 <b>Bearing Sent</b>: 111.7&deg;</br>
 <b>Bearing Received</b>: 298.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-110.619095,34.388256,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5130,14 +5130,14 @@
 <![CDATA[<h1>TOMMY D MCCURRY</h1>
 <b><a href="https://www.qrz.com/db/KT4DM">QRZ Page</a></b><br/>
 <b>QTH</b>: FISHERVILLE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM78GE<br/>
 <b>Distance</b>: 3139.5 km<br/>
 <b>Bearing Sent</b>: 79.2&deg;</br>
 <b>Bearing Received</b>: 282.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-85.432838,38.173977,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5157,14 +5157,14 @@
 <![CDATA[<h1>Igor Dorovskoy</h1>
 <b><a href="https://www.qrz.com/db/K7CTV">QRZ Page</a></b><br/>
 <b>QTH</b>: Tucson<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM42NL<br/>
 <b>Distance</b>: 1189.8 km<br/>
 <b>Bearing Sent</b>: 121.4&deg;</br>
 <b>Bearing Received</b>: 307.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-110.889320,32.497074,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5211,14 +5211,14 @@
 <![CDATA[<h1>William G Meyerchak</h1>
 <b><a href="https://www.qrz.com/db/KK6MYO">QRZ Page</a></b><br/>
 <b>QTH</b>: HGHLNDS RANCH<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM79MM<br/>
 <b>Distance</b>: 1448.4 km<br/>
 <b>Bearing Sent</b>: 80.5&deg;</br>
 <b>Bearing Received</b>: 271.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-104.941635,39.521999,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5346,14 +5346,14 @@
 <![CDATA[<h1>JAMES T "Jim" ROBSON</h1>
 <b><a href="https://www.qrz.com/db/W3FAW">QRZ Page</a></b><br/>
 <b>QTH</b>: Muskogee<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM25HR<br/>
 <b>Distance</b>: 2347.0 km<br/>
 <b>Bearing Sent</b>: 89.5&deg;</br>
 <b>Bearing Received</b>: 285.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-95.387863,35.726917,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5373,14 +5373,14 @@
 <![CDATA[<h1>MICHAEL D SMITH</h1>
 <b><a href="https://www.qrz.com/db/AB6OS">QRZ Page</a></b><br/>
 <b>QTH</b>: ONTARIO<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM14FA<br/>
 <b>Distance</b>: 627.9 km<br/>
 <b>Bearing Sent</b>: 142.3&deg;</br>
 <b>Bearing Received</b>: 324.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-117.571991,34.020302,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5400,14 +5400,14 @@
 <![CDATA[<h1>JIM MATSUMOTO</h1>
 <b><a href="https://www.qrz.com/db/JR3NZC">QRZ Page</a></b><br/>
 <b>QTH</b>: IKOMA CITY NARA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 7<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74<br/>
 <b>Distance</b>: 8692.7 km<br/>
 <b>Bearing Sent</b>: 305.0&deg;</br>
 <b>Bearing Received</b>: 51.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle07</styleUrl>
 <Point><coordinates>134.696976,34.773746,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5535,14 +5535,14 @@
 <![CDATA[<h1>Paul Giffin</h1>
 <b><a href="https://www.qrz.com/db/VA7MPG">QRZ Page</a></b><br/>
 <b>QTH</b>: GABRIOLA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: CN89CE<br/>
 <b>Distance</b>: 1193.1 km<br/>
 <b>Bearing Sent</b>: 352.7&deg;</br>
 <b>Bearing Received</b>: 171.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-123.795700,49.201637,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -5913,14 +5913,14 @@
 <![CDATA[<h1>Thomas L "Tom" Hayes</h1>
 <b><a href="https://www.qrz.com/db/AC7WY">QRZ Page</a></b><br/>
 <b>QTH</b>: RAWLINS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN61<br/>
 <b>Distance</b>: 1292.4 km<br/>
 <b>Bearing Sent</b>: 70.7&deg;</br>
 <b>Bearing Received</b>: 260.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-107.193733,41.282650,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6399,14 +6399,14 @@
 <![CDATA[<h1>Masami (Massy) Tamaki</h1>
 <b><a href="https://www.qrz.com/db/JR2PEB">QRZ Page</a></b><br/>
 <b>QTH</b>: Iga City Mie<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM84AS<br/>
 <b>Distance</b>: 8602.1 km<br/>
 <b>Bearing Sent</b>: 304.6&deg;</br>
 <b>Bearing Received</b>: 51.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>136.020599,34.751499,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6480,14 +6480,14 @@
 <![CDATA[<h1>AARON D HAMM</h1>
 <b><a href="https://www.qrz.com/db/AD9GE">QRZ Page</a></b><br/>
 <b>QTH</b>: BLOOMFIELD<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM69MA<br/>
 <b>Distance</b>: 2994.6 km<br/>
 <b>Bearing Sent</b>: 77.9&deg;</br>
 <b>Bearing Received</b>: 280.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-86.930023,39.034050,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6534,14 +6534,14 @@
 <![CDATA[<h1>Nori " Noriyuki Yoshida "</h1>
 <b><a href="https://www.qrz.com/db/JA7FLI">QRZ Page</a></b><br/>
 <b>QTH</b>: Morioka-City IWATE-Pref 020-0815<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM09OQ<br/>
 <b>Distance</b>: 7908.9 km<br/>
 <b>Bearing Sent</b>: 306.2&deg;</br>
 <b>Bearing Received</b>: 55.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>141.172577,39.684174,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6588,14 +6588,14 @@
 <![CDATA[<h1>John Nicholas</h1>
 <b><a href="https://www.qrz.com/db/W9NT">QRZ Page</a></b><br/>
 <b>QTH</b>: Geneva<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN51TU<br/>
 <b>Distance</b>: 2837.6 km<br/>
 <b>Bearing Sent</b>: 71.8&deg;</br>
 <b>Bearing Received</b>: 273.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-88.361374,41.846348,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6804,14 +6804,14 @@
 <![CDATA[<h1>Teiji "Sada"Negishi</h1>
 <b><a href="https://www.qrz.com/db/JH0CFC">QRZ Page</a></b><br/>
 <b>QTH</b>: Okaya-city, Nagano-pref.<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM96AB<br/>
 <b>Distance</b>: 8368.2 km<br/>
 <b>Bearing Sent</b>: 304.7&deg;</br>
 <b>Bearing Received</b>: 52.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>138.073746,36.046154,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6885,14 +6885,14 @@
 <![CDATA[<h1>DAVID L KARALOFF</h1>
 <b><a href="https://www.qrz.com/db/N7EZQ">QRZ Page</a></b><br/>
 <b>QTH</b>: CASCADE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN14XN<br/>
 <b>Distance</b>: 816.5 km<br/>
 <b>Bearing Sent</b>: 33.4&deg;</br>
 <b>Bearing Received</b>: 217.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-116.054367,44.546368,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -6912,14 +6912,14 @@
 <![CDATA[<h1>ROBERT J "Bob" TYKULSKER</h1>
 <b><a href="https://www.qrz.com/db/KM6SO">QRZ Page</a></b><br/>
 <b>QTH</b>: Mercer Island<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN87VM<br/>
 <b>Distance</b>: 996.9 km<br/>
 <b>Bearing Sent</b>: 357.8&deg;</br>
 <b>Bearing Received</b>: 177.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-122.213470,47.504848,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7155,14 +7155,14 @@
 <![CDATA[<h1>Matthew D "Matt" Melton</h1>
 <b><a href="https://www.qrz.com/db/W9MDM">QRZ Page</a></b><br/>
 <b>QTH</b>: Hebron<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN61JJ<br/>
 <b>Distance</b>: 2936.9 km<br/>
 <b>Bearing Sent</b>: 72.8&deg;</br>
 <b>Bearing Received</b>: 275.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-87.239815,41.406799,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7182,14 +7182,14 @@
 <![CDATA[<h1>Dennis G Millican</h1>
 <b><a href="https://www.qrz.com/db/N6DGM">QRZ Page</a></b><br/>
 <b>QTH</b>: Thousand Oaks<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM04NE<br/>
 <b>Distance</b>: 548.6 km<br/>
 <b>Bearing Sent</b>: 151.6&deg;</br>
 <b>Bearing Received</b>: 333.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-118.893021,34.169952,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7452,14 +7452,14 @@
 <![CDATA[<h1>Cillian "ultraforce" Raymond</h1>
 <b><a href="https://www.qrz.com/db/ZL1RPC">QRZ Page</a></b><br/>
 <b>QTH</b>: Auckland<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: New Zealand<br/>
 <b>Grid</b>: RF73HE<br/>
 <b>Distance</b>: 10619.0 km<br/>
 <b>Bearing Sent</b>: 226.1&deg;</br>
 <b>Bearing Received</b>: 44.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>174.594162,-36.812260,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7556,14 +7556,14 @@
 <![CDATA[<h1>LAURIE S TRESCOTT</h1>
 <b><a href="https://www.qrz.com/db/KA3ETI">QRZ Page</a></b><br/>
 <b>QTH</b>: MOUNTAIN VIEW<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CM87XI<br/>
 <b>Distance</b>: 137.5 km<br/>
 <b>Bearing Sent</b>: 192.4&deg;</br>
 <b>Bearing Received</b>: 12.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.043297,37.362152,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7637,14 +7637,14 @@
 <![CDATA[<h1>YOSHIO INOUE</h1>
 <b><a href="https://www.qrz.com/db/JK1GKG">QRZ Page</a></b><br/>
 <b>QTH</b>: SAITAMA-CITY SAITAMA 337-0043<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95TV<br/>
 <b>Distance</b>: 8265.5 km<br/>
 <b>Bearing Sent</b>: 303.7&deg;</br>
 <b>Bearing Received</b>: 53.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.659409,35.892410,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -7853,14 +7853,14 @@
 <![CDATA[<h1>Richard J Gardner, Jr.</h1>
 <b><a href="https://www.qrz.com/db/KN6RBP">QRZ Page</a></b><br/>
 <b>QTH</b>: HEMET<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM13MR<br/>
 <b>Distance</b>: 685.9 km<br/>
 <b>Bearing Sent</b>: 140.1&deg;</br>
 <b>Bearing Received</b>: 322.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-116.956520,33.729488,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8042,14 +8042,14 @@
 <![CDATA[<h1>Cho Jang-Hui</h1>
 <b><a href="https://www.qrz.com/db/DS5TOS">QRZ Page</a></b><br/>
 <b>QTH</b>: 8 Daehak-ro 9-gil Gyeongsan-si Gyeongsangbuk-do<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM45IU<br/>
 <b>Distance</b>: 9030.9 km<br/>
 <b>Bearing Sent</b>: 309.4&deg;</br>
 <b>Bearing Received</b>: 48.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>128.707596,35.871758,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8069,14 +8069,14 @@
 <![CDATA[<h1>ATSUYOSHI SHIGETA</h1>
 <b><a href="https://www.qrz.com/db/JA1DCK">QRZ Page</a></b><br/>
 <b>QTH</b>: Yokosuka-City<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95UG<br/>
 <b>Distance</b>: 8300.9 km<br/>
 <b>Bearing Sent</b>: 303.2&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.679794,35.290039,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8150,14 +8150,14 @@
 <![CDATA[<h1>ATSUO SAKUMA</h1>
 <b><a href="https://www.qrz.com/db/5W1SA">QRZ Page</a></b><br/>
 <b>QTH</b>: QSL To JA1DXA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Samoa<br/>
 <b>Grid</b>: AH46CC<br/>
 <b>Distance</b>: 7815.3 km<br/>
 <b>Bearing Sent</b>: 232.3&deg;</br>
 <b>Bearing Received</b>: 39.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-171.815918,-13.915283,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8366,14 +8366,14 @@
 <![CDATA[<h1>Charles G "Chuck" Nicola</h1>
 <b><a href="https://www.qrz.com/db/K5CEB">QRZ Page</a></b><br/>
 <b>QTH</b>: Mustang<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM15DJ<br/>
 <b>Distance</b>: 2154.3 km<br/>
 <b>Bearing Sent</b>: 91.8&deg;</br>
 <b>Bearing Received</b>: 286.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-97.697617,35.377529,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8474,14 +8474,14 @@
 <![CDATA[<h1>Luis Eduardo Soto Neira</h1>
 <b><a href="https://www.qrz.com/db/CA6SNT">QRZ Page</a></b><br/>
 <b>QTH</b>: Valdivia<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 6<br/>
 <b>Country</b>: Chile<br/>
 <b>Grid</b>: FF30JD<br/>
 <b>Distance</b>: 10014.7 km<br/>
 <b>Bearing Sent</b>: 144.9&deg;</br>
 <b>Bearing Received</b>: 324.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle06</styleUrl>
 <Point><coordinates>-73.224701,-39.873672,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8528,14 +8528,14 @@
 <![CDATA[<h1>Akihide Fujisawa</h1>
 <b><a href="https://www.qrz.com/db/JH0EHQ">QRZ Page</a></b><br/>
 <b>QTH</b>: Nagano-city, Nagano,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM96CQ<br/>
 <b>Distance</b>: 8317.0 km<br/>
 <b>Bearing Sent</b>: 305.1&deg;</br>
 <b>Bearing Received</b>: 53.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>138.177795,36.688042,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8555,14 +8555,14 @@
 <![CDATA[<h1>AKIRA "Aki" YOSHIDA</h1>
 <b><a href="https://www.qrz.com/db/JA1NLX">QRZ Page</a></b><br/>
 <b>QTH</b>: MACHIDA CITY TOKYO<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95RM<br/>
 <b>Distance</b>: 8305.0 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>139.480804,35.506634,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8582,14 +8582,14 @@
 <![CDATA[<h1>ERIC "ERIC" PESQUE</h1>
 <b><a href="https://www.qrz.com/db/FK8HM">QRZ Page</a></b><br/>
 <b>QTH</b>: Noumea<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 9<br/>
 <b>Country</b>: New Caledonia<br/>
 <b>Grid</b>: RG37FS<br/>
 <b>Distance</b>: 10070.0 km<br/>
 <b>Bearing Sent</b>: 241.6&deg;</br>
 <b>Bearing Received</b>: 48.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle09</styleUrl>
 <Point><coordinates>166.442001,-22.235392,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8717,14 +8717,14 @@
 <![CDATA[<h1>Seiji Hirai</h1>
 <b><a href="https://www.qrz.com/db/JR2SHA">QRZ Page</a></b><br/>
 <b>QTH</b>: Kariya-city, Aichi,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM84LX<br/>
 <b>Distance</b>: 8522.0 km<br/>
 <b>Bearing Sent</b>: 304.3&deg;</br>
 <b>Bearing Received</b>: 52.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>136.974197,34.977272,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -8906,14 +8906,14 @@
 <![CDATA[<h1>NORBERT P AURIT, JR</h1>
 <b><a href="https://www.qrz.com/db/N9AAA">QRZ Page</a></b><br/>
 <b>QTH</b>: JANESVILLE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN52MQ<br/>
 <b>Distance</b>: 2785.4 km<br/>
 <b>Bearing Sent</b>: 69.9&deg;</br>
 <b>Bearing Received</b>: 271.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-88.969467,42.697346,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9014,14 +9014,14 @@
 <![CDATA[<h1>Jun Yoshitake</h1>
 <b><a href="https://www.qrz.com/db/7N1PVD">QRZ Page</a></b><br/>
 <b>QTH</b>: Meguro-ku, Tokyo,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95TO<br/>
 <b>Distance</b>: 8287.4 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 53.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.662521,35.603939,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9041,14 +9041,14 @@
 <![CDATA[<h1>MICHAEL A "Mike" AIMONE</h1>
 <b><a href="https://www.qrz.com/db/WA8AHZ">QRZ Page</a></b><br/>
 <b>QTH</b>: FAIRFAX<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM18IT<br/>
 <b>Distance</b>: 3816.2 km<br/>
 <b>Bearing Sent</b>: 75.3&deg;</br>
 <b>Bearing Received</b>: 283.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-77.310539,38.803230,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9068,14 +9068,14 @@
 <![CDATA[<h1>JOHN M WALLACE</h1>
 <b><a href="https://www.qrz.com/db/WD8OQS">QRZ Page</a></b><br/>
 <b>QTH</b>: PITSBURG<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM79SX<br/>
 <b>Distance</b>: 3187.1 km<br/>
 <b>Bearing Sent</b>: 75.2&deg;</br>
 <b>Bearing Received</b>: 279.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-84.497192,39.966747,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9122,14 +9122,14 @@
 <![CDATA[<h1>TIO Julio Z A (TIO in CW)</h1>
 <b><a href="https://www.qrz.com/db/XQ2OP">QRZ Page</a></b><br/>
 <b>QTH</b>: La Serena Region de Coquimbo<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Chile<br/>
 <b>Grid</b>: FG40HA<br/>
 <b>Distance</b>: 9235.7 km<br/>
 <b>Bearing Sent</b>: 137.8&deg;</br>
 <b>Bearing Received</b>: 322.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-71.402122,-29.968254,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9284,14 +9284,14 @@
 <![CDATA[<h1>Michael G "MG" Butson</h1>
 <b><a href="https://www.qrz.com/db/N0MGB">QRZ Page</a></b><br/>
 <b>QTH</b>: West Jordan<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DN30WR<br/>
 <b>Distance</b>: 854.6 km<br/>
 <b>Bearing Sent</b>: 70.6&deg;</br>
 <b>Bearing Received</b>: 256.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-112.091103,40.723713,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9311,14 +9311,14 @@
 <![CDATA[<h1>Robert L Johnson</h1>
 <b><a href="https://www.qrz.com/db/KC9YTT">QRZ Page</a></b><br/>
 <b>QTH</b>: Williamsfield<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN40XW<br/>
 <b>Distance</b>: 2705.2 km<br/>
 <b>Bearing Sent</b>: 74.3&deg;</br>
 <b>Bearing Received</b>: 274.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-90.038574,40.921883,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9338,14 +9338,14 @@
 <![CDATA[<h1>CHARLES P JEDLICKA</h1>
 <b><a href="https://www.qrz.com/db/N9SOR">QRZ Page</a></b><br/>
 <b>QTH</b>: DARIEN<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN61<br/>
 <b>Distance</b>: 2953.1 km<br/>
 <b>Bearing Sent</b>: 72.5&deg;</br>
 <b>Bearing Received</b>: 275.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-86.871658,41.404037,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9365,14 +9365,14 @@
 <![CDATA[<h1>KARL J RENZ</h1>
 <b><a href="https://www.qrz.com/db/K4YT">QRZ Page</a></b><br/>
 <b>QTH</b>: Great Falls<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 5<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM19IA<br/>
 <b>Distance</b>: 3810.7 km<br/>
 <b>Bearing Sent</b>: 74.9&deg;</br>
 <b>Bearing Received</b>: 283.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle05</styleUrl>
 <Point><coordinates>-77.308571,39.023937,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9473,14 +9473,14 @@
 <![CDATA[<h1>James M Walker, IV</h1>
 <b><a href="https://www.qrz.com/db/NV1U">QRZ Page</a></b><br/>
 <b>QTH</b>: Canterbury<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN31XQ<br/>
 <b>Distance</b>: 4178.5 km<br/>
 <b>Bearing Sent</b>: 69.0&deg;</br>
 <b>Bearing Received</b>: 282.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-72.003273,41.672794,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9527,14 +9527,14 @@
 <![CDATA[<h1>Allan C Anderson</h1>
 <b><a href="https://www.qrz.com/db/KK7WID">QRZ Page</a></b><br/>
 <b>QTH</b>: Bremerton<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN87QP<br/>
 <b>Distance</b>: 1012.7 km<br/>
 <b>Bearing Sent</b>: 356.1&deg;</br>
 <b>Bearing Received</b>: 175.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.591064,47.626198,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9608,14 +9608,14 @@
 <![CDATA[<h1>Kiichiro (Kii) Sakurai</h1>
 <b><a href="https://www.qrz.com/db/JA0XII">QRZ Page</a></b><br/>
 <b>QTH</b>: Uonuma, Niigata,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM97LG<br/>
 <b>Distance</b>: 8222.1 km<br/>
 <b>Bearing Sent</b>: 305.2&deg;</br>
 <b>Bearing Received</b>: 53.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>138.959991,37.283909,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9743,14 +9743,14 @@
 <![CDATA[<h1>FUKU MATSUYA</h1>
 <b><a href="https://www.qrz.com/db/JR1BAS">QRZ Page</a></b><br/>
 <b>QTH</b>: CHOFU, TOKYO 182-0025<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95SP<br/>
 <b>Distance</b>: 8288.1 km<br/>
 <b>Bearing Sent</b>: 303.6&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.518158,35.657185,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9824,14 +9824,14 @@
 <![CDATA[<h1>Junshi Oishi</h1>
 <b><a href="https://www.qrz.com/db/JA6TXU">QRZ Page</a></b><br/>
 <b>QTH</b>: Yame-city, Fukuoka,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM53GF<br/>
 <b>Distance</b>: 9098.5 km<br/>
 <b>Bearing Sent</b>: 306.4&deg;</br>
 <b>Bearing Received</b>: 48.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>130.566437,33.248169,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -9984,14 +9984,14 @@
 <![CDATA[<h1>AKIRA KUMABE</h1>
 <b><a href="https://www.qrz.com/db/JM1SZY">QRZ Page</a></b><br/>
 <b>QTH</b>: Yokohama Kanagawa<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95SO<br/>
 <b>Distance</b>: 8290.9 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.562592,35.590881,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10011,14 +10011,14 @@
 <![CDATA[<h1>Richard W Shell</h1>
 <b><a href="https://www.qrz.com/db/N0DOW">QRZ Page</a></b><br/>
 <b>QTH</b>: Brainerd<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN26VH<br/>
 <b>Distance</b>: 2400.7 km<br/>
 <b>Bearing Sent</b>: 60.1&deg;</br>
 <b>Bearing Received</b>: 258.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-94.216545,46.301178,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10038,14 +10038,14 @@
 <![CDATA[<h1>Dominik "U S U" Grzyb</h1>
 <b><a href="https://www.qrz.com/db/3D2USU">QRZ Page</a></b><br/>
 <b>QTH</b>: Op. Dominik,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Fiji<br/>
 <b>Grid</b>: RH82RH<br/>
 <b>Distance</b>: 8895.5 km<br/>
 <b>Bearing Sent</b>: 237.6&deg;</br>
 <b>Bearing Received</b>: 43.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>177.430481,-17.702818,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10146,14 +10146,14 @@
 <![CDATA[<h1>LOK SHUI FAN</h1>
 <b><a href="https://www.qrz.com/db/VR2VAZ">QRZ Page</a></b><br/>
 <b>QTH</b>: HONG KONG<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: Hong Kong<br/>
 <b>Grid</b>: OL72BI<br/>
 <b>Distance</b>: 11089.7 km<br/>
 <b>Bearing Sent</b>: 309.1&deg;</br>
 <b>Bearing Received</b>: 41.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>114.136215,22.355110,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10308,14 +10308,14 @@
 <![CDATA[<h1>DOUGLAS E FREY</h1>
 <b><a href="https://www.qrz.com/db/KE4PLU">QRZ Page</a></b><br/>
 <b>QTH</b>: EDWARDSVILLE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM58AT<br/>
 <b>Distance</b>: 2741.9 km<br/>
 <b>Bearing Sent</b>: 79.4&deg;</br>
 <b>Bearing Received</b>: 279.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-89.942047,38.825027,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10362,14 +10362,14 @@
 <![CDATA[<h1>William T Mobley</h1>
 <b><a href="https://www.qrz.com/db/KD5NSK">QRZ Page</a></b><br/>
 <b>QTH</b>: Mt. Ida<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM34FM<br/>
 <b>Distance</b>: 2545.8 km<br/>
 <b>Bearing Sent</b>: 91.4&deg;</br>
 <b>Bearing Received</b>: 288.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-93.506248,34.512669,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10416,14 +10416,14 @@
 <![CDATA[<h1>LARRY R PETERSON</h1>
 <b><a href="https://www.qrz.com/db/WA9TT">QRZ Page</a></b><br/>
 <b>QTH</b>: Mack State Wildlife Area<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN54RL<br/>
 <b>Distance</b>: 2817.7 km<br/>
 <b>Bearing Sent</b>: 65.8&deg;</br>
 <b>Bearing Received</b>: 268.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-88.538399,44.482315,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10740,14 +10740,14 @@
 <![CDATA[<h1>Kevin</h1>
 <b><a href="https://www.qrz.com/db/K1KPC">QRZ Page</a></b><br/>
 <b>QTH</b>: Vine Grove<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM77AU<br/>
 <b>Distance</b>: 3104.7 km<br/>
 <b>Bearing Sent</b>: 80.1&deg;</br>
 <b>Bearing Received</b>: 282.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-85.987122,37.851048,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10794,14 +10794,14 @@
 <![CDATA[<h1>Tomitaro Sato</h1>
 <b><a href="https://www.qrz.com/db/JH7GZW">QRZ Page</a></b><br/>
 <b>QTH</b>: Hirosaki-Aomori<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN00FO<br/>
 <b>Distance</b>: 7900.0 km<br/>
 <b>Bearing Sent</b>: 307.3&deg;</br>
 <b>Bearing Received</b>: 55.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.422211,40.597881,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -10848,14 +10848,14 @@
 <![CDATA[<h1>LOU EIJIRO TAKAHIRA</h1>
 <b><a href="https://www.qrz.com/db/JA7OWD">QRZ Page</a></b><br/>
 <b>QTH</b>: HARAMACHI-KU MINAMISOMA-CITY FUKUSHIMA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM07<br/>
 <b>Distance</b>: 8061.4 km<br/>
 <b>Bearing Sent</b>: 304.4&deg;</br>
 <b>Bearing Received</b>: 54.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.869781,37.288124,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -11008,14 +11008,14 @@
 <![CDATA[<h1>Hisashi Sekioka</h1>
 <b><a href="https://www.qrz.com/db/JH5HDA">QRZ Page</a></b><br/>
 <b>QTH</b>: Matsuyama-city,ehime<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM63IT<br/>
 <b>Distance</b>: 8903.9 km<br/>
 <b>Bearing Sent</b>: 305.7&deg;</br>
 <b>Bearing Received</b>: 49.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>132.732224,33.793835,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -11251,14 +11251,14 @@
 <![CDATA[<h1>STEVEN D MILLER</h1>
 <b><a href="https://www.qrz.com/db/KB9DFE">QRZ Page</a></b><br/>
 <b>QTH</b>: Trego<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN45BW<br/>
 <b>Distance</b>: 2571.2 km<br/>
 <b>Bearing Sent</b>: 61.8&deg;</br>
 <b>Bearing Received</b>: 262.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-91.866264,45.941059,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -11332,14 +11332,14 @@
 <![CDATA[<h1>Glenn Kraut</h1>
 <b><a href="https://www.qrz.com/db/W4/ZS2GK">QRZ Page</a></b><br/>
 <b>QTH</b>: Kents Store, Virginia<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM07WV<br/>
 <b>Distance</b>: 3771.3 km<br/>
 <b>Bearing Sent</b>: 77.2&deg;</br>
 <b>Bearing Received</b>: 285.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-78.116875,37.905071,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -11467,14 +11467,14 @@
 <![CDATA[<h1>Allen D Peterson</h1>
 <b><a href="https://www.qrz.com/db/AG5PC">QRZ Page</a></b><br/>
 <b>QTH</b>: Royse City<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM12UU<br/>
 <b>Distance</b>: 2371.8 km<br/>
 <b>Bearing Sent</b>: 97.6&deg;</br>
 <b>Bearing Received</b>: 292.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-96.268852,32.858578,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -11494,14 +11494,14 @@
 <![CDATA[<h1>Jorgen Dahl</h1>
 <b><a href="https://www.qrz.com/db/NU1T">QRZ Page</a></b><br/>
 <b>QTH</b>: Merrimack<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN42FV<br/>
 <b>Distance</b>: 4193.7 km<br/>
 <b>Bearing Sent</b>: 66.9&deg;</br>
 <b>Bearing Received</b>: 280.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-71.568077,42.907310,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12086,14 +12086,14 @@
 <![CDATA[<h1>Lu Jigang</h1>
 <b><a href="https://www.qrz.com/db/BD4XGP">QRZ Page</a></b><br/>
 <b>QTH</b>: Yixing City, Jiangsu Province<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: OM91TD<br/>
 <b>Distance</b>: 9998.7 km<br/>
 <b>Bearing Sent</b>: 311.3&deg;</br>
 <b>Bearing Received</b>: 43.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>119.644402,31.137463,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12113,14 +12113,14 @@
 <![CDATA[<h1>DANIEL A "Dan" WRIGHT</h1>
 <b><a href="https://www.qrz.com/db/N3DAW">QRZ Page</a></b><br/>
 <b>QTH</b>: Westport<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN31<br/>
 <b>Distance</b>: 4105.0 km<br/>
 <b>Bearing Sent</b>: 69.5&deg;</br>
 <b>Bearing Received</b>: 282.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-73.098740,41.711708,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12192,14 +12192,14 @@
 <![CDATA[<h1>Tamakazu Tamiya</h1>
 <b><a href="https://www.qrz.com/db/JA3POV">QRZ Page</a></b><br/>
 <b>QTH</b>: Sennan-gun, Osaka, 590-0450<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74<br/>
 <b>Distance</b>: 8692.7 km<br/>
 <b>Bearing Sent</b>: 305.0&deg;</br>
 <b>Bearing Received</b>: 51.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>135.896179,34.252560,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12299,14 +12299,14 @@
 <![CDATA[<h1>Joshua D "Yoshi" Wilson</h1>
 <b><a href="https://www.qrz.com/db/W7SYF">QRZ Page</a></b><br/>
 <b>QTH</b>: Independence<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN84JU<br/>
 <b>Distance</b>: 710.6 km<br/>
 <b>Bearing Sent</b>: 350.4&deg;</br>
 <b>Bearing Received</b>: 169.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-123.173721,44.874619,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12461,14 +12461,14 @@
 <![CDATA[<h1>RUSSELL L BROWN</h1>
 <b><a href="https://www.qrz.com/db/AD0AA">QRZ Page</a></b><br/>
 <b>QTH</b>: Fort Snelling State Park<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN34JU<br/>
 <b>Distance</b>: 2452.7 km<br/>
 <b>Bearing Sent</b>: 64.3&deg;</br>
 <b>Bearing Received</b>: 263.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-93.232536,44.863857,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12515,14 +12515,14 @@
 <![CDATA[<h1>MARC A FRONT</h1>
 <b><a href="https://www.qrz.com/db/W8MAF">QRZ Page</a></b><br/>
 <b>QTH</b>: Oak Park<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN82JL<br/>
 <b>Distance</b>: 3255.0 km<br/>
 <b>Bearing Sent</b>: 69.9&deg;</br>
 <b>Bearing Received</b>: 275.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-83.247711,42.461086,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12542,14 +12542,14 @@
 <![CDATA[<h1>Toshimi "Toshi" Horie</h1>
 <b><a href="https://www.qrz.com/db/JE2UFF">QRZ Page</a></b><br/>
 <b>QTH</b>: Shimada city, Shizuoka pref,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM94BU<br/>
 <b>Distance</b>: 8446.4 km<br/>
 <b>Bearing Sent</b>: 303.6&deg;</br>
 <b>Bearing Received</b>: 52.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>138.150131,34.866310,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12596,14 +12596,14 @@
 <![CDATA[<h1>JONATHON D MERRITT</h1>
 <b><a href="https://www.qrz.com/db/N0VTY">QRZ Page</a></b><br/>
 <b>QTH</b>: BURLINGTON<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN40KR<br/>
 <b>Distance</b>: 2617.5 km<br/>
 <b>Bearing Sent</b>: 74.9&deg;</br>
 <b>Bearing Received</b>: 274.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-91.101135,40.733429,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -12758,14 +12758,14 @@
 <![CDATA[<h1>BRIAN J BEDOE</h1>
 <b><a href="https://www.qrz.com/db/WD9HSY">QRZ Page</a></b><br/>
 <b>QTH</b>: MOKENA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 6<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN61BL<br/>
 <b>Distance</b>: 2880.8 km<br/>
 <b>Bearing Sent</b>: 72.7&deg;</br>
 <b>Bearing Received</b>: 274.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle06</styleUrl>
 <Point><coordinates>-87.909119,41.477200,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13026,14 +13026,14 @@
 <![CDATA[<h1>Tohru Yamaguchi</h1>
 <b><a href="https://www.qrz.com/db/JI3VUB">QRZ Page</a></b><br/>
 <b>QTH</b>: Gose City,NARA 639-2346<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74UJ<br/>
 <b>Distance</b>: 8649.3 km<br/>
 <b>Bearing Sent</b>: 304.5&deg;</br>
 <b>Bearing Received</b>: 51.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>135.684601,34.379379,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13080,14 +13080,14 @@
 <![CDATA[<h1>SKYRUN "SKYRUN" HAMCLUB</h1>
 <b><a href="https://www.qrz.com/db/6M0VF">QRZ Page</a></b><br/>
 <b>QTH</b>: Okjong-myeon, Hadong-gun<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM35WD<br/>
 <b>Distance</b>: 9139.6 km<br/>
 <b>Bearing Sent</b>: 309.3&deg;</br>
 <b>Bearing Received</b>: 47.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>127.885788,35.144634,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13188,14 +13188,14 @@
 <![CDATA[<h1>Qiu Tao</h1>
 <b><a href="https://www.qrz.com/db/BG8GAM">QRZ Page</a></b><br/>
 <b>QTH</b>: Chongqing<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: OL39GM<br/>
 <b>Distance</b>: 10940.5 km<br/>
 <b>Bearing Sent</b>: 319.0&deg;</br>
 <b>Bearing Received</b>: 36.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>106.523987,29.530460,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13242,14 +13242,14 @@
 <![CDATA[<h1>DONALD V MEYER</h1>
 <b><a href="https://www.qrz.com/db/N7BT">QRZ Page</a></b><br/>
 <b>QTH</b>: BELLINGHAM<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: CN88RT<br/>
 <b>Distance</b>: 1141.7 km<br/>
 <b>Bearing Sent</b>: 356.9&deg;</br>
 <b>Bearing Received</b>: 176.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-122.581490,48.801365,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13323,14 +13323,14 @@
 <![CDATA[<h1>PEPE ARDID</h1>
 <b><a href="https://www.qrz.com/db/EA5KB">QRZ Page</a></b><br/>
 <b>QTH</b>: 46760 TAVERNES DE LA VALLDIGNA (VALENCIA)<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Spain<br/>
 <b>Grid</b>: IM99SK<br/>
 <b>Distance</b>: 9480.1 km<br/>
 <b>Bearing Sent</b>: 41.5&deg;</br>
 <b>Bearing Received</b>: 317.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-0.440985,39.452415,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13377,14 +13377,14 @@
 <![CDATA[<h1>Michael "Mike" Moulin</h1>
 <b><a href="https://www.qrz.com/db/F1PBZ">QRZ Page</a></b><br/>
 <b>QTH</b>: Pierre de Bresse<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: France<br/>
 <b>Grid</b>: JN26PV<br/>
 <b>Distance</b>: 9154.0 km<br/>
 <b>Bearing Sent</b>: 33.4&deg;</br>
 <b>Bearing Received</b>: 320.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>5.285684,46.916386,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13431,14 +13431,14 @@
 <![CDATA[<h1>Chris 'Nut' Mc Lelland</h1>
 <b><a href="https://www.qrz.com/db/MI0JZZ">QRZ Page</a></b><br/>
 <b>QTH</b>: Co.Londonderry<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Northern Ireland<br/>
 <b>Grid</b>: IO65QD<br/>
 <b>Distance</b>: 7918.2 km<br/>
 <b>Bearing Sent</b>: 33.1&deg;</br>
 <b>Bearing Received</b>: 311.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-6.651120,55.135818,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13836,14 +13836,14 @@
 <![CDATA[<h1>JingChen Li</h1>
 <b><a href="https://www.qrz.com/db/BG4UVR">QRZ Page</a></b><br/>
 <b>QTH</b>: NanTong, JiangSu<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: PM01NV<br/>
 <b>Distance</b>: 9840.2 km<br/>
 <b>Bearing Sent</b>: 310.9&deg;</br>
 <b>Bearing Received</b>: 44.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>121.124336,31.880594,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -13863,14 +13863,14 @@
 <![CDATA[<h1>Galen "Galen" Xu</h1>
 <b><a href="https://www.qrz.com/db/BA5AN">QRZ Page</a></b><br/>
 <b>QTH</b>: HANGZHOU ZHEJIANG<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: PM00BG<br/>
 <b>Distance</b>: 10036.5 km<br/>
 <b>Bearing Sent</b>: 310.4&deg;</br>
 <b>Bearing Received</b>: 43.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>120.091316,30.288738,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14187,14 +14187,14 @@
 <![CDATA[<h1>MAKOTO (SHIN) TANAKA</h1>
 <b><a href="https://www.qrz.com/db/JR1NHD">QRZ Page</a></b><br/>
 <b>QTH</b>: KAWASAKI, KANAGAWA 214-0012<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95SO<br/>
 <b>Distance</b>: 8290.9 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.548325,35.597366,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14241,14 +14241,14 @@
 <![CDATA[<h1>Malinkin VASILY</h1>
 <b><a href="https://www.qrz.com/db/UA0LQE">QRZ Page</a></b><br/>
 <b>QTH</b>: USSURIISK<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Asiatic Russia<br/>
 <b>Grid</b>: PN53XT<br/>
 <b>Distance</b>: 8246.7 km<br/>
 <b>Bearing Sent</b>: 314.0&deg;</br>
 <b>Bearing Received</b>: 51.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>131.940384,43.809711,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14322,14 +14322,14 @@
 <![CDATA[<h1>Dr. Kazuaki (Kaz) Oya</h1>
 <b><a href="https://www.qrz.com/db/JH1HRJ">QRZ Page</a></b><br/>
 <b>QTH</b>: Hiratsuka-shi, Kanagawa<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM05<br/>
 <b>Distance</b>: 8191.5 km<br/>
 <b>Bearing Sent</b>: 302.7&deg;</br>
 <b>Bearing Received</b>: 53.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>141.064102,35.407734,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14349,14 +14349,14 @@
 <![CDATA[<h1>YOSHIHIRO "Nob" SHIMIZU</h1>
 <b><a href="https://www.qrz.com/db/JE1LFX">QRZ Page</a></b><br/>
 <b>QTH</b>: YOKOHAMA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95<br/>
 <b>Distance</b>: 8337.0 km<br/>
 <b>Bearing Sent</b>: 303.7&deg;</br>
 <b>Bearing Received</b>: 53.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>139.581726,35.705341,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14376,14 +14376,14 @@
 <![CDATA[<h1>Tomoyoshi Moriwaki</h1>
 <b><a href="https://www.qrz.com/db/JF3VAX">QRZ Page</a></b><br/>
 <b>QTH</b>: Higashiosaka-city, Osaka<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74TQ<br/>
 <b>Distance</b>: 8635.0 km<br/>
 <b>Bearing Sent</b>: 304.8&deg;</br>
 <b>Bearing Received</b>: 51.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>135.624985,34.674820,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14403,14 +14403,14 @@
 <![CDATA[<h1>Takashi "TAC" HIRAMA</h1>
 <b><a href="https://www.qrz.com/db/JA7QVI">QRZ Page</a></b><br/>
 <b>QTH</b>: WATARI MIYAGI<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM08KA<br/>
 <b>Distance</b>: 8036.6 km<br/>
 <b>Bearing Sent</b>: 304.9&deg;</br>
 <b>Bearing Received</b>: 54.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.879623,38.001045,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14941,14 +14941,14 @@
 <name>JR6LOC</name>
 <description>
 <![CDATA[<b><a href="https://www.qrz.com/db/JR6LOC">QRZ Page</a></b><br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM52<br/>
 <b>Distance</b>: 9119.6 km<br/>
 <b>Bearing Sent</b>: 305.6&deg;</br>
 <b>Bearing Received</b>: 48.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>131.152924,32.024498,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -14968,14 +14968,14 @@
 <![CDATA[<h1>DUCK-KI KIM</h1>
 <b><a href="https://www.qrz.com/db/DS3EXT">QRZ Page</a></b><br/>
 <b>QTH</b>: Chungcheongnam-do<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM36RC<br/>
 <b>Distance</b>: 9095.7 km<br/>
 <b>Bearing Sent</b>: 310.3&deg;</br>
 <b>Bearing Received</b>: 47.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>127.487396,36.083496,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -15399,14 +15399,14 @@
 <![CDATA[<h1>Ichiro Matsuhisa</h1>
 <b><a href="https://www.qrz.com/db/JG3LGD">QRZ Page</a></b><br/>
 <b>QTH</b>: Tatsuno-city,HYOGO 671-1603<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM74GU<br/>
 <b>Distance</b>: 8700.4 km<br/>
 <b>Bearing Sent</b>: 305.5&deg;</br>
 <b>Bearing Received</b>: 50.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>134.522400,34.847019,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -15696,14 +15696,14 @@
 <![CDATA[<h1>Terry M Bone</h1>
 <b><a href="https://www.qrz.com/db/W8TMB">QRZ Page</a></b><br/>
 <b>QTH</b>: Prudenville<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN82GG<br/>
 <b>Distance</b>: 3236.9 km<br/>
 <b>Bearing Sent</b>: 70.3&deg;</br>
 <b>Bearing Received</b>: 275.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-83.472046,42.257030,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -15939,14 +15939,14 @@
 <![CDATA[<h1>Tokinori "NORI" ODO</h1>
 <b><a href="https://www.qrz.com/db/JK1IHE">QRZ Page</a></b><br/>
 <b>QTH</b>: Katsushika-ku, Tokyo,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95WR<br/>
 <b>Distance</b>: 8258.4 km<br/>
 <b>Bearing Sent</b>: 303.5&deg;</br>
 <b>Bearing Received</b>: 53.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.911560,35.713417,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -15993,14 +15993,14 @@
 <![CDATA[<h1>Norihisa Suzuki</h1>
 <b><a href="https://www.qrz.com/db/JH8ISO">QRZ Page</a></b><br/>
 <b>QTH</b>: Sapporo Hokkaido<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN03PC<br/>
 <b>Distance</b>: 7685.9 km<br/>
 <b>Bearing Sent</b>: 309.1&deg;</br>
 <b>Bearing Received</b>: 56.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>141.279190,43.113972,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -16155,14 +16155,14 @@
 <![CDATA[<h1>Lloyd G. Pedersen</h1>
 <b><a href="https://www.qrz.com/db/VE7LGP">QRZ Page</a></b><br/>
 <b>QTH</b>: Mission<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: CN89UD<br/>
 <b>Distance</b>: 1177.7 km<br/>
 <b>Bearing Sent</b>: 357.9&deg;</br>
 <b>Bearing Received</b>: 177.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-122.283348,49.154007,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -16560,14 +16560,14 @@
 <![CDATA[<h1>Michael D Heller</h1>
 <b><a href="https://www.qrz.com/db/N0MDH">QRZ Page</a></b><br/>
 <b>QTH</b>: Glen Rock<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN20WX<br/>
 <b>Distance</b>: 4025.1 km<br/>
 <b>Bearing Sent</b>: 70.7&deg;</br>
 <b>Bearing Received</b>: 282.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-74.136253,40.996277,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -16803,14 +16803,14 @@
 <![CDATA[<h1>MANABU "Abu" YAMAZAKI</h1>
 <b><a href="https://www.qrz.com/db/JH0MSF">QRZ Page</a></b><br/>
 <b>QTH</b>: Niigata-city, Niigata,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM97MW<br/>
 <b>Distance</b>: 8172.1 km<br/>
 <b>Bearing Sent</b>: 305.7&deg;</br>
 <b>Bearing Received</b>: 53.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.052643,37.940193,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -17046,14 +17046,14 @@
 <![CDATA[<h1>Nobuhiro Fukuzawa</h1>
 <b><a href="https://www.qrz.com/db/JA0FOX">QRZ Page</a></b><br/>
 <b>QTH</b>: Nagano 395-0801<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM85VM<br/>
 <b>Distance</b>: 8425.3 km<br/>
 <b>Bearing Sent</b>: 304.4&deg;</br>
 <b>Bearing Received</b>: 52.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>137.753952,35.514141,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -17424,14 +17424,14 @@
 <![CDATA[<h1>RongZhong Chen</h1>
 <b><a href="https://www.qrz.com/db/BA7SAY">QRZ Page</a></b><br/>
 <b>QTH</b>: Wuzhou GuangXi<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: OL53ML<br/>
 <b>Distance</b>: 11197.9 km<br/>
 <b>Bearing Sent</b>: 312.0&deg;</br>
 <b>Bearing Received</b>: 39.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>111.031921,23.495636,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -17964,14 +17964,14 @@
 <![CDATA[<h1>Nick Steinbruecker</h1>
 <b><a href="https://www.qrz.com/db/HB9EFK">QRZ Page</a></b><br/>
 <b>QTH</b>: Huenenberg<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Switzerland<br/>
 <b>Grid</b>: JN46BX<br/>
 <b>Distance</b>: 9279.5 km<br/>
 <b>Bearing Sent</b>: 31.8&deg;</br>
 <b>Bearing Received</b>: 322.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>8.162711,46.964321,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18099,14 +18099,14 @@
 <![CDATA[<h1>Andy Hopkins</h1>
 <b><a href="https://www.qrz.com/db/ZL1VAH">QRZ Page</a></b><br/>
 <b>QTH</b>: MATAMATA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: New Zealand<br/>
 <b>Grid</b>: RF72VE<br/>
 <b>Distance</b>: 10626.1 km<br/>
 <b>Bearing Sent</b>: 224.8&deg;</br>
 <b>Bearing Received</b>: 44.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>175.789841,-37.820568,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18261,14 +18261,14 @@
 <![CDATA[<h1>Seth M Jones</h1>
 <b><a href="https://www.qrz.com/db/NU1D">QRZ Page</a></b><br/>
 <b>QTH</b>: Pittsfield<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN54HT<br/>
 <b>Distance</b>: 4324.8 km<br/>
 <b>Bearing Sent</b>: 63.4&deg;</br>
 <b>Bearing Received</b>: 279.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-69.373032,44.827621,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18288,14 +18288,14 @@
 <![CDATA[<h1>BRYNE L MUNROE</h1>
 <b><a href="https://www.qrz.com/db/VE1ZZ">QRZ Page</a></b><br/>
 <b>QTH</b>: LAKE ECHO<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN84HR<br/>
 <b>Distance</b>: 4790.9 km<br/>
 <b>Bearing Sent</b>: 62.3&deg;</br>
 <b>Bearing Received</b>: 283.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-63.387928,44.709194,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18315,14 +18315,14 @@
 <![CDATA[<h1>DEV GOSINE</h1>
 <b><a href="https://www.qrz.com/db/9Y4DG">QRZ Page</a></b><br/>
 <b>QTH</b>: San Fernando<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Trinidad and Tobago<br/>
 <b>Grid</b>: FK90GF<br/>
 <b>Distance</b>: 6726.4 km<br/>
 <b>Bearing Sent</b>: 101.0&deg;</br>
 <b>Bearing Received</b>: 308.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-61.429935,10.229332,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18342,14 +18342,14 @@
 <![CDATA[<h1>ISMAEL "MEL" MILLAN</h1>
 <b><a href="https://www.qrz.com/db/YV6BXN">QRZ Page</a></b><br/>
 <b>QTH</b>: UNIT ZOOM CCS MIAMI<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Venezuela<br/>
 <b>Grid</b>: FK60MK<br/>
 <b>Distance</b>: 6245.7 km<br/>
 <b>Bearing Sent</b>: 104.8&deg;</br>
 <b>Bearing Received</b>: 309.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-66.990135,10.432074,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18369,14 +18369,14 @@
 <![CDATA[<h1>RICHARD L DYKSTRA</h1>
 <b><a href="https://www.qrz.com/db/N7WFK">QRZ Page</a></b><br/>
 <b>QTH</b>: YUKON<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 4<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM15DK<br/>
 <b>Distance</b>: 2153.1 km<br/>
 <b>Bearing Sent</b>: 91.8&deg;</br>
 <b>Bearing Received</b>: 286.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle04</styleUrl>
 <Point><coordinates>-97.723824,35.427341,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18450,14 +18450,14 @@
 <![CDATA[<h1>Vincent Colombo</h1>
 <b><a href="https://www.qrz.com/db/XW4KV">QRZ Page</a></b><br/>
 <b>QTH</b>: Vang Vieng<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Laos<br/>
 <b>Grid</b>: OK18GS<br/>
 <b>Distance</b>: 12148.2 km<br/>
 <b>Bearing Sent</b>: 315.6&deg;</br>
 <b>Bearing Received</b>: 35.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>102.547676,18.774027,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -18990,14 +18990,14 @@
 <![CDATA[<h1>Yong-tae Kim (KIM)</h1>
 <b><a href="https://www.qrz.com/db/6K5BXQ">QRZ Page</a></b><br/>
 <b>QTH</b>: Beomseo-eup, Ulju-gun, Ulsan<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM45ON<br/>
 <b>Distance</b>: 9018.7 km<br/>
 <b>Bearing Sent</b>: 308.9&deg;</br>
 <b>Bearing Received</b>: 48.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>129.180099,35.568127,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -19152,14 +19152,14 @@
 <![CDATA[<h1>LYSLE L ELDER</h1>
 <b><a href="https://www.qrz.com/db/WA8LE">QRZ Page</a></b><br/>
 <b>QTH</b>: ESCANABA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EN65JT<br/>
 <b>Distance</b>: 2929.2 km<br/>
 <b>Bearing Sent</b>: 62.8&deg;</br>
 <b>Bearing Received</b>: 266.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-87.177559,45.803989,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -19906,14 +19906,14 @@
 <![CDATA[<h1>Franco G.</h1>
 <b><a href="https://www.qrz.com/db/VP2MAA">QRZ Page</a></b><br/>
 <b>QTH</b>: Olveston<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Montserrat<br/>
 <b>Grid</b>: FK86<br/>
 <b>Distance</b>: 6171.0 km<br/>
 <b>Bearing Sent</b>: 96.2&deg;</br>
 <b>Bearing Received</b>: 305.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-62.371746,16.001112,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20281,14 +20281,14 @@
 <![CDATA[<h1>Emanuel "Manny" B</h1>
 <b><a href="https://www.qrz.com/db/VA3EBM">QRZ Page</a></b><br/>
 <b>QTH</b>: OAKVILLE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN03DK<br/>
 <b>Distance</b>: 3528.1 km<br/>
 <b>Bearing Sent</b>: 67.5&deg;</br>
 <b>Bearing Received</b>: 275.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-79.746086,43.449100,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20333,14 +20333,14 @@
 <![CDATA[<h1>Yi Mo (Kazuma) Sen Bei (Morikita)</h1>
 <b><a href="https://www.qrz.com/db/JE1XUL">QRZ Page</a></b><br/>
 <b>QTH</b>: Kanagawa<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95SJ<br/>
 <b>Distance</b>: 8304.7 km<br/>
 <b>Bearing Sent</b>: 303.3&deg;</br>
 <b>Bearing Received</b>: 53.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.534561,35.392578,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20495,14 +20495,14 @@
 <![CDATA[<h1>Tsuneyuki Kondoh</h1>
 <b><a href="https://www.qrz.com/db/JA5GYU">QRZ Page</a></b><br/>
 <b>QTH</b>: Lyo-gun, Ehime-pre 791-31 Shioku<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM63<br/>
 <b>Distance</b>: 8905.6 km<br/>
 <b>Bearing Sent</b>: 305.3&deg;</br>
 <b>Bearing Received</b>: 50.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>132.722412,33.457317,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20684,14 +20684,14 @@
 <![CDATA[<h1>Robert "Bobby" Ricchiuti</h1>
 <b><a href="https://www.qrz.com/db/W4MAA">QRZ Page</a></b><br/>
 <b>QTH</b>: Buford<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM84AB<br/>
 <b>Distance</b>: 3395.2 km<br/>
 <b>Bearing Sent</b>: 86.7&deg;</br>
 <b>Bearing Received</b>: 289.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-83.951042,34.052124,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20792,14 +20792,14 @@
 <![CDATA[<h1>Shuichi Hosokai</h1>
 <b><a href="https://www.qrz.com/db/9V1SH">QRZ Page</a></b><br/>
 <b>QTH</b>: Singapore<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Singapore<br/>
 <b>Grid</b>: OJ11<br/>
 <b>Distance</b>: 13638.3 km<br/>
 <b>Bearing Sent</b>: 303.4&deg;</br>
 <b>Bearing Received</b>: 40.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>103.815163,1.660916,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -20981,14 +20981,14 @@
 <![CDATA[<h1>Sumio Ariji</h1>
 <b><a href="https://www.qrz.com/db/JF8CFI">QRZ Page</a></b><br/>
 <b>QTH</b>: Abashiri-city, Hokaido<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN23<br/>
 <b>Distance</b>: 7409.9 km<br/>
 <b>Bearing Sent</b>: 307.9&deg;</br>
 <b>Bearing Received</b>: 58.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>144.754593,43.629837,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21062,14 +21062,14 @@
 <![CDATA[<h1>Jeffrey Tsao</h1>
 <b><a href="https://www.qrz.com/db/BU2GU">QRZ Page</a></b><br/>
 <b>QTH</b>: New Taipei City<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Taiwan<br/>
 <b>Grid</b>: PL05<br/>
 <b>Distance</b>: 10359.6 km<br/>
 <b>Bearing Sent</b>: 306.5&deg;</br>
 <b>Bearing Received</b>: 44.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>121.200104,25.296583,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21089,14 +21089,14 @@
 <![CDATA[<h1>Perry Grodzinski</h1>
 <b><a href="https://www.qrz.com/db/VE5PMG">QRZ Page</a></b><br/>
 <b>QTH</b>: REGINA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO70<br/>
 <b>Distance</b>: 1866.8 km<br/>
 <b>Bearing Sent</b>: 39.3&deg;</br>
 <b>Bearing Received</b>: 231.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-105.470589,50.818089,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21143,14 +21143,14 @@
 <![CDATA[<h1>Dany Deschenes</h1>
 <b><a href="https://www.qrz.com/db/VE2NC">QRZ Page</a></b><br/>
 <b>QTH</b>: CHICOUTIMI<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN48<br/>
 <b>Distance</b>: 4152.7 km<br/>
 <b>Bearing Sent</b>: 57.7&deg;</br>
 <b>Bearing Received</b>: 274.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-71.361244,48.230770,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21224,14 +21224,14 @@
 <![CDATA[<h1>PARK SOON BOK</h1>
 <b><a href="https://www.qrz.com/db/DS4AKP">QRZ Page</a></b><br/>
 <b>QTH</b>: Sarang APT, Gwang yang City, Jeon Nam<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM34UW<br/>
 <b>Distance</b>: 9169.4 km<br/>
 <b>Bearing Sent</b>: 309.3&deg;</br>
 <b>Bearing Received</b>: 47.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>127.735741,34.945633,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21278,14 +21278,14 @@
 <![CDATA[<h1>Seijiro Myasaka</h1>
 <b><a href="https://www.qrz.com/db/JH5TWQ">QRZ Page</a></b><br/>
 <b>QTH</b>: Kihoku-cho, Kituwa-gun Ehime<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM63<br/>
 <b>Distance</b>: 8905.6 km<br/>
 <b>Bearing Sent</b>: 305.3&deg;</br>
 <b>Bearing Received</b>: 50.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>133.378738,33.364254,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21440,14 +21440,14 @@
 <![CDATA[<h1>MISAKI SENDA</h1>
 <b><a href="https://www.qrz.com/db/JG2BRI">QRZ Page</a></b><br/>
 <b>QTH</b>: AICHI 475-0017<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM84KV<br/>
 <b>Distance</b>: 8533.7 km<br/>
 <b>Bearing Sent</b>: 304.3&deg;</br>
 <b>Bearing Received</b>: 52.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>136.868561,34.883041,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21467,14 +21467,14 @@
 <![CDATA[<h1>kenichi kakizaki</h1>
 <b><a href="https://www.qrz.com/db/JH2BJL">QRZ Page</a></b><br/>
 <b>QTH</b>: nagoya<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM85KD<br/>
 <b>Distance</b>: 8516.6 km<br/>
 <b>Bearing Sent</b>: 304.5&deg;</br>
 <b>Bearing Received</b>: 52.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>136.853195,35.139149,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21600,14 +21600,14 @@
 <name>JA8JWS/P</name>
 <description>
 <![CDATA[<b><a href="https://www.qrz.com/db/JA8JWS/P">QRZ Page</a></b><br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM08KI<br/>
 <b>Distance</b>: 8015.1 km<br/>
 <b>Bearing Sent</b>: 305.2&deg;</br>
 <b>Bearing Received</b>: 54.6&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.837906,38.356251,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21681,14 +21681,14 @@
 <![CDATA[<h1>Alain .</h1>
 <b><a href="https://www.qrz.com/db/F6BIA">QRZ Page</a></b><br/>
 <b>QTH</b>: Ile-de-France<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: France<br/>
 <b>Grid</b>: JN18DQ<br/>
 <b>Distance</b>: 8857.3 km<br/>
 <b>Bearing Sent</b>: 33.8&deg;</br>
 <b>Bearing Received</b>: 318.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>2.250582,48.669853,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21870,14 +21870,14 @@
 <![CDATA[<h1>Sylvain Poulin</h1>
 <b><a href="https://www.qrz.com/db/VA2PM">QRZ Page</a></b><br/>
 <b>QTH</b>: QUEBEC<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN46HU<br/>
 <b>Distance</b>: 4140.5 km<br/>
 <b>Bearing Sent</b>: 60.5&deg;</br>
 <b>Bearing Received</b>: 275.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-71.341431,46.838837,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -21978,14 +21978,14 @@
 <![CDATA[<h1>FABIO LEONHARDT</h1>
 <b><a href="https://www.qrz.com/db/PU5FLP">QRZ Page</a></b><br/>
 <b>QTH</b>: Bracatinga-2, Trombudo Central<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Brazil<br/>
 <b>Grid</b>: GG52<br/>
 <b>Distance</b>: 10528.5 km<br/>
 <b>Bearing Sent</b>: 121.8&deg;</br>
 <b>Bearing Received</b>: 311.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-48.499844,-27.809559,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22194,14 +22194,14 @@
 <![CDATA[<h1>JOO HO NAM</h1>
 <b><a href="https://www.qrz.com/db/DS5USH">QRZ Page</a></b><br/>
 <b>QTH</b>: DAEGU<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM45<br/>
 <b>Distance</b>: 9037.4 km<br/>
 <b>Bearing Sent</b>: 309.0&deg;</br>
 <b>Bearing Received</b>: 48.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>128.425232,35.423225,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22302,14 +22302,14 @@
 <![CDATA[<h1>JOE Clements</h1>
 <b><a href="https://www.qrz.com/db/VE1JCC">QRZ Page</a></b><br/>
 <b>QTH</b>: Bloomfield STN<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN76TR<br/>
 <b>Distance</b>: 4669.9 km<br/>
 <b>Bearing Sent</b>: 59.6&deg;</br>
 <b>Bearing Received</b>: 280.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-64.380486,46.715599,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22489,14 +22489,14 @@
 <name>7N4NUC</name>
 <description>
 <![CDATA[<b><a href="https://www.qrz.com/db/7N4NUC">QRZ Page</a></b><br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QM05<br/>
 <b>Distance</b>: 8191.5 km<br/>
 <b>Bearing Sent</b>: 302.7&deg;</br>
 <b>Bearing Received</b>: 53.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.875458,35.979603,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22570,14 +22570,14 @@
 <![CDATA[<h1>SOOGIL LEE</h1>
 <b><a href="https://www.qrz.com/db/HL5BMX">QRZ Page</a></b><br/>
 <b>QTH</b>: JINHAE,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM45<br/>
 <b>Distance</b>: 9037.4 km<br/>
 <b>Bearing Sent</b>: 309.0&deg;</br>
 <b>Bearing Received</b>: 48.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>129.728851,35.095356,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22624,14 +22624,14 @@
 <![CDATA[<h1>Satoshi Sasaki</h1>
 <b><a href="https://www.qrz.com/db/JH7XWT">QRZ Page</a></b><br/>
 <b>QTH</b>: Oodate-city Akita<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN00GG<br/>
 <b>Distance</b>: 7915.6 km<br/>
 <b>Bearing Sent</b>: 307.0&deg;</br>
 <b>Bearing Received</b>: 54.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>140.526031,40.251038,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22678,14 +22678,14 @@
 <![CDATA[<h1>HENRY R BALMORES</h1>
 <b><a href="https://www.qrz.com/db/NH6WD">QRZ Page</a></b><br/>
 <b>QTH</b>: WAIANAE<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Hawaii<br/>
 <b>Grid</b>: BL01VK<br/>
 <b>Distance</b>: 3960.7 km<br/>
 <b>Bearing Sent</b>: 251.9&deg;</br>
 <b>Bearing Received</b>: 53.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-158.223267,21.427763,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22732,14 +22732,14 @@
 <![CDATA[<h1>Yusuke Ishii</h1>
 <b><a href="https://www.qrz.com/db/JG6QHE">QRZ Page</a></b><br/>
 <b>QTH</b>: Fukuoka Prefecture,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM53JI<br/>
 <b>Distance</b>: 9071.9 km<br/>
 <b>Bearing Sent</b>: 306.4&deg;</br>
 <b>Bearing Received</b>: 48.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>130.829010,33.357433,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -22867,14 +22867,14 @@
 <![CDATA[<h1>Dan Cameron</h1>
 <b><a href="https://www.qrz.com/db/VE7VU">QRZ Page</a></b><br/>
 <b>QTH</b>: Eureka<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DN29<br/>
 <b>Distance</b>: 1327.9 km<br/>
 <b>Bearing Sent</b>: 21.5&deg;</br>
 <b>Bearing Received</b>: 206.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-114.155518,49.278294,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -23272,14 +23272,14 @@
 <![CDATA[<h1>Alex Tkatch</h1>
 <b><a href="https://www.qrz.com/db/3W9A">QRZ Page</a></b><br/>
 <b>QTH</b>: Vietnam<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Vietnam<br/>
 <b>Grid</b>: OK30<br/>
 <b>Distance</b>: 12585.9 km<br/>
 <b>Bearing Sent</b>: 306.5&deg;</br>
 <b>Bearing Received</b>: 39.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>107.894493,10.028348,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -23515,14 +23515,14 @@
 <![CDATA[<h1>Robert C Hoff, Jr</h1>
 <b><a href="https://www.qrz.com/db/W3ATO">QRZ Page</a></b><br/>
 <b>QTH</b>: North Wales<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN20IE<br/>
 <b>Distance</b>: 3947.9 km<br/>
 <b>Bearing Sent</b>: 72.3&deg;</br>
 <b>Bearing Received</b>: 282.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-75.278824,40.169983,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -23623,14 +23623,14 @@
 <![CDATA[<h1>Masahisa(Masa) Miyaji</h1>
 <b><a href="https://www.qrz.com/db/JA6TEW">QRZ Page</a></b><br/>
 <b>QTH</b>: Nakama-City Fukuoka 809-0033<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM53IT<br/>
 <b>Distance</b>: 9044.2 km<br/>
 <b>Bearing Sent</b>: 306.8&deg;</br>
 <b>Bearing Received</b>: 48.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>130.686111,33.815220,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -23812,14 +23812,14 @@
 <![CDATA[<h1>SITI FATHIYYAH AZIZAH</h1>
 <b><a href="https://www.qrz.com/db/YC8BUL">QRZ Page</a></b><br/>
 <b>QTH</b>: Mandalle Kab. Pangkep<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Indonesia<br/>
 <b>Grid</b>: OI95TJ<br/>
 <b>Distance</b>: 12796.6 km<br/>
 <b>Bearing Sent</b>: 285.1&deg;</br>
 <b>Bearing Received</b>: 49.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>119.639259,-4.619401,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -23893,14 +23893,14 @@
 <![CDATA[<h1>JERRY J ROGICH</h1>
 <b><a href="https://www.qrz.com/db/AA2T">QRZ Page</a></b><br/>
 <b>QTH</b>: LEOMINSTER<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN42DL<br/>
 <b>Distance</b>: 4187.5 km<br/>
 <b>Bearing Sent</b>: 67.6&deg;</br>
 <b>Bearing Received</b>: 281.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-71.698074,42.496479,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -24107,14 +24107,14 @@
 <![CDATA[<h1>BORIS DANILO MORRONES TERRA</h1>
 <b><a href="https://www.qrz.com/db/CX6TU">QRZ Page</a></b><br/>
 <b>QTH</b>: Pueblo 19 de Abril, Rocha<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Uruguay<br/>
 <b>Grid</b>: GF25XP<br/>
 <b>Distance</b>: 10687.2 km<br/>
 <b>Bearing Sent</b>: 129.8&deg;</br>
 <b>Bearing Received</b>: 313.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-54.000435,-34.340923,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -24645,14 +24645,14 @@
 <![CDATA[<h1>Russell Thomas Farrell</h1>
 <b><a href="https://www.qrz.com/db/VE3ELL">QRZ Page</a></b><br/>
 <b>QTH</b>: ANGUS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: FN04BH77<br/>
 <b>Distance</b>: 3507.8 km<br/>
 <b>Bearing Sent</b>: 65.8&deg;</br>
 <b>Bearing Received</b>: 274.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-79.850388,44.324322,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25077,14 +25077,14 @@
 <![CDATA[<h1>Kan Syono (SYO)</h1>
 <b><a href="https://www.qrz.com/db/JA5NSR">QRZ Page</a></b><br/>
 <b>QTH</b>: Anan-city, Tokushima,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM73HW<br/>
 <b>Distance</b>: 8758.9 km<br/>
 <b>Bearing Sent</b>: 304.7&deg;</br>
 <b>Bearing Received</b>: 50.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>134.661011,33.929474,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25104,14 +25104,14 @@
 <![CDATA[<h1>Young giu Lee</h1>
 <b><a href="https://www.qrz.com/db/HL2EIZ">QRZ Page</a></b><br/>
 <b>QTH</b>: Kyeonggi-do<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: South Korea<br/>
 <b>Grid</b>: PM37SL<br/>
 <b>Distance</b>: 8987.3 km<br/>
 <b>Bearing Sent</b>: 311.3&deg;</br>
 <b>Bearing Received</b>: 47.8&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>127.510735,37.494465,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25237,14 +25237,14 @@
 <![CDATA[<h1>Roldan Gloria Bartolome</h1>
 <b><a href="https://www.qrz.com/db/VA6RB">QRZ Page</a></b><br/>
 <b>QTH</b>: CALGARY<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 3<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO30AV<br/>
 <b>Distance</b>: 1499.9 km<br/>
 <b>Bearing Sent</b>: 21.4&deg;</br>
 <b>Bearing Received</b>: 206.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle03</styleUrl>
 <Point><coordinates>-113.941742,50.901005,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25345,14 +25345,14 @@
 <![CDATA[<h1>MICHAL JANITOR</h1>
 <b><a href="https://www.qrz.com/db/OM3DX">QRZ Page</a></b><br/>
 <b>QTH</b>: 040 17 KOSICE-BARCA<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Slovak Republic<br/>
 <b>Grid</b>: KN08PQ<br/>
 <b>Distance</b>: 9650.8 km<br/>
 <b>Bearing Sent</b>: 23.4&deg;</br>
 <b>Bearing Received</b>: 331.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>21.328310,48.671013,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25588,14 +25588,14 @@
 <![CDATA[<h1>Ge Ge Pan</h1>
 <b><a href="https://www.qrz.com/db/BG4UCZ">QRZ Page</a></b><br/>
 <b>QTH</b>: JingJiang City JiangSu P.R. Chin<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: PM02DA<br/>
 <b>Distance</b>: 9884.7 km<br/>
 <b>Bearing Sent</b>: 311.5&deg;</br>
 <b>Bearing Received</b>: 43.7&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>120.263985,32.021526,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25696,14 +25696,14 @@
 <![CDATA[<h1>YASUHIRO YAMADA</h1>
 <b><a href="https://www.qrz.com/db/JE2FUP">QRZ Page</a></b><br/>
 <b>QTH</b>: TOYOTA, AICHI<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM85OC<br/>
 <b>Distance</b>: 8492.9 km<br/>
 <b>Bearing Sent</b>: 304.3&deg;</br>
 <b>Bearing Received</b>: 52.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>137.223862,35.089928,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -25858,14 +25858,14 @@
 <![CDATA[<h1>JAMES T "Jim" DAY</h1>
 <b><a href="https://www.qrz.com/db/N0TOA">QRZ Page</a></b><br/>
 <b>QTH</b>: Centennial<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM79OO<br/>
 <b>Distance</b>: 1462.5 km<br/>
 <b>Bearing Sent</b>: 80.1&deg;</br>
 <b>Bearing Received</b>: 270.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-104.813629,39.624565,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -26101,14 +26101,14 @@
 <![CDATA[<h1>Warwick Latham</h1>
 <b><a href="https://www.qrz.com/db/E51WL">QRZ Page</a></b><br/>
 <b>QTH</b>: COOK ISLANDS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: North Cook Islands<br/>
 <b>Grid</b>: BI01XA<br/>
 <b>Distance</b>: 6487.0 km<br/>
 <b>Bearing Sent</b>: 223.4&deg;</br>
 <b>Bearing Received</b>: 33.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-158.009048,-8.992911,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -26317,14 +26317,14 @@
 <![CDATA[<h1>KATOU HIDEKAZU</h1>
 <b><a href="https://www.qrz.com/db/JE5HTN">QRZ Page</a></b><br/>
 <b>QTH</b>: mitoyo-city,kagawa<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM64<br/>
 <b>Distance</b>: 8834.2 km<br/>
 <b>Bearing Sent</b>: 306.0&deg;</br>
 <b>Bearing Received</b>: 50.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>132.210770,34.819836,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -26425,14 +26425,14 @@
 <![CDATA[<h1>KENNETH L HADLEY</h1>
 <b><a href="https://www.qrz.com/db/AA0HJ">QRZ Page</a></b><br/>
 <b>QTH</b>: PHILLIPSBURG<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: EM09HS<br/>
 <b>Distance</b>: 1925.1 km<br/>
 <b>Bearing Sent</b>: 79.0&deg;</br>
 <b>Bearing Received</b>: 273.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-99.361656,39.787201,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -26911,14 +26911,14 @@
 <![CDATA[<h1>Forrest C "Clay" Seaver</h1>
 <b><a href="https://www.qrz.com/db/KO4MEX">QRZ Page</a></b><br/>
 <b>QTH</b>: Shallotte<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM03TW<br/>
 <b>Distance</b>: 3883.7 km<br/>
 <b>Bearing Sent</b>: 83.9&deg;</br>
 <b>Bearing Received</b>: 290.4&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-78.391380,33.951977,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -27235,14 +27235,14 @@
 <![CDATA[<h1>NORY Hidenori Iwai</h1>
 <b><a href="https://www.qrz.com/db/JA8KSF">QRZ Page</a></b><br/>
 <b>QTH</b>: Ebetsu-city, 069-0831<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN03SB<br/>
 <b>Distance</b>: 7671.6 km<br/>
 <b>Bearing Sent</b>: 309.0&deg;</br>
 <b>Bearing Received</b>: 56.3&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>141.534561,43.060333,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -28477,14 +28477,14 @@
 <![CDATA[<h1>Jack B Cochran</h1>
 <b><a href="https://www.qrz.com/db/WC4J">QRZ Page</a></b><br/>
 <b>QTH</b>: MANASSAS<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FM18FS<br/>
 <b>Distance</b>: 3796.3 km<br/>
 <b>Bearing Sent</b>: 75.4&deg;</br>
 <b>Bearing Received</b>: 283.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-77.536720,38.786987,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -29152,14 +29152,14 @@
 <![CDATA[<h1>FRANKLIN B NORAGON</h1>
 <b><a href="https://www.qrz.com/db/N7FN">QRZ Page</a></b><br/>
 <b>QTH</b>: Buckeye<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: DM33QQ<br/>
 <b>Distance</b>: 978.7 km<br/>
 <b>Bearing Sent</b>: 120.9&deg;</br>
 <b>Bearing Received</b>: 306.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-112.583679,33.698582,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -29852,14 +29852,14 @@
 <![CDATA[<h1>Shunichi Karasawa</h1>
 <b><a href="https://www.qrz.com/db/JA0HFG">QRZ Page</a></b><br/>
 <b>QTH</b>: Adachi-ku, Tokyo,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: PM95<br/>
 <b>Distance</b>: 8337.0 km<br/>
 <b>Bearing Sent</b>: 303.7&deg;</br>
 <b>Bearing Received</b>: 53.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>139.955902,35.703316,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -30230,14 +30230,14 @@
 <![CDATA[<h1>Brenton Meadows</h1>
 <b><a href="https://www.qrz.com/db/VK5BM">QRZ Page</a></b><br/>
 <b>QTH</b>: Tangambalanga<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Australia<br/>
 <b>Grid</b>: QF33<br/>
 <b>Distance</b>: 12525.2 km<br/>
 <b>Bearing Sent</b>: 240.5&deg;</br>
 <b>Bearing Received</b>: 57.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>146.504456,-36.322414,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -30716,14 +30716,14 @@
 <![CDATA[<h1>ANDREW P BLANK</h1>
 <b><a href="https://www.qrz.com/db/N2NT">QRZ Page</a></b><br/>
 <b>QTH</b>: Monroe Township<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN20SI<br/>
 <b>Distance</b>: 4012.8 km<br/>
 <b>Bearing Sent</b>: 71.8&deg;</br>
 <b>Bearing Received</b>: 282.9&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-74.494957,40.370792,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -30770,14 +30770,14 @@
 <![CDATA[<h1>Robert A O'Neill</h1>
 <b><a href="https://www.qrz.com/db/AC2FA">QRZ Page</a></b><br/>
 <b>QTH</b>: Getzville<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: United States<br/>
 <b>Grid</b>: FN03OA<br/>
 <b>Distance</b>: 3607.1 km<br/>
 <b>Bearing Sent</b>: 68.1&deg;</br>
 <b>Bearing Received</b>: 277.0&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-78.821388,43.013535,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -31713,14 +31713,14 @@
 <![CDATA[<h1>KENJI Muto</h1>
 <b><a href="https://www.qrz.com/db/JA8GWA">QRZ Page</a></b><br/>
 <b>QTH</b>: Sapporo-city, Hokkaido,<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Japan<br/>
 <b>Grid</b>: QN03PB<br/>
 <b>Distance</b>: 7688.5 km<br/>
 <b>Bearing Sent</b>: 309.1&deg;</br>
 <b>Bearing Received</b>: 56.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>141.317795,43.080296,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -32467,14 +32467,14 @@
 <![CDATA[<h1>Ian B. "IAN" Uy</h1>
 <b><a href="https://www.qrz.com/db/4F1EBD">QRZ Page</a></b><br/>
 <b>QTH</b>: 59 YU SING KAI BLDG ROOM 206 MARIKINA HEIGHTS, MARIKINA CITY<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Philippines<br/>
 <b>Grid</b>: PK04MP<br/>
 <b>Distance</b>: 11217.5 km<br/>
 <b>Bearing Sent</b>: 298.9&deg;</br>
 <b>Bearing Received</b>: 45.1&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>121.037865,14.655453,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -32521,14 +32521,14 @@
 <![CDATA[<h1>Tao Peng</h1>
 <b><a href="https://www.qrz.com/db/BG4TRN">QRZ Page</a></b><br/>
 <b>QTH</b>: WuXi,JiangSu<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: China<br/>
 <b>Grid</b>: PM01WM<br/>
 <b>Distance</b>: 9820.5 km<br/>
 <b>Bearing Sent</b>: 310.2&deg;</br>
 <b>Bearing Received</b>: 44.5&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>121.851265,31.518656,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -33007,14 +33007,14 @@
 <![CDATA[<h1>David Lee</h1>
 <b><a href="https://www.qrz.com/db/VE6KIX">QRZ Page</a></b><br/>
 <b>QTH</b>: Calgary<br/>
-<b>Number of QSOs</b>: 1<br/>
+<b>Number of QSOs</b>: 2<br/>
 <b>Country</b>: Canada<br/>
 <b>Grid</b>: DO21XC<br/>
 <b>Distance</b>: 1518.0 km<br/>
 <b>Bearing Sent</b>: 20.8&deg;</br>
 <b>Bearing Received</b>: 206.2&deg;</br>
 ]]></description>
-<styleUrl>#pointStyle01</styleUrl>
+<styleUrl>#pointStyle02</styleUrl>
 <Point><coordinates>-114.073257,51.124912,0</coordinates></Point>
 </Placemark>
 <Placemark>

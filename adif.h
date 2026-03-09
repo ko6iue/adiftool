@@ -33,8 +33,9 @@
 #ifndef ADIF_H
 #define ADIF_H
 #include <stdio.h>
-#include "maidenhead.h"
-#include "uthash.h"
+#include "./maidenhead.h"
+#include "./uthash.h"
+#include "./counter.h"
 
 #define ADIF_DATE_LEN 16
 typedef struct {
@@ -51,6 +52,8 @@ typedef struct {
     int             confirmed;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     UT_hash_handle  hh;
 } adif_station_t;
 
@@ -63,6 +66,8 @@ typedef struct {
     int             num_qsos;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     UT_hash_handle  hh;
 } adif_grid_t;
 
@@ -83,6 +88,8 @@ typedef struct {
     int             num_confirmed_countries;
     char            first_contact[ADIF_DATE_LEN];
     char            last_contact[ADIF_DATE_LEN];
+    adif_counter_t *modes;
+    adif_counter_t *bands;
     adif_grid_t    *grids;
     adif_station_t *stations;
     adif_country_t *countries;
@@ -90,16 +97,6 @@ typedef struct {
 
 adif_data_t    *load_adif_mem(char *buf, size_t len);
 adif_data_t    *load_adif_fp(FILE * fp);
-
-
-int             walk_stations(adif_station_t * stations,
-                              int (*cb)(adif_station_t *, void *arg,
-                                        int last_item), void *arg);
-int             walk_grids(adif_grid_t * grids,
-                           int (*cb)(adif_grid_t *, void *arg,
-                                     int last_item), void *arg);
-
-int             print_stations(FILE *, adif_station_t * stations);
 
 void            free_data(adif_data_t * data);
 

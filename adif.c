@@ -121,6 +121,8 @@ free_stations(adif_station_t *stations)
     if (stations) {
         HASH_ITER(hh, stations, station, tmp) {
             HASH_DEL(stations, station);
+            counter_free(&station->bands);
+            counter_free(&station->modes);
             free_station_strdups(station);
             free(station);
         }
@@ -135,6 +137,8 @@ free_grids(adif_grid_t *grids)
     if (grids) {
         HASH_ITER(hh, grids, grid, tmp) {
             HASH_DEL(grids, grid);
+            counter_free(&grid->bands);
+            counter_free(&grid->modes);
             free(grid);
         }
     }
@@ -163,6 +167,8 @@ free_data(adif_data_t *data)
     free_stations(data->stations);
     free_grids(data->grids);
     free_countries(data->countries);
+    counter_free(&data->bands);
+    counter_free(&data->modes);
     free(data);
 }
 
@@ -181,25 +187,30 @@ trim_end_space(char *p)
 }
 
 int
-build_grid_data(adif_station_t *station, void *arg, int last_item)
+build_grid_data(adif_station_t *station, adif_data_t *data)
 {
-    (void) last_item;
-    adif_data_t    *data = (adif_data_t *) arg;
     adif_grid_t    *grid;
+    char            grid_name[GRID_NAME_LEN + 1];
 
-    HASH_FIND_STR(data->grids, station->their_grid.mh, grid);
+    // Truncate the grid to GRID_NAME_LEN in size
+    strncpy(grid_name, station->their_grid.mh, GRID_NAME_LEN);
+    grid_name[GRID_NAME_LEN] = '\0';
+
+    HASH_FIND_STR(data->grids, grid_name, grid);
     if (grid == NULL) {
+        // Add new grid
         grid = (adif_grid_t *) calloc(1, sizeof(*grid));
-        strncpy(grid->name, station->their_grid.mh,
-                sizeof(grid->name) - 1);
+        strncpy(grid->name, grid_name, sizeof(grid->name) - 1);
         HASH_ADD_STR(data->grids, name, grid);
 
+        // Initialize new grid
         strncpy(grid->first_contact, station->first_contact,
                 sizeof(grid->first_contact));
         strncpy(grid->last_contact, station->last_contact,
                 sizeof(grid->last_contact));
 
     } else {
+        // Update known grid
         if (strcmp(station->first_contact, grid->first_contact) < 0) {
             strncpy(grid->first_contact, station->first_contact,
                     sizeof(grid->first_contact));
@@ -214,14 +225,14 @@ build_grid_data(adif_station_t *station, void *arg, int last_item)
         grid->num_confirmed_stations++;
     }
     grid->num_qsos += station->num_qsos;
+    counter_merge(&grid->modes, station->modes);
+    counter_merge(&grid->bands, station->bands);
     return 0;
 }
 
 int
-build_country_data(adif_station_t *station, void *arg, int last_item)
+build_country_data(adif_station_t *station, adif_data_t *data)
 {
-    (void) last_item;
-    adif_data_t    *data = (adif_data_t *) arg;
     adif_country_t *country;
     if (!station->country) {
         return 0;
@@ -229,6 +240,7 @@ build_country_data(adif_station_t *station, void *arg, int last_item)
     HASH_FIND_STR(data->countries, station->country, country);
     if (country == NULL) {
         country = (adif_country_t *) calloc(1, sizeof(*country));
+        // TODO ????
         country->name = station->country;
         HASH_ADD_STR(data->countries, name, country);
     }
@@ -271,6 +283,8 @@ build_grid_summary_data(adif_data_t *data)
         data->num_qsos += grid->num_qsos;
         data->num_stations += grid->num_stations;
         data->num_confirmed_stations += grid->num_confirmed_stations;
+        counter_merge(&data->modes, grid->modes);
+        counter_merge(&data->bands, grid->bands);
     }
 }
 
@@ -288,20 +302,90 @@ build_country_summary_data(adif_data_t *data)
     }
 }
 
+int
+by_count(const adif_counter_t *a, const adif_counter_t *b)
+{
+    return (b->count - a->count);
+}
+
+void
+sort_mode_bands(adif_data_t *data)
+{
+    adif_station_t *station,
+                   *stationtmp;
+    adif_grid_t    *grid,
+                   *gridtmp;
+    // Sort modes and bands at all levels
+    HASH_ITER(hh, data->stations, station, stationtmp) {
+        if (station->modes) {
+            HASH_SORT(station->modes, by_count);
+        }
+        if (station->bands) {
+            HASH_SORT(station->bands, by_count);
+        }
+    }
+    HASH_ITER(hh, data->grids, grid, gridtmp) {
+        if (grid->modes) {
+            HASH_SORT(grid->modes, by_count);
+        }
+        if (grid->bands) {
+            HASH_SORT(grid->bands, by_count);
+        }
+    }
+    if (data->modes) {
+        HASH_SORT(data->modes, by_count);
+    }
+    if (data->bands) {
+        HASH_SORT(data->bands, by_count);
+    }
+}
+
 void
 summarize_data(adif_data_t *data)
 {
+    adif_station_t *station,
+                   *stationtmp;
     if (!data) {
         return;
     }
     // Build grid data
-    walk_stations(data->stations, &build_grid_data, data);
-    // Build country data
-    walk_stations(data->stations, &build_country_data, data);
+    HASH_ITER(hh, data->stations, station, stationtmp) {
+        build_grid_data(station, data);
+    }
+    HASH_ITER(hh, data->stations, station, stationtmp) {
+        build_country_data(station, data);
+    }
     // Build grid summary information
     build_grid_summary_data(data);
     // Build country summary data
     build_country_summary_data(data);
+    // Sort the band/modes at all levels
+    sort_mode_bands(data);
+}
+
+char           *
+__strtoupper(char *in)
+{
+    char           *str = in;
+    if (!in) {
+        return NULL;
+    }
+    while (*str) {
+        *str = toupper(*str);
+        str++;
+    }
+    return in;
+}
+
+void
+update_station_mode_band(adif_station_t *station, char *mode, char *band)
+{
+    if (strlen(mode) > 0) {
+        counter_increment(&station->modes, mode, 1);
+    }
+    if (strlen(band) > 0) {
+        counter_increment(&station->bands, band, 1);
+    }
 }
 
 #define FIELD_DELIMITER "<"
@@ -327,9 +411,15 @@ load_adif_mem(char *buf, size_t buf_len)
     const char     *fields[] =
         { "eor", "call", "name", "country", "qth", "gridsquare",
         "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
-        "lotw_qsl_rcvd", "qso_date", NULL
+        "lotw_qsl_rcvd", "qso_date", "mode", "band", NULL
     };
     char            date_field[ADIF_DATE_LEN];
+    char            band_field[16];
+    char            mode_field[16];
+
+    memset(date_field, 0, sizeof(date_field));
+    memset(band_field, 0, sizeof(band_field));
+    memset(mode_field, 0, sizeof(mode_field));
 
     data = (adif_data_t *) calloc(1, sizeof *data);
 
@@ -398,25 +488,28 @@ load_adif_mem(char *buf, size_t buf_len)
                     memset(tmp, 0, sizeof(*tmp));
                 } else {
                     // Data from an existing station
-                    tmp->num_qsos += 1;
-                    if (!tmp->confirmed && station->confirmed) {
-                        tmp->confirmed = 1;
+                    station->num_qsos += 1;
+                    if (!station->confirmed && tmp->confirmed) {
+                        station->confirmed = 1;
                     }
 
-                    if (strcmp(date_field, tmp->first_contact) < 0) {
-                        strncpy(tmp->first_contact, date_field,
-                                sizeof(tmp->first_contact));
+                    if (strcmp(date_field, station->first_contact) < 0) {
+                        strncpy(station->first_contact, date_field,
+                                sizeof(station->first_contact));
                     }
-                    if (strcmp(date_field, tmp->last_contact) > 0) {
-                        strncpy(tmp->last_contact, date_field,
-                                sizeof(tmp->last_contact));
+                    if (strcmp(date_field, station->last_contact) > 0) {
+                        strncpy(station->last_contact, date_field,
+                                sizeof(station->last_contact));
                     }
                 }
+                update_station_mode_band(station, mode_field, band_field);
             }
             // Cleanup / reset station for more data
             free_station_strdups(tmp);
             memset(tmp, 0, sizeof(*tmp));
             memset(date_field, 0, sizeof(date_field));
+            memset(mode_field, 0, sizeof(mode_field));
+            memset(band_field, 0, sizeof(band_field));
             break;
         case 1:                // call
             tmp->their_call = strdup(value);
@@ -448,6 +541,16 @@ load_adif_mem(char *buf, size_t buf_len)
             memset(date_field, 0, sizeof(date_field));
             strncpy(date_field, value, sizeof(date_field) - 1);
             break;
+        case 12:               // mode
+            memset(mode_field, 0, sizeof(mode_field));
+            strncpy(mode_field, __strtoupper(value),
+                    sizeof(mode_field) - 1);
+            break;
+        case 13:               // band
+            memset(band_field, 0, sizeof(band_field));
+            strncpy(band_field, __strtoupper(value),
+                    sizeof(band_field) - 1);
+            break;
         }
     }
 
@@ -457,56 +560,4 @@ load_adif_mem(char *buf, size_t buf_len)
 
     summarize_data(data);
     return data;
-}
-
-
-int
-walk_stations(adif_station_t *stations,
-              int (*cb)(adif_station_t *, void *arg, int is_last),
-              void *arg)
-{
-    int             rval,
-                    nitems;
-    adif_station_t *station,
-                   *tmp;
-    if (stations && cb) {
-        nitems = HASH_COUNT(stations);
-        HASH_ITER(hh, stations, station, tmp) {
-            nitems--;
-            rval = (*cb) (station, arg, nitems == 0);
-            if (rval) {
-                // abort on error. cb returns 0 on success.
-                return rval;
-            }
-        }
-    }
-    return 0;
-}
-
-int
-walk_grids(adif_grid_t *grids,
-           int (*cb)(adif_grid_t *, void *arg, int is_last), void *arg)
-{
-    int             rval,
-                    nitems;
-    adif_grid_t    *grid,
-                   *tmp;
-    if (grids && cb) {
-        nitems = HASH_COUNT(grids);
-        HASH_ITER(hh, grids, grid, tmp) {
-            nitems--;
-            rval = (*cb) (grid, arg, nitems == 0);
-            if (rval) {
-                // abort on error. cb returns 0 on success.
-                return rval;
-            }
-        }
-    }
-    return 0;
-}
-
-int
-print_stations(FILE *fp, adif_station_t *stations)
-{
-    return walk_stations(stations, &print_station, (void *) fp);
 }
