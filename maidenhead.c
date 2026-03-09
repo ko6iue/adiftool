@@ -157,6 +157,7 @@ maidenhead_init(maidenhead_t *mh, const char *grid, const int len)
         // return offset of invalid character
         return rval;
     }
+    memset(mh, 0, sizeof(*mh));
     memcpy(mh->mh, grid, len);
     mh->sw_corner.lat = -90.0;
     mh->sw_corner.lon = -180.0;

@@ -180,37 +180,25 @@ trim_end_space(char *p)
     }
 }
 
-adif_grid_t    *
-grid_create(char *name)
-{
-    adif_grid_t    *grid;
-    grid = (adif_grid_t *) malloc(sizeof(*grid));
-    assert(grid);
-    memset(grid, 0, sizeof(*grid));
-    memcpy(grid->name, name, GRID_NAME_LEN);
-    grid->name[GRID_NAME_LEN] = '\0';
-    return grid;
-}
-
 int
 build_grid_data(adif_station_t *station, void *arg, int last_item)
 {
     (void) last_item;
     adif_data_t    *data = (adif_data_t *) arg;
-    char            base_mh[GRID_NAME_LEN + 1];
     adif_grid_t    *grid;
 
-    memcpy(base_mh, &station->their_grid.mh, GRID_NAME_LEN);
-    base_mh[GRID_NAME_LEN] = '\0';
-    HASH_FIND_STR(data->grids, base_mh, grid);
+    HASH_FIND_STR(data->grids, station->their_grid.mh, grid);
     if (grid == NULL) {
-        grid = grid_create(base_mh);
+        grid = (adif_grid_t *) calloc(1, sizeof(*grid));
+        strncpy(grid->name, station->their_grid.mh,
+                sizeof(grid->name) - 1);
+        HASH_ADD_STR(data->grids, name, grid);
+
         strncpy(grid->first_contact, station->first_contact,
                 sizeof(grid->first_contact));
         strncpy(grid->last_contact, station->last_contact,
                 sizeof(grid->last_contact));
 
-        HASH_ADD_STR(data->grids, name, grid);
     } else {
         if (strcmp(station->first_contact, grid->first_contact) < 0) {
             strncpy(grid->first_contact, station->first_contact,
@@ -240,9 +228,7 @@ build_country_data(adif_station_t *station, void *arg, int last_item)
     }
     HASH_FIND_STR(data->countries, station->country, country);
     if (country == NULL) {
-        country = (adif_country_t *) malloc(sizeof(*country));
-        assert(country);
-        memset(country, 0, sizeof(*country));
+        country = (adif_country_t *) calloc(1, sizeof(*country));
         country->name = station->country;
         HASH_ADD_STR(data->countries, name, country);
     }
@@ -345,13 +331,9 @@ load_adif_mem(char *buf, size_t buf_len)
     };
     char            date_field[ADIF_DATE_LEN];
 
-    data = (adif_data_t *) malloc(sizeof *data);
-    assert(data);
-    memset(data, 0, sizeof *data);
+    data = (adif_data_t *) calloc(1, sizeof *data);
 
-    station = (adif_station_t *) malloc(sizeof *station);
-    assert(station);
-    memset(station, 0, sizeof(*station));
+    tmp = (adif_station_t *) calloc(1, sizeof(*tmp));
 
     for (field = strtok_r(buf, FIELD_DELIMITER, &fieldptr);
          field != NULL;
@@ -374,33 +356,46 @@ load_adif_mem(char *buf, size_t buf_len)
 
         switch (i) {
         case 0:                // EOR
-            if (valid_station(station)) {
+            if (valid_station(tmp)) {
                 // process this useable QSO record
-                HASH_FIND_STR(data->stations, station->their_call, tmp);
-                if (tmp == NULL) {
-                    // Data from a new station
+                HASH_FIND_STR(data->stations, tmp->their_call, station);
+                if (station == NULL) {
+                    // Set key and add to hash
+                    station =
+                        (adif_station_t *) calloc(1, sizeof(*station));
+                    station->their_call = tmp->their_call;
+                    HASH_ADD_STR(data->stations, their_call, station);
+
+                    // Initialize non-key fields
+                    station->name = tmp->name;
+                    station->country = tmp->country;
+                    station->qth = tmp->qth;
+                    memcpy(&station->my_grid, &tmp->my_grid,
+                           sizeof(station->my_grid));
+                    memcpy(&station->their_grid, &tmp->their_grid,
+                           sizeof(station->their_grid));
+
                     station->distance_km =
-                        maidenhead_distance_km(&station->my_grid,
-                                               &station->their_grid);
+                        maidenhead_distance_km(&tmp->my_grid,
+                                               &tmp->their_grid);
                     station->bearing_sent =
-                        maidenhead_bearing_degrees(&station->my_grid,
-                                                   &station->their_grid);
+                        maidenhead_bearing_degrees(&tmp->my_grid,
+                                                   &tmp->their_grid);
                     station->bearing_rcvd =
-                        maidenhead_bearing_degrees(&station->their_grid,
-                                                   &station->my_grid);
+                        maidenhead_bearing_degrees(&tmp->their_grid,
+                                                   &tmp->my_grid);
                     station->num_qsos = 1;
-                    tmp = (adif_station_t *) malloc(sizeof(*tmp));
-                    memcpy(tmp, station, sizeof(*station));
+                    station->confirmed = tmp->confirmed;
 
-                    strncpy(tmp->first_contact, date_field,
-                            sizeof(tmp->first_contact));
-                    strncpy(tmp->last_contact, date_field,
-                            sizeof(tmp->last_contact));
+                    strncpy(station->first_contact, date_field,
+                            sizeof(station->first_contact));
+                    strncpy(station->last_contact, date_field,
+                            sizeof(station->last_contact));
 
-                    // Add a copy of this new valid QSO
-                    HASH_ADD_STR(data->stations, their_call, tmp);
-                    // Set our working QSO to zero
-                    memset(station, 0, sizeof(*station));
+                    // This sets all strdup strings to NULL to prevent
+                    // data from being freed with free_station_strdups
+                    // since we're using them in this station.
+                    memset(tmp, 0, sizeof(*tmp));
                 } else {
                     // Data from an existing station
                     tmp->num_qsos += 1;
@@ -419,34 +414,34 @@ load_adif_mem(char *buf, size_t buf_len)
                 }
             }
             // Cleanup / reset station for more data
-            free_station_strdups(station);
-            memset(station, 0, sizeof(*station));
+            free_station_strdups(tmp);
+            memset(tmp, 0, sizeof(*tmp));
             memset(date_field, 0, sizeof(date_field));
             break;
         case 1:                // call
-            station->their_call = strdup(value);
+            tmp->their_call = strdup(value);
             break;
         case 2:                // name
-            station->name = strdup(value);
+            tmp->name = strdup(value);
             break;
         case 3:                // country
-            station->country = strdup(value);
+            tmp->country = strdup(value);
             break;
         case 4:                // qth
-            station->qth = strdup(value);
+            tmp->qth = strdup(value);
             break;
         case 5:                // gridsquare
-            maidenhead_init(&station->their_grid, value, strlen(value));
+            maidenhead_init(&tmp->their_grid, value, strlen(value));
             break;
         case 6:                // my_gridsquare
-            maidenhead_init(&station->my_grid, value, strlen(value));
+            maidenhead_init(&tmp->my_grid, value, strlen(value));
             break;
         case 7:                // eqsl_qsl_rcvd
         case 8:                // dcl_qsl_rcvd
         case 9:                // qsl_rcvd
         case 10:               // lotw_qsl_rcvd
-            if (!station->confirmed && (strcasecmp("y", value) == 0)) {
-                station->confirmed = 1;
+            if (!tmp->confirmed && (strcasecmp("y", value) == 0)) {
+                tmp->confirmed = 1;
             }
             break;
         case 11:               // qso_date
@@ -457,8 +452,8 @@ load_adif_mem(char *buf, size_t buf_len)
     }
 
     // Free our working QSO
-    free_station_strdups(station);
-    free(station);
+    free_station_strdups(tmp);
+    free(tmp);
 
     summarize_data(data);
     return data;
