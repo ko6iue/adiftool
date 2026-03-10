@@ -43,6 +43,7 @@
         max-height: 100%;
       }
       .info {
+        width: 200px;
         padding: 6px 8px;
         font:
           14px/16px Arial,
@@ -155,15 +156,15 @@
           ]) +
           counterHTML("Modes", globals.modes) +
           counterHTML("Bands", globals.bands) +
-          "Hover over a station or grid for information.<br/>" +
-          "Click on a station to launch its QRZ page.<br/>" +
-          "Click on a grid to zoom to it.<br/>"
+          "<hr><b>Hover over</b> a station or grid for information.<br/>" +
+          "<b>Click on</b> a station to launch its QRZ page.<br/>" +
+          "<b>Click on</b> a grid to zoom to it.<br/>"
         );
       }
 
       function stationPropsHTML(props) {
-        s = "<h4>Station " + props.call + "</h4><br/>";
-        s += "<b>";
+        s = "<h4>Station " + props.call + "</h4>";
+        s += "<hr><b>";
         s += props.confirmed ? "Confirmed" : "Unconfirmed";
         s += "</b><br/>";
         s +=
@@ -202,6 +203,7 @@
           this._div.innerHTML = defaultMessage();
         } else {
           s = "<h4>Grid " + props.name + "</h4>";
+          s += "<hr>";
           s += "<b>";
           s += props.confirmed ? "Confirmed" : "Unconfirmed";
           s +=
