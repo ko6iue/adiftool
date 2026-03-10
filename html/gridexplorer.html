@@ -127,11 +127,10 @@
       function counterHTML(name, counter) {
         let s = "";
         if (counter) {
-          s += "<b>" + name + ":</b><ul>";
+          s += "<b>" + name + ":</b><br/>";
           counter.forEach(function (item, index) {
-            s += "<li>" + item[0] + " (" + item[1] + ", " + item[2] + "%)";
+            s += item[0] + " (" + item[1] + ", " + item[2] + "%)<br/>";
           });
-          s += "</ul>";
         }
         return s;
       }
@@ -150,12 +149,14 @@
             ["Total Stations", globals.total_stations],
             ["Countries", globals.total_countries],
             ["Confirmed Countries", globals.total_confirmed_countries],
-            ["Start date", globals.first_contact],
-            ["End date", globals.last_contact],
             ["Total QSOs", globals.total_qsos],
           ]) +
           counterHTML("Modes", globals.modes) +
           counterHTML("Bands", globals.bands) +
+          nameValueHTML([
+            ["Start date", globals.first_contact],
+            ["End date", globals.last_contact],
+          ]) +
           "<hr><b>Hover over</b> a station or grid for information.<br/>" +
           "<b>Click on</b> a station to launch its QRZ page.<br/>" +
           "<b>Click on</b> a grid to zoom to it.<br/>"
@@ -171,8 +172,6 @@
           nameValueHTML([
             ["Name", props.name],
             ["QSOs", props.QSOs],
-            ["First contact", props.first_contact],
-            ["Last contact", props.last_contact],
           ]) +
           counterHTML("Modes", props.modes) +
           counterHTML("Bands", props.bands) +
@@ -185,6 +184,8 @@
             ["Distance", props.distance],
             ["Bearing sent", props.bearing_sent],
             ["Bearing rcvd", props.bearing_rcvd],
+            ["First contact", props.first_contact],
+            ["Last contact", props.last_contact],
           ]);
         return s;
       }
@@ -214,11 +215,7 @@
               ["Num QSOs", props.num_qsos],
             ]) +
             counterHTML("Modes", props.modes) +
-            counterHTML("Bands", props.bands) +
-            nameValueHTML([
-              ["First contact", props.first_contact],
-              ["Last contact", props.last_contact],
-            ]);
+            counterHTML("Bands", props.bands);
           if (props.lat_range) {
             s +=
               "<b>Latitude:</b> " +
@@ -235,6 +232,10 @@
               props.lon_range[1] +
               "&deg;<br/>";
           }
+          s += nameValueHTML([
+            ["First contact", props.first_contact],
+            ["Last contact", props.last_contact],
+          ]);
           this._div.innerHTML = s;
         }
       };
