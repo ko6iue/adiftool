@@ -123,36 +123,6 @@
         return this._div;
       };
 
-      function defaultMessage() {
-        return (
-          (globals.total_stations
-            ? "<b>Total Stations:</b> " + globals.total_stations + "<br/>"
-            : "") +
-          (globals.total_countries
-            ? "<b>Countries:</b> " + globals.total_countries + "<br/>"
-            : "") +
-          (globals.total_confirmed_countries
-            ? "<b>Confirmed Countries:</b> " +
-              globals.total_confirmed_countries +
-              "<br/>"
-            : "") +
-          (globals.first_contact
-            ? "<b>Start date:</b> " + globals.first_contact + "<br/>"
-            : "") +
-          (globals.last_contact
-            ? "<b>End date:</b> " + globals.last_contact + "<br/>"
-            : "") +
-          (globals.total_qsos
-            ? "<b>Total QSOs:</b> " + globals.total_qsos + "<br/>"
-            : "") +
-          counterHTML("Modes", globals.modes) +
-          counterHTML("Bands", globals.bands) +
-          "Hover over a station or grid for information.<br/>" +
-          "Click on a station to launch its QRZ page.<br/>" +
-          "Click on a grid to zoom to it.<br/>"
-        );
-      }
-
       function counterHTML(name, counter) {
         let s = "";
         if (counter) {
@@ -165,49 +135,56 @@
         return s;
       }
 
+      function nameValueHTML(items) {
+        let s = "";
+        items.forEach(function (item, index) {
+          s += "<b>" + item[0] + ":</b>" + item[1] + "<br/>";
+        });
+        return s;
+      }
+
+      function defaultMessage() {
+        return (
+          nameValueHTML([
+            ["Total Stations", globals.total_stations],
+            ["Countries", globals.total_countries],
+            ["Confirmed Countries", globals.total_confirmed_countries],
+            ["Start date", globals.first_contact],
+            ["End date", globals.last_contact],
+            ["Total QSOs", globals.total_qsos],
+          ]) +
+          counterHTML("Modes", globals.modes) +
+          counterHTML("Bands", globals.bands) +
+          "Hover over a station or grid for information.<br/>" +
+          "Click on a station to launch its QRZ page.<br/>" +
+          "Click on a grid to zoom to it.<br/>"
+        );
+      }
+
       function stationPropsHTML(props) {
         s = "<h4>Station " + props.call + "</h4><br/>";
         s += "<b>";
         s += props.confirmed ? "Confirmed" : "Unconfirmed";
         s += "</b><br/>";
-        if (props.name) {
-          s += "<b>Name:</b> " + props.name + "<br/>";
-        }
-        if (props.QSOs) {
-          s += "<b>QSOs:</b> " + props.QSOs + "<br/>";
-        }
-        if (props.first_contact) {
-          s += "<b>First contact:</b> " + props.first_contact + "<br/>";
-        }
-        if (props.last_contact) {
-          s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
-        }
-        s += counterHTML("Modes", props.modes);
-        s += counterHTML("Bands", props.bands);
-        if (props.QTH) {
-          s += "<b>QTH:</b> " + props.QTH + "<br/>";
-        }
-        if (props.grid) {
-          s += "<b>Grid:</b> " + props.grid + "<br/>";
-        }
-        if (props.country) {
-          s += "<b>Country:</b> " + props.country + "<br/>";
-        }
-        if (props.lat) {
-          s += "<b>Latitude:</b> " + props.lat + "&deg<br/>";
-        }
-        if (props.lon) {
-          s += "<b>Longitude:</b> " + props.lon + "&deg;<br/>";
-        }
-        if (props.distance) {
-          s += "<b>Distance:</b> " + props.distance + " km<br/>";
-        }
-        if (props.bearing_sent) {
-          s += "<b>Bearing sent:</b> " + props.bearing_sent + "&deg;<br/>";
-        }
-        if (props.bearing_rcvd) {
-          s += "<b>Bearing rcvd:</b> " + props.bearing_rcvd + "&deg;<br/>";
-        }
+        s +=
+          nameValueHTML([
+            ["Name", props.name],
+            ["QSOs", props.QSOs],
+            ["First contact", props.first_contact],
+            ["Last contact", props.last_contact],
+          ]) +
+          counterHTML("Modes", props.modes) +
+          counterHTML("Bands", props.bands) +
+          nameValueHTML([
+            ["QTH", props.QTH],
+            ["Grid", props.grid],
+            ["Country", props.country],
+            ["Latitude", props.lat + "&deg;"],
+            ["Longitude", props.lon + "&deg;"],
+            ["Distance", props.distance],
+            ["Bearing sent", props.bearing_sent],
+            ["Bearing rcvd", props.bearing_rcvd],
+          ]);
         return s;
       }
 
@@ -227,27 +204,19 @@
           s = "<h4>Grid " + props.name + "</h4>";
           s += "<b>";
           s += props.confirmed ? "Confirmed" : "Unconfirmed";
-          s += "</b><br/>";
-          if (props.num_stations) {
-            s += "<b>Num Stations:</b> " + props.num_stations + "<br/>";
-          }
-          if (props.num_confirmed_stations) {
-            s +=
-              "<b>Confirmed Stations:</b> " +
-              props.num_confirmed_stations +
-              "<br/>";
-          }
-          if (props.num_qsos) {
-            s += "<b>Num QSOs:</b> " + props.num_qsos + "<br/>";
-          }
-          s += counterHTML("Modes", props.modes);
-          s += counterHTML("Bands", props.bands);
-          if (props.first_contact) {
-            s += "<b>First contact:</b> " + props.first_contact + "<br/>";
-          }
-          if (props.last_contact) {
-            s += "<b>Last contact:</b> " + props.last_contact + "<br/>";
-          }
+          s +=
+            "</b><br/>" +
+            nameValueHTML([
+              ["Num Stations", props.num_stations],
+              ["Confirmed Stations", props.num_confirmed_stations],
+              ["Num QSOs", props.num_qsos],
+            ]) +
+            counterHTML("Modes", props.modes) +
+            counterHTML("Bands", props.bands) +
+            nameValueHTML([
+              ["First contact", props.first_contact],
+              ["Last contact", props.last_contact],
+            ]);
           if (props.lat_range) {
             s +=
               "<b>Latitude:</b> " +
@@ -421,9 +390,9 @@
       }
 
       /* For now, load sample data from a fixed location. In the
-           future, provide a way to users to convert their ADIF to
-           Grid Explorer GeoJSON to enable publishing/sharing their
-           contacts */
+               future, provide a way to users to convert their ADIF to
+               Grid Explorer GeoJSON to enable publishing/sharing their
+               contacts */
       async function getData() {
         const url = "https://ko6iue.org/assets/contacts.json";
         try {
