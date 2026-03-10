@@ -103,7 +103,7 @@ mh_print_coordinates(FILE *fp, maidenhead_t *mh)
 }
 
 void
-__write_counter_array(FILE *fp, adif_counter_t *counters)
+__write_counter_array(FILE *fp, adif_counter_t *counters, int total)
 {
     adif_counter_t *counter,
                    *tmp;
@@ -119,7 +119,8 @@ __write_counter_array(FILE *fp, adif_counter_t *counters)
             } else {
                 fprintf(fp, ",");
             }
-            fprintf(fp, "[\"%s\",%d]", counter->name, counter->count);
+            fprintf(fp, "[\"%s\",%d,%.1f]", counter->name, counter->count,
+                    (float) counter->count / total * 100.0);
         }
 
     }
@@ -127,16 +128,17 @@ __write_counter_array(FILE *fp, adif_counter_t *counters)
 }
 
 void
-__write_bands_modes(FILE *fp, adif_counter_t *bands, adif_counter_t *modes)
+__write_bands_modes(FILE *fp, adif_counter_t *bands, adif_counter_t *modes,
+                    int total)
 {
     if (bands) {
         json_attr(fp, "bands");
-        __write_counter_array(fp, bands);
+        __write_counter_array(fp, bands, total);
         fprintf(fp, ",");
     }
     if (modes) {
         json_attr(fp, "modes");
-        __write_counter_array(fp, modes);
+        __write_counter_array(fp, modes, total);
         fprintf(fp, ",");
     }
 }
@@ -203,7 +205,8 @@ write_geojson_station(adif_station_t *station, FILE *fp, int last_item)
         json_val(fp, station->last_contact);
         fprintf(fp, ",");
     }
-    __write_bands_modes(fp, station->bands, station->modes);
+    __write_bands_modes(fp, station->bands, station->modes,
+                        station->num_qsos);
     json_attr(fp, "confirmed");
     fprintf(fp, "%s,", station->confirmed ? "true" : "false");
     // call is last because it's required
@@ -254,7 +257,7 @@ write_geojson_grid(adif_grid_t *grid, FILE *fp, int last_item)
     json_attr(fp, "last_contact");
     json_val(fp, grid->last_contact);
     fprintf(fp, ",");
-    __write_bands_modes(fp, grid->bands, grid->modes);
+    __write_bands_modes(fp, grid->bands, grid->modes, grid->num_qsos);
     json_attr(fp, "num_qsos");
     fprintf(fp, "%d,", grid->num_qsos);
     json_attr(fp, "num_stations");
@@ -354,7 +357,7 @@ write_global_information(FILE *fp, adif_data_t *data)
     } else {
         json_attr(fp, "success");
         fprintf(fp, "true,");
-        __write_bands_modes(fp, data->bands, data->modes);
+        __write_bands_modes(fp, data->bands, data->modes, data->num_qsos);
         json_attr(fp, "grid_max_qsos");
         fprintf(fp, "%d,", data->grid_max_qsos);
         json_attr(fp, "total_stations");
