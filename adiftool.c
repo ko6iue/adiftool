@@ -75,7 +75,9 @@ runit(struct gengetopt_args_info *args_info)
 
     fclose(outfp);
 
-    printf("Processed %d stations\n", HASH_COUNT(data->stations));
+    printf("Processed %d stations / %d contacts in %d countries\n",
+           HASH_COUNT(data->stations), data->num_qsos,
+           data->num_countries);
     free_data(data);
     return EXIT_SUCCESS;
 }
