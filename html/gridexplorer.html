@@ -145,21 +145,22 @@
 
       function defaultMessage() {
         return (
-          nameValueHTML([
+          "<h4>Global Summary</h4><hr>" +
+          (nameValueHTML([
             ["Total Stations", globals.total_stations],
             ["Countries", globals.total_countries],
             ["Confirmed Countries", globals.total_confirmed_countries],
             ["Total QSOs", globals.total_qsos],
           ]) +
-          counterHTML("Modes", globals.modes) +
-          counterHTML("Bands", globals.bands) +
-          nameValueHTML([
-            ["Start date", globals.first_contact],
-            ["End date", globals.last_contact],
-          ]) +
-          "<hr><b>Hover over</b> a station or grid for information.<br/>" +
-          "<b>Click on</b> a station to launch its QRZ page.<br/>" +
-          "<b>Click on</b> a grid to zoom to it.<br/>"
+            counterHTML("Modes", globals.modes) +
+            counterHTML("Bands", globals.bands) +
+            nameValueHTML([
+              ["Oldest QSO", globals.first_contact],
+              ["Latest QSO", globals.last_contact],
+            ]) +
+            "<hr><b>Hover over</b> a station or grid for information.<br/>" +
+            "<b>Click on</b> a station to launch its QRZ page.<br/>" +
+            "<b>Click on</b> a grid to zoom to it.<br/>")
         );
       }
 
@@ -184,8 +185,8 @@
             ["Distance", props.distance],
             ["Bearing sent", props.bearing_sent],
             ["Bearing rcvd", props.bearing_rcvd],
-            ["First contact", props.first_contact],
-            ["Last contact", props.last_contact],
+            ["Oldest QSO", props.first_contact],
+            ["Latest QSO", props.last_contact],
           ]);
         return s;
       }
@@ -233,8 +234,8 @@
               "&deg;<br/>";
           }
           s += nameValueHTML([
-            ["First contact", props.first_contact],
-            ["Last contact", props.last_contact],
+            ["Oldest QSO", props.first_contact],
+            ["Latest QSO", props.last_contact],
           ]);
           this._div.innerHTML = s;
         }
