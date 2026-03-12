@@ -60,22 +60,6 @@ print_station(adif_station_t *station, void *arg, int last_item)
     return 0;
 }
 
-// Minimum usable station
-int
-valid_station(adif_station_t *station)
-{
-    if (!station) {
-        return 0;
-    }
-    if (!station->their_call || strlen(station->their_call) <= 0) {
-        return 0;
-    }
-    if (maidenhead_is_null(&station->their_grid)) {
-        return 0;
-    }
-    return 1;
-}
-
 adif_data_t    *
 load_adif_fp(FILE *fp)
 {
@@ -388,6 +372,168 @@ update_station_mode_band(adif_station_t *station, char *mode, char *band)
     }
 }
 
+typedef struct {
+    adif_data_t    *data;
+    adif_station_t *cur;
+    char           *value;
+    char            date_field[ADIF_DATE_LEN];
+    char            band_field[16];
+    char            mode_field[16];
+} adif_callback_arg_t;
+
+// Minimum usable station
+int
+valid_station(adif_station_t *station)
+{
+    if (!station) {
+        return 0;
+    }
+    if (!station->their_call || strlen(station->their_call) <= 0) {
+        return 0;
+    }
+    if (maidenhead_is_null(&station->their_grid)) {
+        return 0;
+    }
+    return 1;
+}
+
+void
+eor_cb(adif_callback_arg_t *args)
+{
+    adif_station_t *station;
+    if (valid_station(args->cur)) {
+        // process this useable QSO record
+        HASH_FIND_STR(args->data->stations, args->cur->their_call,
+                      station);
+        if (station == NULL) {
+            // Set key and add to hash
+            station = (adif_station_t *) calloc(1, sizeof(*station));
+            station->their_call = args->cur->their_call;
+            HASH_ADD_STR(args->data->stations, their_call, station);
+
+            // Initialize non-key fields
+            station->name = args->cur->name;
+            station->country = args->cur->country;
+            station->qth = args->cur->qth;
+            memcpy(&station->my_grid, &args->cur->my_grid,
+                   sizeof(station->my_grid));
+            memcpy(&station->their_grid, &args->cur->their_grid,
+                   sizeof(station->their_grid));
+
+            station->distance_km =
+                maidenhead_distance_km(&args->cur->my_grid,
+                                       &args->cur->their_grid);
+            station->bearing_sent =
+                maidenhead_bearing_degrees(&args->cur->my_grid,
+                                           &args->cur->their_grid);
+            station->bearing_rcvd =
+                maidenhead_bearing_degrees(&args->cur->their_grid,
+                                           &args->cur->my_grid);
+            station->num_qsos = 1;
+            station->confirmed = args->cur->confirmed;
+
+            strncpy(station->first_contact, args->date_field,
+                    sizeof(station->first_contact));
+            strncpy(station->last_contact, args->date_field,
+                    sizeof(station->last_contact));
+
+            // This sets all strdup strings to NULL to prevent
+            // data from being freed with free_station_strdups
+            // since we're using them in this station.
+            memset(args->cur, 0, sizeof(*args->cur));
+        } else {
+            // Data from an existing station
+            station->num_qsos += 1;
+            if (!station->confirmed && args->cur->confirmed) {
+                station->confirmed = 1;
+            }
+
+            if (strcmp(args->date_field, station->first_contact) < 0) {
+                strncpy(station->first_contact, args->date_field,
+                        sizeof(station->first_contact));
+            }
+            if (strcmp(args->date_field, station->last_contact) > 0) {
+                strncpy(station->last_contact, args->date_field,
+                        sizeof(station->last_contact));
+            }
+        }
+        // update_station_mode_band(station, mode_field, band_field);
+    }
+    // Cleanup / reset for more next record
+    free_station_strdups(args->cur);
+    memset(args->cur, 0, sizeof(*args->cur));
+    memset(args->date_field, 0, sizeof(args->date_field));
+    memset(args->mode_field, 0, sizeof(args->mode_field));
+    memset(args->band_field, 0, sizeof(args->band_field));
+}
+
+void
+call_cb(adif_callback_arg_t *args)
+{
+    args->cur->their_call = strdup(args->value);
+}
+
+void
+name_cb(adif_callback_arg_t *args)
+{
+    args->cur->name = strdup(args->value);
+}
+
+void
+country_cb(adif_callback_arg_t *args)
+{
+    args->cur->country = strdup(args->value);
+}
+
+void
+qth_cb(adif_callback_arg_t *args)
+{
+    args->cur->qth = strdup(args->value);
+}
+
+void
+gridsquare_cb(adif_callback_arg_t *args)
+{
+    maidenhead_init(&args->cur->their_grid, args->value,
+                    strlen(args->value));
+}
+
+void
+my_gridsquare_cb(adif_callback_arg_t *args)
+{
+    maidenhead_init(&args->cur->my_grid, args->value, strlen(args->value));
+}
+
+void
+qsl_cb(adif_callback_arg_t *args)
+{
+    if (!args->cur->confirmed && (strcasecmp("y", args->value) == 0)) {
+        args->cur->confirmed = 1;
+    }
+}
+
+void
+date_cb(adif_callback_arg_t *args)
+{
+    memset(args->date_field, 0, sizeof(args->date_field));
+    strncpy(args->date_field, args->value, sizeof(args->date_field) - 1);
+}
+
+void
+mode_cb(adif_callback_arg_t *args)
+{
+
+    memset(args->mode_field, 0, sizeof(args->mode_field));
+    strncpy(args->mode_field, args->value, sizeof(args->mode_field) - 1);
+}
+
+void
+band_cb(adif_callback_arg_t *args)
+{
+    memset(args->band_field, 0, sizeof(args->band_field));
+    strncpy(args->band_field, args->value, sizeof(args->band_field) - 1);
+}
+
 #define FIELD_DELIMITER "<"
 #define PAIR_DELIMITER ">"
 #define ATTR_DELIMITER ":"
@@ -396,34 +542,48 @@ adif_data_t    *
 load_adif_mem(char *buf, size_t buf_len)
 {
     (void) buf_len;
-    adif_data_t    *data = NULL;
-    adif_station_t *station,
-                   *tmp;
     int             i;
-    char
-                   *field,
+    char           *field,
                    *fieldattrs,
-                   *name,
-                   *value;
+                   *name;
     char           *fieldptr = NULL,
         *attrptr = NULL,
         *pairptr = NULL;
-    const char     *fields[] =
-        { "eor", "call", "name", "country", "qth", "gridsquare",
-        "my_gridsquare", "eqsl_qsl_rcvd", "dcl_qsl_rcvd", "qsl_rcvd",
-        "lotw_qsl_rcvd", "qso_date", "mode", "band", NULL
+    struct {
+        char           *name;
+        void            (*cb)(adif_callback_arg_t * arg);
+    } field_handler[] = {
+        {.name = "eor",.cb = &eor_cb},
+        {.name = "call",.cb = &call_cb},
+        {.name = "name",.cb = &name_cb},
+        {.name = "country",.cb = &country_cb},
+        {.name = "qth",.cb = &qth_cb},
+        {.name = "gridsquare",.cb = &gridsquare_cb},
+        {.name = "my_gridsquare",.cb = &my_gridsquare_cb},
+        {.name = "eqsl_qsl_rcvd",.cb = &qsl_cb},
+        {.name = "dcl_qsl_rcvd",.cb = &qsl_cb},
+        {.name = "qsl_rcvd",.cb = &qsl_cb},
+        {.name = "lotw_qsl_rcvd",.cb = &qsl_cb},
+        {.name = "qso_date",.cb = &date_cb},
+        {.name = "mode",.cb = &mode_cb},
+        {.name = "band",.cb = &band_cb},
+        {.name = NULL}
     };
-    char            date_field[ADIF_DATE_LEN];
-    char            band_field[16];
-    char            mode_field[16];
+    adif_callback_arg_t args;
 
-    memset(date_field, 0, sizeof(date_field));
-    memset(band_field, 0, sizeof(band_field));
-    memset(mode_field, 0, sizeof(mode_field));
+    memset(args.date_field, 0, sizeof(args.date_field));
+    memset(args.band_field, 0, sizeof(args.band_field));
+    memset(args.mode_field, 0, sizeof(args.mode_field));
 
-    data = (adif_data_t *) calloc(1, sizeof *data);
-
-    tmp = (adif_station_t *) calloc(1, sizeof(*tmp));
+    args.data = (adif_data_t *) calloc(1, sizeof *args.data);
+    if (!args.data) {
+        return NULL;
+    }
+    args.cur = (adif_station_t *) calloc(1, sizeof *args.cur);
+    if (!args.cur) {
+        free(args.data);
+        return NULL;
+    }
 
     for (field = strtok_r(buf, FIELD_DELIMITER, &fieldptr);
          field != NULL;
@@ -431,133 +591,26 @@ load_adif_mem(char *buf, size_t buf_len)
 
         fieldattrs = strtok_r(field, PAIR_DELIMITER, &pairptr);
         assert(fieldattrs);
-        value = strtok_r(NULL, PAIR_DELIMITER, &pairptr);
+        args.value = strtok_r(NULL, PAIR_DELIMITER, &pairptr);
         name = strtok_r(fieldattrs, ATTR_DELIMITER, &attrptr);
         assert(name);
         // TODO: consider processing field value len and type
         // Not necessary for now (if ever).
 
-        for (i = 0; fields[i]; ++i) {
-            if (strcasecmp(name, fields[i]) == 0) {
+        for (i = 0; field_handler[i].name; ++i) {
+            if (strcasecmp(name, field_handler[i].name) == 0) {
                 break;
             }
         }
-        trim_end_space(value);
 
-        switch (i) {
-        case 0:                // EOR
-            if (valid_station(tmp)) {
-                // process this useable QSO record
-                HASH_FIND_STR(data->stations, tmp->their_call, station);
-                if (station == NULL) {
-                    // Set key and add to hash
-                    station =
-                        (adif_station_t *) calloc(1, sizeof(*station));
-                    station->their_call = tmp->their_call;
-                    HASH_ADD_STR(data->stations, their_call, station);
-
-                    // Initialize non-key fields
-                    station->name = tmp->name;
-                    station->country = tmp->country;
-                    station->qth = tmp->qth;
-                    memcpy(&station->my_grid, &tmp->my_grid,
-                           sizeof(station->my_grid));
-                    memcpy(&station->their_grid, &tmp->their_grid,
-                           sizeof(station->their_grid));
-
-                    station->distance_km =
-                        maidenhead_distance_km(&tmp->my_grid,
-                                               &tmp->their_grid);
-                    station->bearing_sent =
-                        maidenhead_bearing_degrees(&tmp->my_grid,
-                                                   &tmp->their_grid);
-                    station->bearing_rcvd =
-                        maidenhead_bearing_degrees(&tmp->their_grid,
-                                                   &tmp->my_grid);
-                    station->num_qsos = 1;
-                    station->confirmed = tmp->confirmed;
-
-                    strncpy(station->first_contact, date_field,
-                            sizeof(station->first_contact));
-                    strncpy(station->last_contact, date_field,
-                            sizeof(station->last_contact));
-
-                    // This sets all strdup strings to NULL to prevent
-                    // data from being freed with free_station_strdups
-                    // since we're using them in this station.
-                    memset(tmp, 0, sizeof(*tmp));
-                } else {
-                    // Data from an existing station
-                    station->num_qsos += 1;
-                    if (!station->confirmed && tmp->confirmed) {
-                        station->confirmed = 1;
-                    }
-
-                    if (strcmp(date_field, station->first_contact) < 0) {
-                        strncpy(station->first_contact, date_field,
-                                sizeof(station->first_contact));
-                    }
-                    if (strcmp(date_field, station->last_contact) > 0) {
-                        strncpy(station->last_contact, date_field,
-                                sizeof(station->last_contact));
-                    }
-                }
-                update_station_mode_band(station, mode_field, band_field);
-            }
-            // Cleanup / reset station for more data
-            free_station_strdups(tmp);
-            memset(tmp, 0, sizeof(*tmp));
-            memset(date_field, 0, sizeof(date_field));
-            memset(mode_field, 0, sizeof(mode_field));
-            memset(band_field, 0, sizeof(band_field));
-            break;
-        case 1:                // call
-            tmp->their_call = strdup(value);
-            break;
-        case 2:                // name
-            tmp->name = strdup(value);
-            break;
-        case 3:                // country
-            tmp->country = strdup(value);
-            break;
-        case 4:                // qth
-            tmp->qth = strdup(value);
-            break;
-        case 5:                // gridsquare
-            maidenhead_init(&tmp->their_grid, value, strlen(value));
-            break;
-        case 6:                // my_gridsquare
-            maidenhead_init(&tmp->my_grid, value, strlen(value));
-            break;
-        case 7:                // eqsl_qsl_rcvd
-        case 8:                // dcl_qsl_rcvd
-        case 9:                // qsl_rcvd
-        case 10:               // lotw_qsl_rcvd
-            if (!tmp->confirmed && (strcasecmp("y", value) == 0)) {
-                tmp->confirmed = 1;
-            }
-            break;
-        case 11:               // qso_date
-            memset(date_field, 0, sizeof(date_field));
-            strncpy(date_field, value, sizeof(date_field) - 1);
-            break;
-        case 12:               // mode
-            memset(mode_field, 0, sizeof(mode_field));
-            strncpy(mode_field, __strtoupper(value),
-                    sizeof(mode_field) - 1);
-            break;
-        case 13:               // band
-            memset(band_field, 0, sizeof(band_field));
-            strncpy(band_field, __strtoupper(value),
-                    sizeof(band_field) - 1);
-            break;
+        if (field_handler[i].name) {
+            trim_end_space(args.value);
+            field_handler[i].cb(&args);
         }
     }
 
-    // Free our working QSO
-    free_station_strdups(tmp);
-    free(tmp);
-
-    summarize_data(data);
-    return data;
+    free_station_strdups(args.cur);
+    free(args.cur);
+    summarize_data(args.data);
+    return args.data;
 }
