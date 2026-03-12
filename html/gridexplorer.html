@@ -138,7 +138,9 @@
       function nameValueHTML(items) {
         let s = "";
         items.forEach(function (item, index) {
-          s += "<b>" + item[0] + ":</b> " + item[1] + "<br/>";
+          if (item[1]) {
+            s += "<b>" + item[0] + ":</b> " + item[1] + "<br/>";
+          }
         });
         return s;
       }
