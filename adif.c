@@ -457,7 +457,8 @@ eor_cb(adif_callback_arg_t *args)
                         sizeof(station->last_contact));
             }
         }
-        // update_station_mode_band(station, mode_field, band_field);
+        update_station_mode_band(station, args->mode_field,
+                                 args->band_field);
     }
     // Cleanup / reset for more next record
     free_station_strdups(args->cur);
