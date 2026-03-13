@@ -79,6 +79,7 @@
       var globals = {};
       var max_grid_qsos; // populated by geojsonLoad()
       var geodesicLine;
+      var layerCtrl;
 
       function getColors(props) {
         const colors = [
@@ -381,7 +382,39 @@
         if (gridLayer) {
           map.removeLayer(gridLayer);
         }
+        if (layerCtrl) {
+          layerCtrl.remove();
+        }
         globals = {};
+      }
+
+      function createLayerCtrl(json, stationLayer, gridLayer) {
+        layerCtrl = L.control.layers();
+        layerCtrl.addOverlay(stationLayer, "All Stations");
+        layerCtrl.addOverlay(gridLayer, "All Grids");
+
+        if (json.globals.bands) {
+	  stationCopy = stationLayer.copy();
+		console.log(stationCopy);
+	  
+          json.globals.bands
+            .sort()
+            .reverse()
+            .forEach(function (band_array, index) {
+              let band = band_array[0];
+              let stations = json.stations.features.filter(function (feature) {
+                let names = feature.properties.bands.map(function (arr) {
+                  return arr[0];
+                });
+                return names.find(function (el) {
+                  return el == band;
+                });
+              });
+              layerCtrl.addOverlay(L.layerGroup(L.geoJSON(stations)), band);
+            });
+        }
+
+        layerCtrl.addTo(map);
       }
 
       function geojsonLoad(json) {
@@ -390,6 +423,8 @@
         grid_max_qsos = Math.log(globals.grid_max_qsos);
         stationLayer = L.geoJSON(json.stations, stationOptions).addTo(map);
         gridLayer = L.geoJSON(json.grids, gridOptions).addTo(map);
+
+        createLayerCtrl(json, stationLayer, gridLayer);
 
         // Update info panel with new totals
         info.updateGrid(null);
