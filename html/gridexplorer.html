@@ -100,6 +100,8 @@
         },
       ).addTo(map);
 
+      L.control.scale().addTo(map);
+
       function getGridColor(feature) {
         // We use the log function to handle the positive skew
         var props = feature.properties;
