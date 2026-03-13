@@ -79,6 +79,7 @@
       var globals = {};
       var max_grid_qsos; // populated by geojsonLoad()
       var geodesicLine;
+      var layerCtrl;
 
       function getColors(props) {
         const colors = [
@@ -381,7 +382,52 @@
         if (gridLayer) {
           map.removeLayer(gridLayer);
         }
+        if (layerCtrl) {
+          layerCtrl.remove();
+        }
         globals = {};
+      }
+
+      function createLayerCtrl(json, stationLayer, gridLayer) {
+        layerCtrl = L.control.layers(null, null, {
+          collapsed: false,
+          position: "topleft",
+        });
+        layerCtrl.addOverlay(stationLayer, "All Stations");
+        layerCtrl.addOverlay(gridLayer, "All Grids");
+
+        function addCounter(counter, propertyName) {
+          if (counter && json.stations.features) {
+            counter.sort().forEach(function (stat, index) {
+              let name = stat[0];
+              let stations = json.stations.features.filter(function (feature) {
+                if (!feature.properties) {
+                  return false;
+                }
+                if (!feature.properties[propertyName]) {
+                  return false;
+                }
+                let names = feature.properties[propertyName].map(
+                  function (arr) {
+                    return arr[0];
+                  },
+                );
+                return names.find(function (el) {
+                  return el == name;
+                });
+              });
+              let features = stations.map(function (el) {
+                return L.geoJSON(el, stationOptions);
+              });
+              let layerGroup = L.layerGroup(features);
+              layerCtrl.addOverlay(layerGroup, name);
+            });
+          }
+        }
+        addCounter(json.globals.bands, "bands");
+        addCounter(json.globals.modes, "modes");
+
+        layerCtrl.addTo(map);
       }
 
       function geojsonLoad(json) {
@@ -391,6 +437,8 @@
         stationLayer = L.geoJSON(json.stations, stationOptions).addTo(map);
         gridLayer = L.geoJSON(json.grids, gridOptions).addTo(map);
 
+        createLayerCtrl(json, stationLayer, gridLayer);
+
         // Update info panel with new totals
         info.updateGrid(null);
         // Make sure stations are always on top or grid will mask them
@@ -398,9 +446,9 @@
       }
 
       /* For now, load sample data from a fixed location. In the
-               future, provide a way to users to convert their ADIF to
-               Grid Explorer GeoJSON to enable publishing/sharing their
-               contacts */
+                     future, provide a way to users to convert their ADIF to
+                     Grid Explorer GeoJSON to enable publishing/sharing their
+                     contacts */
       async function getData() {
         const url = "https://ko6iue.org/assets/contacts.json";
         try {
