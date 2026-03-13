@@ -393,25 +393,41 @@
         layerCtrl.addOverlay(stationLayer, "All Stations");
         layerCtrl.addOverlay(gridLayer, "All Grids");
 
-        if (json.globals.bands) {
-          json.globals.bands
-            .sort()
-            .reverse()
-            .forEach(function (band_array, index) {
-              let band = band_array[0];
-              let stations = json.stations.features.filter(function (feature) {
-                let names = feature.properties.bands.map(function (arr) {
-                  return arr[0];
+        function addCounter(counter, propertyName) {
+          if (counter) {
+            counter
+              .sort()
+              .reverse()
+              .forEach(function (stat, index) {
+                let name = stat[0];
+                let stations = json.stations.features.filter(
+                  function (feature) {
+                    if (!feature.properties) {
+                      return false;
+                    }
+                    if (!feature.properties[propertyName]) {
+                      return false;
+                    }
+                    let names = feature.properties[propertyName].map(
+                      function (arr) {
+                        return arr[0];
+                      },
+                    );
+                    return names.find(function (el) {
+                      return el == name;
+                    });
+                  },
+                );
+                let features = stations.map(function (el) {
+                  return L.geoJSON(el, stationOptions);
                 });
-                return names.find(function (el) {
-                  return el == band;
-                });
+                let layerGroup = L.layerGroup(features);
+                layerCtrl.addOverlay(layerGroup, name);
               });
-              let copyIt = JSON.parse(JSON.stringify(json.stations));
-              copyIt.features = stations;
-              layerCtrl.addOverlay(L.geoJSON(copyIt, stationOptions), band);
-            });
+          }
         }
+        addCounter(json.globals.bands, "bands");
+        addCounter(json.globals.modes, "modes");
 
         layerCtrl.addTo(map);
       }
@@ -432,9 +448,9 @@
       }
 
       /* For now, load sample data from a fixed location. In the
-               future, provide a way to users to convert their ADIF to
-               Grid Explorer GeoJSON to enable publishing/sharing their
-               contacts */
+                     future, provide a way to users to convert their ADIF to
+                     Grid Explorer GeoJSON to enable publishing/sharing their
+                     contacts */
       async function getData() {
         const url = "https://ko6iue.org/assets/contacts.json";
         try {
