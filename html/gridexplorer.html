@@ -394,9 +394,6 @@
         layerCtrl.addOverlay(gridLayer, "All Grids");
 
         if (json.globals.bands) {
-	  stationCopy = stationLayer.copy();
-		console.log(stationCopy);
-	  
           json.globals.bands
             .sort()
             .reverse()
@@ -410,7 +407,9 @@
                   return el == band;
                 });
               });
-              layerCtrl.addOverlay(L.layerGroup(L.geoJSON(stations)), band);
+              let copyIt = JSON.parse(JSON.stringify(json.stations));
+              copyIt.features = stations;
+              layerCtrl.addOverlay(L.geoJSON(copyIt, stationOptions), band);
             });
         }
 
