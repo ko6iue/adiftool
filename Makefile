@@ -27,7 +27,7 @@ pretty: pretty-c pretty-js
 pretty-c: adiftool.c adif.c adif.h emscripten.c maidenhead.c maidenhead.h test-maidenhead.c kml.c geojson.c counter.c counter.h
 	indent -orig -nut $^
 
-pretty-js: html/assets/filehelper.js html/*.html html/assets/filehelper.js
+pretty-js: html/assets/filehelper.js html/*.html html/assets/*.js
 	prettier --write $^
 
 clean:
