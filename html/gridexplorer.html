@@ -393,12 +393,15 @@
           collapsed: false,
           position: "topleft",
         });
-        layerCtrl.addOverlay(stationLayer, "All Stations");
+
         layerCtrl.addOverlay(gridLayer, "All Grids");
+        layerCtrl.addOverlay(stationLayer, "All Stations");
 
         function addCounter(counter, propertyName) {
           if (counter && json.stations.features) {
-            counter.sort().forEach(function (stat, index) {
+            // Create clone to prevent resorting counter
+            const counterClone = structuredClone(counter);
+            counterClone.sort().forEach(function (stat, index) {
               let name = stat[0];
               let stations = json.stations.features.filter(function (feature) {
                 if (!feature.properties) {
@@ -443,6 +446,7 @@
         info.updateGrid(null);
         // Make sure stations are always on top or grid will mask them
         stationLayer.bringToFront();
+        gridLayer.bringToBack();
       }
 
       /* For now, load sample data from a fixed location. In the
