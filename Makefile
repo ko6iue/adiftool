@@ -1,4 +1,4 @@
-all: adiftool html/assets/adiftool.js test-maidenhead test-counter
+all: adiftool html/assets/adiftool.js test-maidenhead test-counter test-compress
 
 # INVOKE_RUN=0 causes emscripten to not run main when starting
 # All emscripten methods are in emscripten.c
@@ -14,13 +14,17 @@ adiftool: adiftool.c maidenhead.c adif.c kml.c geojson.c cmdline.c counter.c cou
 test-latlon: test-latlon.c latlon.c
 	gcc -Wall -W -g -o $@ $^ -lm
 
+test-compress: test-compress.c miniz.c miniz.h
+	gcc -Wall -W -o $@ $^
+
 test-counter: test-counter.c counter.c
-	gcc -Wall -W -g -o $@ $^
+	gcc -Wall -W -o $@ $^
 
 test-maidenhead: test-maidenhead.c maidenhead.c latlon.c
-	gcc -Wall -W -g -o $@ $^ -lm
+	gcc -Wall -W -o $@ $^ -lm
 
-test: test-maidenhead test-counter test-latlon
+test: test-maidenhead test-counter test-compress
+	./test-compress
 	./test-latlon
 	./test-maidenhead
 	./test-counter
