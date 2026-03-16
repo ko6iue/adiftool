@@ -8,6 +8,7 @@ maidenhead
 test-maidenhead
 test-counter
 test-latlon
+test-compress
 adi2kml.js
 adiftool.js
 *.adi
