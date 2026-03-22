@@ -185,69 +185,20 @@ maidenhead_init(maidenhead_t *mh, const char *grid, const int len)
 }
 
 float
-degrees_to_rads(float degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-float
-rads_to_degrees(float rads)
-{
-    return rads * 180 / M_PI;
-}
-
-float
-haversine(float theta)
-{
-    return pow(sin(theta / 2), 2);
-}
-
-#define EARTH_RADIUS_KM 6371.0
-
-float
-distance_km(latlon_t from, latlon_t to)
-{
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lon2 = degrees_to_rads(to.lon);
-    float           square_half_cord = haversine(lat2 - lat1) +
-        cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
-    float           angular_distance =
-        2 * atan2(sqrt(square_half_cord), sqrt(1 - square_half_cord));
-    return angular_distance * EARTH_RADIUS_KM;
-}
-
-float
 maidenhead_distance_km(maidenhead_t *from, maidenhead_t *to)
 {
     if (from && to) {
-        return distance_km(from->center, to->center);
+        return latlon_distance_km(from->center, to->center);
     } else {
         return 0;
     }
 }
 
 float
-bearing_degrees(latlon_t from, latlon_t to)
-{
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon2 = degrees_to_rads(to.lon);
-    float           delta_lon = lon2 - lon1;
-    float           theta = atan2(sin(delta_lon) * cos(lat2),
-                                  (cos(lat1) * sin(lat2)) -
-                                  (sin(lat1) * cos(lat2) *
-                                   cos(delta_lon)));
-    return fmod(theta * 180 / M_PI + 360, 360.0);
-}
-
-float
 maidenhead_bearing_degrees(maidenhead_t *from, maidenhead_t *to)
 {
     if (from && to) {
-        return bearing_degrees(from->center, to->center);
+        return latlon_bearing_degrees(from->center, to->center);
     } else {
         return 0;
     }

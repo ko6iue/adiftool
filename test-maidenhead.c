@@ -42,6 +42,5 @@ main(void)
     assert((bearing == 0.0));
 
     printf("OK\n");
-
     return 0;
 }

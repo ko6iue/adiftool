@@ -30,32 +30,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef MAIDENHEAD_H
-#define MAIDENHEAD_H
+#ifndef LATLON_H
+#define LATLON_H
 
-#include "./latlon.h"
-
-#define MAIDENHEAD_MAXLEN 16
 typedef struct {
-    char            mh[MAIDENHEAD_MAXLEN];
-    latlon_t        res_degrees;
-    latlon_t        center;
-    latlon_t        sw_corner;
-    latlon_t        nw_corner;
-    latlon_t        se_corner;
-    latlon_t        ne_corner;
-    latlon_t        random;
-} maidenhead_t;
+    float           lat;
+    float           lon;
+} latlon_t;
 
-int             maidenhead_is_null(maidenhead_t * mh);
-
-void            maidenhead_print(FILE * fp, maidenhead_t * mh);
-// rval -1 on bad arguments, 0 OK, positive is offset of invalid character
-int             maidenhead_init(maidenhead_t * mh,
-                                const char *grid, const int len);
-float           maidenhead_distance_km(maidenhead_t * from,
-                                       maidenhead_t * to);
-float           maidenhead_bearing_degrees(maidenhead_t * from,
-                                           maidenhead_t * to);
+float           latlon_distance_km(latlon_t from, latlon_t to);
+float           latlon_bearing_degrees(latlon_t from, latlon_t to);
+int             latlon_destination(latlon_t start, float distance_km,
+                                   float bearing_degrees, latlon_t * dest);
 
 #endif
