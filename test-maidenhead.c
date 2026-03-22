@@ -41,6 +41,8 @@ main(void)
     assert((distance >= 19013.80 && distance <= 19013.90));
     assert((bearing == 0.0));
 
+
+
     printf("OK\n");
 
     return 0;

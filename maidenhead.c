@@ -202,53 +202,36 @@ haversine(float theta)
     return pow(sin(theta / 2), 2);
 }
 
-#define EARTH_RADIUS_KM 6371.0
-
 float
-distance_km(latlon_t from, latlon_t to)
+maidenhead_distance_km(maidenhead_t *from, maidenhead_t *to)
 {
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lon2 = degrees_to_rads(to.lon);
+    float           volumetric_mean_radius_earth_km = 6371.0;
+    float           lat1 = degrees_to_rads(from->center.lat);
+    float           lon1 = degrees_to_rads(from->center.lon);
+    float           lat2 = degrees_to_rads(to->center.lat);
+    float           lon2 = degrees_to_rads(to->center.lon);
     float           square_half_cord = haversine(lat2 - lat1) +
         cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
     float           angular_distance =
         2 * atan2(sqrt(square_half_cord), sqrt(1 - square_half_cord));
-    return angular_distance * EARTH_RADIUS_KM;
-}
-
-float
-maidenhead_distance_km(maidenhead_t *from, maidenhead_t *to)
-{
-    if (from && to) {
-        return distance_km(from->center, to->center);
-    } else {
-        return 0;
-    }
-}
-
-float
-bearing_degrees(latlon_t from, latlon_t to)
-{
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon2 = degrees_to_rads(to.lon);
-    float           delta_lon = lon2 - lon1;
-    float           theta =
-        rads_to_degrees(atan2(sin(delta_lon) * cos(lat2),
-                              (cos(lat1) * sin(lat2)) -
-                              (sin(lat1) * cos(lat2) * cos(delta_lon))));
-    return fmod(theta * 180 / M_PI + 360, 360.0);
+    return angular_distance * volumetric_mean_radius_earth_km;
 }
 
 float
 maidenhead_bearing_degrees(maidenhead_t *from, maidenhead_t *to)
 {
-    if (from && to) {
-        return bearing_degrees(from->center, to->center);
+    float           lat1 = degrees_to_rads(from->center.lat);
+    float           lon1 = degrees_to_rads(from->center.lon);
+    float           lat2 = degrees_to_rads(to->center.lat);
+    float           lon2 = degrees_to_rads(to->center.lon);
+    float           delta_lon = lon2 - lon1;
+    float           tmp = rads_to_degrees(atan2(sin(delta_lon) * cos(lat2),
+                                                (cos(lat1) * sin(lat2)) -
+                                                (sin(lat1) * cos(lat2) *
+                                                 cos(delta_lon))));
+    if (tmp < 0) {
+        return 360 + tmp;
     } else {
-        return 0;
+        return tmp;
     }
 }
