@@ -11,20 +11,24 @@ html/assets/adiftool.js: adiftool.c maidenhead.c adif.c emscripten.c kml.c geojs
 adiftool: adiftool.c maidenhead.c adif.c kml.c geojson.c cmdline.c counter.c counter.h latlon.c latlon.h
 	gcc -Wall -W -g -o $@ $^ -lm
 
+test-latlon: test-latlon.c latlon.c
+	gcc -Wall -W -g -o $@ $^ -lm
+
 test-counter: test-counter.c counter.c
 	gcc -Wall -W -g -o $@ $^
 
 test-maidenhead: test-maidenhead.c maidenhead.c latlon.c
 	gcc -Wall -W -g -o $@ $^ -lm
 
-test: test-maidenhead test-counter
+test: test-maidenhead test-counter test-latlon
+	./test-latlon
 	./test-maidenhead
 	./test-counter
 
 pretty: pretty-c pretty-js
 
 # Berkeley style, spaces not tabs
-pretty-c: adiftool.c adif.c adif.h emscripten.c maidenhead.c maidenhead.h test-maidenhead.c kml.c geojson.c counter.c counter.h latlon.c latlon.h
+pretty-c: adiftool.c adif.c adif.h emscripten.c maidenhead.c maidenhead.h test-maidenhead.c kml.c geojson.c counter.c counter.h latlon.c latlon.h test-latlon.c
 	indent -orig -nut $^
 
 pretty-js: html/assets/filehelper.js html/*.html html/assets/*.js

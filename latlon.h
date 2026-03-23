@@ -34,13 +34,14 @@
 #define LATLON_H
 
 typedef struct {
-    float           lat;
-    float           lon;
+    double          lat;
+    double          lon;
 } latlon_t;
 
-float           latlon_distance_km(latlon_t from, latlon_t to);
-float           latlon_bearing_degrees(latlon_t from, latlon_t to);
-int             latlon_destination(latlon_t start, float distance_km,
-                                   float bearing_degrees, latlon_t * dest);
+double          latlon_distance_km(latlon_t from, latlon_t to);
+double          latlon_bearing_degrees(latlon_t from, latlon_t to);
+int             latlon_destination(latlon_t start, double distance_km,
+                                   double bearing_degrees,
+                                   latlon_t * dest);
 
 #endif

@@ -30,69 +30,67 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdio.h>
 #include <math.h>
 
 #include "./latlon.h"
 
 #define EARTH_RADIUS_KM 6371.0
 
-float
-degrees_to_rads(float degrees)
+double
+degrees_to_rads(double degrees)
 {
-    return degrees * M_PI / 180;
+    return degrees * M_PI / 180.0;
 }
 
-float
-rads_to_degrees(float rads)
+double
+rads_to_degrees(double rads)
 {
-    return rads * 180 / M_PI;
+    return rads * 180.0 / M_PI;
 }
 
-float
-haversine(float theta)
-{
-    return pow(sin(theta / 2), 2);
-}
+#define SIN_POW2(theta) (pow(sin((theta)/2), 2))
 
-float
+// Uses the haversine equation
+double
 latlon_distance_km(latlon_t from, latlon_t to)
 {
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lon2 = degrees_to_rads(to.lon);
-    float           square_half_cord = haversine(lat2 - lat1) +
-        cos(lat1) * cos(lat2) * haversine(lon2 - lon1);
-    float           angular_distance =
+    double          lat1 = degrees_to_rads(from.lat);
+    double          lat2 = degrees_to_rads(to.lat);
+    double          lon1 = degrees_to_rads(from.lon);
+    double          lon2 = degrees_to_rads(to.lon);
+    double          square_half_cord = SIN_POW2(lat2 - lat1) +
+        cos(lat1) * cos(lat2) * SIN_POW2(lon2 - lon1);
+    double          angular_distance =
         2 * atan2(sqrt(square_half_cord), sqrt(1 - square_half_cord));
     return angular_distance * EARTH_RADIUS_KM;
 }
 
-float
+double
 latlon_bearing_degrees(latlon_t from, latlon_t to)
 {
-    float           lat1 = degrees_to_rads(from.lat);
-    float           lon1 = degrees_to_rads(from.lon);
-    float           lat2 = degrees_to_rads(to.lat);
-    float           lon2 = degrees_to_rads(to.lon);
-    float           delta_lon = lon2 - lon1;
-    float           theta = atan2(sin(delta_lon) * cos(lat2),
-                                  (cos(lat1) * sin(lat2)) -
-                                  (sin(lat1) * cos(lat2) *
-                                   cos(delta_lon)));
-    return fmod(theta * 180 / M_PI + 360, 360.0);
+    double          lat1 = degrees_to_rads(from.lat);
+    double          lon1 = degrees_to_rads(from.lon);
+    double          lat2 = degrees_to_rads(to.lat);
+    double          lon2 = degrees_to_rads(to.lon);
+    double          delta_lon = lon2 - lon1;
+    double          theta =
+        rads_to_degrees(atan2(sin(delta_lon) * cos(lat2),
+                              (cos(lat1) * sin(lat2)) -
+                              (sin(lat1) * cos(lat2) * cos(delta_lon))));
+    return fmod(theta + 360.0, 360.0);
 }
 
 int
-latlon_destination(latlon_t start, float distance_km,
-                   float bearing_degrees, latlon_t *dest)
+latlon_destination(latlon_t start, double distance_km,
+                   double bearing_degrees, latlon_t *dest)
 {
-    float           lon;
+    double          lon;
     if (!(dest && distance_km >= 0
           && (bearing_degrees >= 0.0 && bearing_degrees <= 360.0))) {
         return -1;
     }
-    float           angular_distance = distance_km / EARTH_RADIUS_KM;
+    double          angular_distance = distance_km / EARTH_RADIUS_KM;
     dest->lat = rads_to_degrees(asin(sin(degrees_to_rads(start.lat)) *
                                      cos(angular_distance) +
                                      cos(degrees_to_rads(start.lat)) *
@@ -101,12 +99,13 @@ latlon_destination(latlon_t start, float distance_km,
                                          (bearing_degrees))));
     lon =
         start.lon +
-        atan2(sin(degrees_to_rads(bearing_degrees)) *
-              sin(angular_distance) *
-              cos(degrees_to_rads(start.lat)),
-              cos(angular_distance) -
-              sin(degrees_to_rads(start.lat)) *
-              sin(degrees_to_rads(dest->lat)));
+        rads_to_degrees(atan2
+                        (sin(degrees_to_rads(bearing_degrees)) *
+                         sin(angular_distance) *
+                         cos(degrees_to_rads(start.lat)),
+                         cos(angular_distance) -
+                         sin(degrees_to_rads(start.lat)) *
+                         sin(degrees_to_rads(dest->lat))));
     dest->lon = fmod(lon + 540.0, 360.0) - 180.0;
     return 0;
 }
