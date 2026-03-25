@@ -37,6 +37,22 @@
 #include "./cmdline.h"
 
 int
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 data_compress(unsigned char **cmp, size_t *cmp_len, unsigned char *uncmp,
               size_t uncmp_len);
 
@@ -49,10 +65,12 @@ runit(struct gengetopt_args_info *args_info)
 
     char           *buf = NULL;
     size_t          len = 0;
-    FILE           *fp = open_memstream(&buf, &len);
+    FILE           *memfp = open_memstream(&buf, &len);
 
-    unsigned char *out_data = NULL;
-    size_t out_len;
+    unsigned char  *out_data = NULL;
+    size_t          out_len;
+
+    FILE           *fp = memfp;
 
     if (strcmp(args_info->input_arg, "-")) {
         infp = fopen(args_info->input_arg, "r");
@@ -78,6 +96,12 @@ runit(struct gengetopt_args_info *args_info)
         return EXIT_FAILURE;
     }
 
+    if (args_info->nocompress_flag) {
+        fp = outfp;
+    } else {
+        fp = memfp;
+    }
+
     if (args_info->geojson_flag) {
         write_geojson(fp, data);
     } else {
@@ -85,9 +109,13 @@ runit(struct gengetopt_args_info *args_info)
     }
     fclose(fp);
 
-    data_compress(&out_data, &out_len, (unsigned char*) buf, len);
+    if (!args_info->nocompress_flag) {
 
-    // WRITE TO FILE 
+        if (data_compress(&out_data, &out_len, (unsigned char *) buf, len)) {
+            return EXIT_FAILURE;
+        }
+        fwrite(out_data, 1, out_len, outfp);
+    }
 
     fclose(outfp);
 

@@ -12,7 +12,7 @@ data_compress(unsigned char **cmp, size_t *cmp_len, unsigned char *uncmp,
     int             rval;
 
     if (!(cmp && cmp_len && uncmp)) {
-	printf("Bad args\n");
+        printf("Bad args\n");
         // bad args
         return -1;
     }
@@ -24,7 +24,7 @@ data_compress(unsigned char **cmp, size_t *cmp_len, unsigned char *uncmp,
     rval = compress(*cmp, cmp_len, uncmp, uncmp_len);
     if (rval != Z_OK) {
         free(*cmp);
-	printf("Compress failed\n");
+        printf("Compress failed\n");
         return -1;
     }
     printf("Compression from %zu to %zu bytes\n", uncmp_len, *cmp_len);
