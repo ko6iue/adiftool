@@ -5,6 +5,7 @@ package "adiftool"
 version "0.1"
 purpose "Commandline tool for converting ADIF to various other GIS formats"
 
+option "nocompress" n "Do not compress output" flag off
 option "input" i "ADIF file to use as input." string yes 
 option "output" o "File to write output to." string yes
 option "geojson" g "Output GeoJSON instead of KML" flag off

@@ -36,6 +36,7 @@ const char *gengetopt_args_info_description = "";
 const char *gengetopt_args_info_help[] = {
   "  -h, --help           Print help and exit",
   "  -V, --version        Print version and exit",
+  "  -n, --nocompress     Do not compress output  (default=off)",
   "  -i, --input=STRING   ADIF file to use as input.",
   "  -o, --output=STRING  File to write output to.",
   "  -g, --geojson        Output GeoJSON instead of KML  (default=off)",
@@ -67,6 +68,7 @@ void clear_given (struct gengetopt_args_info *args_info)
 {
   args_info->help_given = 0 ;
   args_info->version_given = 0 ;
+  args_info->nocompress_given = 0 ;
   args_info->input_given = 0 ;
   args_info->output_given = 0 ;
   args_info->geojson_given = 0 ;
@@ -76,6 +78,7 @@ static
 void clear_args (struct gengetopt_args_info *args_info)
 {
   FIX_UNUSED (args_info);
+  args_info->nocompress_flag = 0;
   args_info->input_arg = NULL;
   args_info->input_orig = NULL;
   args_info->output_arg = NULL;
@@ -91,9 +94,10 @@ void init_args_info(struct gengetopt_args_info *args_info)
 
   args_info->help_help = gengetopt_args_info_help[0] ;
   args_info->version_help = gengetopt_args_info_help[1] ;
-  args_info->input_help = gengetopt_args_info_help[2] ;
-  args_info->output_help = gengetopt_args_info_help[3] ;
-  args_info->geojson_help = gengetopt_args_info_help[4] ;
+  args_info->nocompress_help = gengetopt_args_info_help[2] ;
+  args_info->input_help = gengetopt_args_info_help[3] ;
+  args_info->output_help = gengetopt_args_info_help[4] ;
+  args_info->geojson_help = gengetopt_args_info_help[5] ;
   
 }
 
@@ -221,6 +225,8 @@ cmdline_parser_dump(FILE *outfile, struct gengetopt_args_info *args_info)
     write_into_file(outfile, "help", 0, 0 );
   if (args_info->version_given)
     write_into_file(outfile, "version", 0, 0 );
+  if (args_info->nocompress_given)
+    write_into_file(outfile, "nocompress", 0, 0 );
   if (args_info->input_given)
     write_into_file(outfile, "input", args_info->input_orig, 0);
   if (args_info->output_given)
@@ -510,13 +516,14 @@ cmdline_parser_internal (
       static struct option long_options[] = {
         { "help",	0, NULL, 'h' },
         { "version",	0, NULL, 'V' },
+        { "nocompress",	0, NULL, 'n' },
         { "input",	1, NULL, 'i' },
         { "output",	1, NULL, 'o' },
         { "geojson",	0, NULL, 'g' },
         { 0,  0, 0, 0 }
       };
 
-      c = getopt_long (argc, argv, "hVi:o:g", long_options, &option_index);
+      c = getopt_long (argc, argv, "hVni:o:g", long_options, &option_index);
 
       if (c == -1) break;	/* Exit from `while (1)' loop.  */
 
@@ -532,6 +539,16 @@ cmdline_parser_internal (
           cmdline_parser_free (&local_args_info);
           exit (EXIT_SUCCESS);
 
+        case 'n':	/* Do not compress output.  */
+        
+        
+          if (update_arg((void *)&(args_info->nocompress_flag), 0, &(args_info->nocompress_given),
+              &(local_args_info.nocompress_given), optarg, 0, 0, ARG_FLAG,
+              check_ambiguity, override, 1, 0, "nocompress", 'n',
+              additional_error))
+            goto failure;
+        
+          break;
         case 'i':	/* ADIF file to use as input..  */
         
         

@@ -39,6 +39,8 @@ struct gengetopt_args_info
 {
   const char *help_help; /**< @brief Print help and exit help description.  */
   const char *version_help; /**< @brief Print version and exit help description.  */
+  int nocompress_flag;	/**< @brief Do not compress output (default=off).  */
+  const char *nocompress_help; /**< @brief Do not compress output help description.  */
   char * input_arg;	/**< @brief ADIF file to use as input..  */
   char * input_orig;	/**< @brief ADIF file to use as input. original value given at command line.  */
   const char *input_help; /**< @brief ADIF file to use as input. help description.  */
@@ -50,6 +52,7 @@ struct gengetopt_args_info
   
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */
+  unsigned int nocompress_given ;	/**< @brief Whether nocompress was given.  */
   unsigned int input_given ;	/**< @brief Whether input was given.  */
   unsigned int output_given ;	/**< @brief Whether output was given.  */
   unsigned int geojson_given ;	/**< @brief Whether geojson was given.  */
