@@ -37,11 +37,22 @@
 #include "./cmdline.h"
 
 int
+data_compress(unsigned char **cmp, size_t *cmp_len, unsigned char *uncmp,
+              size_t uncmp_len);
+
+int
 runit(struct gengetopt_args_info *args_info)
 {
     FILE           *infp = stdin;
     adif_data_t    *data = NULL;
     FILE           *outfp = stdout;
+
+    char           *buf = NULL;
+    size_t          len = 0;
+    FILE           *fp = open_memstream(&buf, &len);
+
+    unsigned char *out_data = NULL;
+    size_t out_len;
 
     if (strcmp(args_info->input_arg, "-")) {
         infp = fopen(args_info->input_arg, "r");
@@ -68,10 +79,15 @@ runit(struct gengetopt_args_info *args_info)
     }
 
     if (args_info->geojson_flag) {
-        write_geojson(outfp, data);
+        write_geojson(fp, data);
     } else {
-        write_kml(outfp, data);
+        write_kml(fp, data);
     }
+    fclose(fp);
+
+    data_compress(&out_data, &out_len, (unsigned char*) buf, len);
+
+    // WRITE TO FILE 
 
     fclose(outfp);
 
