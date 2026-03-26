@@ -2,6 +2,7 @@
  * Copyright (c) 2026, Matt Massie (KO6IUE). See LICENSE file.
  */
 #include <stdio.h>
+#include <math.h>
 #include <assert.h>
 
 #include "./latlon.h"
@@ -38,10 +39,10 @@ main(void)
     assert(latlon_destination(paris, distance, bearing, &dest) == 0);
     print_latlon("destination", dest);
 
-    assert(dest.lat >= london.lat - london.lat * 0.001 &&
-           dest.lat <= london.lat + london.lat * .001);
-
-
+    printf("%16s: lat: %E lon: %E\n", "lat/lon diff",
+           london.lat - dest.lat, london.lon - dest.lon);
+    assert(fabs(london.lat - dest.lat) < 0.000001);
+    assert(fabs(london.lon - dest.lon) < 0.000001);
     printf("OK\n");
     return 0;
 }
