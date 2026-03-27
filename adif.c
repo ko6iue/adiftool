@@ -224,7 +224,6 @@ build_country_data(adif_station_t *station, adif_data_t *data)
     HASH_FIND_STR(data->countries, station->country, country);
     if (country == NULL) {
         country = (adif_country_t *) calloc(1, sizeof(*country));
-        // TODO ????
         country->name = station->country;
         HASH_ADD_STR(data->countries, name, country);
     }
@@ -550,7 +549,7 @@ load_adif_mem(char *buf, size_t buf_len)
     char           *fieldptr = NULL,
         *attrptr = NULL,
         *pairptr = NULL;
-    struct {
+    const struct {
         char           *name;
         void            (*cb)(adif_callback_arg_t * arg);
     } field_handler[] = {
